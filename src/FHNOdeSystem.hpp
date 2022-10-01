@@ -6,7 +6,6 @@
 #include "AbstractOdeSystem.hpp"
 #include "OdeSystemInformation.hpp"
 
-#include "FakePetscSetup.hpp"
 
 class FHNOdeSystem : public AbstractOdeSystem
 {
