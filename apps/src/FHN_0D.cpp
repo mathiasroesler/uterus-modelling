@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 		std::vector<double> initial_conditions;
 		initial_conditions.push_back(1.0);
 		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
-			0, 1, 0.01, 0.1);
+			0, 5, 0.01, 0.1);
 
 		for (unsigned i=0; i<solution.rGetTimes().size(); ++i)
 		{
