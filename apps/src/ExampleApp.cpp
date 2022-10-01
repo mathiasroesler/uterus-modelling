@@ -48,7 +48,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscTools.hpp"
 #include "PetscException.hpp"
 
-#include "Hello.hpp"
+#include "FHNOdeSystem.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -61,24 +61,21 @@ int main(int argc, char *argv[])
     // you clean up PETSc before quitting.
     try
     {
-        if (argc<2)
-        {
-            ExecutableSupport::PrintError("Usage: ExampleApp arguments ...", true);
-            exit_code = ExecutableSupport::EXIT_BAD_ARGUMENTS;
-        }
-        else
-        {
-            for (int i=1; i<argc; i++)
-            {
-                if (PetscTools::AmMaster())
-                {
-                    std::string arg_i(argv[i]);
-                    Hello world(arg_i);
-                    std::cout << "Argument " << i << " is " << world.GetMessage() << std::endl << std::flush;
-                }
-            }
-        }
-    }
+		FHNOdeSystem ode;
+		EulerIvpOdeSolver euler_solver;
+		std::vector<double> initial_conditions;
+		initial_conditions.push_back(1.0);
+		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
+			0, 1, 0.01, 0.1);
+
+		for (unsigned i=0; i<solution.rGetTimes().size(); ++i)
+		{
+			std::cout << solution.rGetTimes()[i] << " " << solution.rGetSolutions()[i][0] << "\n";
+		}
+
+		solution.WriteToFile("chaste_modelling", "ode_solution", "sec");
+	}
+
     catch (const Exception& e)
     {
         ExecutableSupport::PrintError(e.GetMessage());
