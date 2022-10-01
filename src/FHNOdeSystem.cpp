@@ -12,13 +12,4 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 	rDY[0] = rY[0]*rY[0] + time*time;
 }
 
-void OdeSystemInformation<FHNOdeSystem>::Initialise()
-{
-    this->mVariableNames.push_back("y");
-    this->mVariableUnits.push_back("dimensionless");
-    this->mInitialConditions.push_back(0.0);
-
-    this->mInitialised = true;
-}
-
 #endif // FHNODESYSTEM_HPP
