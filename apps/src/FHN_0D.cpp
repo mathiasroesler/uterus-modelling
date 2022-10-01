@@ -72,11 +72,6 @@ int main(int argc, char *argv[])
 		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
 			0, 5, 0.01, 0.1);
 
-		for (unsigned i=0; i<solution.rGetTimes().size(); ++i)
-		{
-			std::cout << solution.rGetTimes()[i] << " " << solution.rGetSolutions()[i][0] << "\n";
-		}
-
 		solution.WriteToFile("chaste_modelling", "ode_solution", "sec");
 	}
 
