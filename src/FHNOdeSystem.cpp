@@ -4,6 +4,15 @@
 FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
+
+	// Initialise parameters
+	mA = 1.0;
+	mB = 2.0;
+	mC = 2.0;
+	mFreq = 16e-3;
+	mDelta = 0.8;
+	mEpsilon = 0.115;
+	mGamma = 0.1;
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
