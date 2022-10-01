@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
     }
 
     // Optional - write the machine info to file.
-    ExecutableSupport::WriteMachineInfoFile("machine_info");
+    // ExecutableSupport::WriteMachineInfoFile("machine_info");
 
     // End by finalizing PETSc, and returning a suitable exit code.
     // 0 means 'no error'
