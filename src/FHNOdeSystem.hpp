@@ -5,10 +5,20 @@
 #include "EulerIvpOdeSolver.hpp"
 #include "AbstractOdeSystem.hpp"
 #include "OdeSystemInformation.hpp"
+#include <cmath>
 
 
 class FHNOdeSystem : public AbstractOdeSystem
 {
+private:
+	double mA;
+	double mB;
+	double mC;
+	double mFreq;
+	double mDelta;
+	double mGamma;
+	double mEpsilon;
+
 public:
     FHNOdeSystem();
 
