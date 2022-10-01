@@ -11,5 +11,3 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 {
 	rDY[0] = rY[0]*rY[0] + time*time;
 }
-
-#endif // FHNODESYSTEM_HPP
