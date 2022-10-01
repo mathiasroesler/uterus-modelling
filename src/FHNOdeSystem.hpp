@@ -19,9 +19,15 @@ public:
 template<>
 void OdeSystemInformation<FHNOdeSystem>::Initialise()
 {
-    this->mVariableNames.push_back("y");
-    this->mVariableUnits.push_back("dimensionless");
-    this->mInitialConditions.push_back(0.0);
+	// FHN source variable
+    this->mVariableNames.push_back("u");
+    this->mVariableUnits.push_back("mV");
+    this->mInitialConditions.push_back(-1.0);
+
+	// FHN recovery variable
+	this->mVariableNames.push_back("r");
+	this->mVariableUnits.push_back("mV");
+	this->mInitialConditions.push_back(0.0);
 
     this->mInitialised = true;
 }
