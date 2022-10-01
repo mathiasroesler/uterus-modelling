@@ -64,7 +64,11 @@ int main(int argc, char *argv[])
 		FHNOdeSystem ode;
 		EulerIvpOdeSolver euler_solver;
 		std::vector<double> initial_conditions;
-		initial_conditions.push_back(1.0);
+
+		// Set initial conditions, u = -1.0; r = 0.0
+		initial_conditions.push_back(-1.0);
+		initial_conditions.push_back(0.0);
+
 		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
 			0, 5, 0.01, 0.1);
 
