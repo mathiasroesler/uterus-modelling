@@ -6,8 +6,8 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
 	// Initialise parameters with default config files
-	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
 	ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
+	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
 }
 
 
@@ -16,8 +16,8 @@ FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile,
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadParamConfig(paramConfigFile);
 	ReadSysConfig(sysConfigFile);
+	ReadParamConfig(paramConfigFile);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
@@ -33,18 +33,30 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 
 void FHNOdeSystem::ReadParamConfig(std::string configFile)
 {
+	std::string tableName;
 	const auto params = toml::parse(configFile);
-	const auto& FHNSlowWaveParams = toml::find(params, "FHNSlowWave");
 
-	mA = toml::find<double>(FHNSlowWaveParams, "A");
-	mB = toml::find<double>(FHNSlowWaveParams, "B");
-	mC = toml::find<double>(FHNSlowWaveParams, "C");
-	mFreq = toml::find<double>(FHNSlowWaveParams, "f");
-	mBeta = toml::find<double>(FHNSlowWaveParams, "beta");
-	mDelta = toml::find<double>(FHNSlowWaveParams, "delta");
-	mEpsilon = toml::find<double>(FHNSlowWaveParams, "epsilon");
-	mGamma = toml::find<double>(FHNSlowWaveParams, "gamma");
-	mStim = toml::find<double>(FHNSlowWaveParams, "Istim");
+	if (mSlowWave)
+	{
+		tableName = "FHNSlowWave";
+	}
+
+	else
+	{
+		tableName = "FHNOriginal";
+	}
+
+	const auto& FHNOdeSystemParams = toml::find(params, tableName);
+
+	mA = toml::find<double>(FHNOdeSystemParams, "A");
+	mB = toml::find<double>(FHNOdeSystemParams, "B");
+	mC = toml::find<double>(FHNOdeSystemParams, "C");
+	mFreq = toml::find<double>(FHNOdeSystemParams, "f");
+	mBeta = toml::find<double>(FHNOdeSystemParams, "beta");
+	mDelta = toml::find<double>(FHNOdeSystemParams, "delta");
+	mEpsilon = toml::find<double>(FHNOdeSystemParams, "epsilon");
+	mGamma = toml::find<double>(FHNOdeSystemParams, "gamma");
+	mStim = toml::find<double>(FHNOdeSystemParams, "Istim");
 	
 }
 
