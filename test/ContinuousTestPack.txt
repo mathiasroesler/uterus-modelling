@@ -1,2 +1,2 @@
-TestReadConfig.hpp
+TestReadParamConfig.hpp
 TestReadSysConfig.hpp
