@@ -20,7 +20,7 @@ FHNOdeSystem::FHNOdeSystem(std::string configFile) : AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadConfig(configFile);
+	ReadParamConfig(configFile);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
@@ -34,7 +34,7 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 }
 
 
-void FHNOdeSystem::ReadConfig(std::string configFile)
+void FHNOdeSystem::ReadParamConfig(std::string configFile)
 {
 	const auto params = toml::parse(configFile);
 	const auto& FHNSlowWaveParams = toml::find(params, "FHNSlowWave");

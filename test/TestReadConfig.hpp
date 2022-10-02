@@ -25,16 +25,16 @@
  * components of Chaste.
  */
 
-class TestReadConfig : public CxxTest::TestSuite
+class TestReadParamConfig : public CxxTest::TestSuite
 {
 public:
-    void TestReadConfigClass()
+    void TestReadParamConfigClass()
     {
         FHNOdeSystem ode; // Create an FHN ODE system
 		FHNOdeSystem ode2("projects/chaste_modelling/config/params.toml");
 		FHNOdeSystem ode3(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
 
-		ode.ReadConfig("projects/chaste_modelling/config/params.toml");
+		ode.ReadParamConfig("projects/chaste_modelling/config/params.toml");
 
 		ode.PrintParams();
 		ode2.PrintParams();

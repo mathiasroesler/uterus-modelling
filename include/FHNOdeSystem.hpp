@@ -37,7 +37,7 @@ public:
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
-	void ReadConfig(std::string configFile);
+	void ReadParamConfig(std::string configFile);
 	void ReadSysConfig(std::string configFile);
 	void PrintParams();
 };
