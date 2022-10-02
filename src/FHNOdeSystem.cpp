@@ -23,10 +23,20 @@ FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile,
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
 	const std::vector<double>& rY, std::vector<double>& rDY)
 {
-	double beta = mC * sin(2*M_PI*mFreq*time); // Define the beta function
+	double beta;
+
+	if (mSlowWave)
+	{
+ 		beta = mC * sin(2*M_PI*mFreq*time); // Define the beta function
+	}
+
+	else
+	{
+		beta = mBeta;
+	}
 
 	// rY[0] = u and rY[1] = r
-	rDY[0] = mA*rY[0] * (rY[0] - beta) * (mDelta - rY[0]) - mB * rY[1];
+	rDY[0] = mA*rY[0] * (rY[0] - beta) * (mDelta - rY[0]) - mB * rY[1] + mStim;
 	rDY[1] = mEpsilon * (rY[0] - mGamma*rY[1]);
 }
 
