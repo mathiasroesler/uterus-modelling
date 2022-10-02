@@ -32,7 +32,7 @@ public:
     {
         FHNOdeSystem ode; // Create an FHN ODE system
 		FHNOdeSystem ode2("projects/chaste_modelling/config/params.toml");
-		FHNOdeSystem ode3(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
+		FHNOdeSystem ode3(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
 
 		ode.ReadConfig("projects/chaste_modelling/config/params.toml");
 

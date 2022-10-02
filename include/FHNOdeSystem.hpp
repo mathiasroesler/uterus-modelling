@@ -13,7 +13,7 @@
 
 namespace FHN_ODE_SYSTEM_CONSTANTS
 {
-	const std::string CONFIG_PATH = 
+	const std::string PARAM_CONFIG_PATH = 
 		"projects/chaste_modelling/config/params.toml";
 }
 
