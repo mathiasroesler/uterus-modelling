@@ -31,8 +31,11 @@ public:
     void TestFHNOdeSystemConstructorClass()
     {
         FHNOdeSystem ode; // Create an FHN ODE system
+		FHNOdeSystem ode2(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH,
+			FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
 
 		ode.PrintParams();
+		ode2.PrintParams();
     }
 };
 
