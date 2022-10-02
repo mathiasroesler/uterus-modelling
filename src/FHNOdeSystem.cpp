@@ -15,6 +15,14 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mGamma = 0.1;
 }
 
+
+FHNOdeSystem::FHNOdeSystem(std::string configFile) : AbstractOdeSystem(2)
+{
+	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
+
+	ReadConfig(configFile);
+}
+
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
 	const std::vector<double>& rY, std::vector<double>& rDY)
 {
