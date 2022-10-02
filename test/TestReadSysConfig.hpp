@@ -30,8 +30,9 @@ class TestReadSysConfig : public CxxTest::TestSuite
 public:
     void TestReadSysConfigClass()
     {
-		FHNOdeSystem ode(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+		FHNOdeSystem ode;
 
+		ode.ReadSysConfig("projects/chaste_modelling/config/system.toml");
 		ode.ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
 
 		ode.PrintParams();
