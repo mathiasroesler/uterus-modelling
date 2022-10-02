@@ -10,6 +10,13 @@
 #include "AbstractOdeSystem.hpp"
 #include "OdeSystemInformation.hpp"
 
+
+namespace FHN_ODE_SYSTEM_CONSTANTS
+{
+	const std::string CONFIG_PATH = 
+		"projects/chaste_modelling/config/params.toml";
+}
+
 class FHNOdeSystem : public AbstractOdeSystem
 {
 private:
