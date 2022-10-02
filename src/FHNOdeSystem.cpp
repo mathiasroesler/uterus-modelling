@@ -5,14 +5,9 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	// Initialise parameters
-	mA = 1.0;
-	mB = 2.0;
-	mC = 2.0;
-	mFreq = 16e-3;
-	mDelta = 0.8;
-	mEpsilon = 0.115;
-	mGamma = 0.1;
+	// Initialise parameters with default config files
+	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+	ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
 }
 
 
