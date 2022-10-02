@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     // you clean up PETSc before quitting.
     try
     {
-		FHNOdeSystem ode;
+		FHNOdeSystem ode(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 		EulerIvpOdeSolver euler_solver;
 		std::vector<double> initial_conditions;
 
