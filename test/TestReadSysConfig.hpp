@@ -33,6 +33,7 @@ public:
 		FHNOdeSystem ode;
 
 		ode.ReadSysConfig("projects/chaste_modelling/config/system.toml");
+		ode.ReadSysConfig("/usr/local/config/system.toml");
 		ode.ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
 
 		ode.PrintParams();
