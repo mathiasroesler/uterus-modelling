@@ -30,7 +30,7 @@ class TestReadSysConfig : public CxxTest::TestSuite
 public:
     void TestReadSysConfigClass()
     {
-		FHNOdeSystem ode3(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+		FHNOdeSystem ode(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
 
 		ode.ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
 
