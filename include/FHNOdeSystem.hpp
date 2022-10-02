@@ -14,9 +14,9 @@
 namespace FHN_ODE_SYSTEM_CONSTANTS
 {
 	const std::string PARAM_CONFIG_PATH = 
-		"projects/chaste_modelling/config/params.toml";
+		"/usr/local/config/params.toml";
 	const std::string SYS_CONFIG_PATH = 
-		"projects/chaste_modelling/config/system.toml";
+		"/usr/local/config/system.toml";
 }
 
 class FHNOdeSystem : public AbstractOdeSystem
