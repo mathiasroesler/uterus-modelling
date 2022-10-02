@@ -1,0 +1,8 @@
+[FHNSlowWave]
+	A = 1.0
+	B = 2.0
+	C = 2.0
+	f = 16e-3
+	delta = 0.8
+	epsilon = 0.115
+	gamma = 0.1
