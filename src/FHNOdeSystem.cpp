@@ -24,3 +24,19 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 	rDY[0] = mA*rY[0] * (rY[0] - beta) * (mDelta - rY[0]) - mB * rY[1];
 	rDY[1] = mEpsilon * (rY[0] - mGamma*rY[1]);
 }
+
+
+void FHNOdeSystem::ReadConfig(std::string configFile)
+{
+	const auto params = toml::parse(configFile);
+	const auto& FHNSlowWaveParams = toml::find(params, "FHNSlowWave");
+
+	mA = toml::find<double>(FHNSlowWaveParams, "A");
+	mB = toml::find<double>(FHNSlowWaveParams, "B");
+	mC = toml::find<double>(FHNSlowWaveParams, "C");
+	mFreq = toml::find<double>(FHNSlowWaveParams, "f");
+	mDelta = toml::find<double>(FHNSlowWaveParams, "delta");
+	mEpsilon = toml::find<double>(FHNSlowWaveParams, "epsilon");
+	mGamma = toml::find<double>(FHNSlowWaveParams, "gamma");
+	
+}

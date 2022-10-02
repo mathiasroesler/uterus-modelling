@@ -6,6 +6,7 @@
 #include "AbstractOdeSystem.hpp"
 #include "OdeSystemInformation.hpp"
 #include <cmath>
+#include <toml.hpp>
 
 
 class FHNOdeSystem : public AbstractOdeSystem
@@ -24,6 +25,8 @@ public:
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
+	
+	void ReadConfig(std::string configFile);
 };
 
 template<>
