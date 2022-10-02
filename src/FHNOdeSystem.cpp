@@ -68,4 +68,5 @@ void FHNOdeSystem::PrintParams()
 	std::cout << "mDelta = " << mDelta << "\n";
 	std::cout << "mEpsilon = " << mEpsilon << "\n";
 	std::cout << "mGamma = " << mGamma << "\n";
+	std::cout << "mSlowWave = " << mSlowWave << "\n";
 }
