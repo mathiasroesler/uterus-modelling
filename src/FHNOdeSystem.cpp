@@ -11,11 +11,13 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 }
 
 
-FHNOdeSystem::FHNOdeSystem(std::string configFile) : AbstractOdeSystem(2)
+FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile, 
+	std::string sysConfigFile) : AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadParamConfig(configFile);
+	ReadParamConfig(paramConfigFile);
+	ReadSysConfig(sysConfigFile);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
