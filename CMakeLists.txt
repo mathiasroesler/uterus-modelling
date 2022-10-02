@@ -48,6 +48,7 @@ find_package(Chaste COMPONENTS cell_based)
 # Alternatively, to specify a Chaste installation directory use a line like that below.
 # This is needed if your project is not contained in the projects folder within a Chaste source tree.
 #find_package(Chaste COMPONENTS heart crypt PATHS /path/to/chaste-install NO_DEFAULT_PATH)
+include_directories(${PROJECT_SOURCE_DIR}/projects/chaste_modelling/include)
 
 # Change the project name in the line below to match the folder this file is in,
 # i.e. the name of your project.
