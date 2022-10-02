@@ -40,3 +40,16 @@ void FHNOdeSystem::ReadConfig(std::string configFile)
 	mGamma = toml::find<double>(FHNSlowWaveParams, "gamma");
 	
 }
+
+
+void FHNOdeSystem::PrintParams()
+{
+	// Print all parameters for testing purposes
+	std::cout << "mA = " << mA << "\n";
+	std::cout << "mB = " << mB << "\n";
+	std::cout << "mC = " << mC << "\n";
+	std::cout << "mFreq = " << mFreq << "\n";
+	std::cout << "mDelta = " << mDelta << "\n";
+	std::cout << "mEpsilon = " << mEpsilon << "\n";
+	std::cout << "mGamma = " << mGamma << "\n";
+}
