@@ -15,6 +15,8 @@ namespace FHN_ODE_SYSTEM_CONSTANTS
 {
 	const std::string PARAM_CONFIG_PATH = 
 		"projects/chaste_modelling/config/params.toml";
+	const std::string SYS_CONFIG_PATH = 
+		"projects/chaste_modelling/config/system.toml";
 }
 
 class FHNOdeSystem : public AbstractOdeSystem
@@ -27,6 +29,7 @@ private:
 	double mDelta;
 	double mGamma;
 	double mEpsilon;
+	bool mSlowWave; // True if slow-wave version of FHN
 
 public:
     FHNOdeSystem();
@@ -35,6 +38,7 @@ public:
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
 	void ReadConfig(std::string configFile);
+	void ReadSysConfig(std::string configFile);
 	void PrintParams();
 };
 

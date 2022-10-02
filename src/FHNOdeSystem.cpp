@@ -50,6 +50,14 @@ void FHNOdeSystem::ReadConfig(std::string configFile)
 }
 
 
+void FHNOdeSystem::ReadSysConfig(std::string configFile)
+{
+	const auto sysParams = toml::parse(configFile);
+	
+	mSlowWave = toml::find<bool>(sysParams, slowWave);
+}
+
+
 void FHNOdeSystem::PrintParams()
 {
 	// Print all parameters for testing purposes
