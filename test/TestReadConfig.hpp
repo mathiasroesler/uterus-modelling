@@ -31,9 +31,12 @@ public:
     void TestReadConfigClass()
     {
         FHNOdeSystem ode; // Create an FHN ODE system
+		FHNOdeSystem ode2("projects/chaste_modelling/config/params.toml");
 
 		ode.ReadConfig("projects/chaste_modelling/config/params.toml");
 		ode.PrintParams();
+
+		ode2.PrintParams();
     }
 };
 
