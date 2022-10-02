@@ -26,9 +26,11 @@ private:
 	double mB;
 	double mC;
 	double mFreq;
+	double mBeta;
 	double mDelta;
 	double mGamma;
 	double mEpsilon;
+	double mStim;
 	bool mSlowWave; // True if slow-wave version of FHN
 
 public:

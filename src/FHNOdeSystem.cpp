@@ -40,9 +40,11 @@ void FHNOdeSystem::ReadParamConfig(std::string configFile)
 	mB = toml::find<double>(FHNSlowWaveParams, "B");
 	mC = toml::find<double>(FHNSlowWaveParams, "C");
 	mFreq = toml::find<double>(FHNSlowWaveParams, "f");
+	mBeta = toml::find<double>(FHNSlowWaveParams, "beta");
 	mDelta = toml::find<double>(FHNSlowWaveParams, "delta");
 	mEpsilon = toml::find<double>(FHNSlowWaveParams, "epsilon");
 	mGamma = toml::find<double>(FHNSlowWaveParams, "gamma");
+	mStim = toml::find<double>(FHNSlowWaveParams, "Istim");
 	
 }
 
@@ -62,8 +64,10 @@ void FHNOdeSystem::PrintParams()
 	std::cout << "mB = " << mB << "\n";
 	std::cout << "mC = " << mC << "\n";
 	std::cout << "mFreq = " << mFreq << "\n";
+	std::cout << "mBeta = " << mBeta << "\n";
 	std::cout << "mDelta = " << mDelta << "\n";
 	std::cout << "mEpsilon = " << mEpsilon << "\n";
 	std::cout << "mGamma = " << mGamma << "\n";
+	std::cout << "mStim = " << mStim << "\n";
 	std::cout << "mSlowWave = " << mSlowWave << "\n";
 }
