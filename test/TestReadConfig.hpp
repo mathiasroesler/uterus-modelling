@@ -28,7 +28,7 @@
 class TestReadConfig : public CxxTest::TestSuite
 {
 public:
-    void TestReadConfig()
+    void TestReadConfigClass()
     {
         FHNOdeSystem ode; // Create an FHN ODE system
 
