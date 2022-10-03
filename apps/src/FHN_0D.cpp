@@ -42,6 +42,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
 #include <string>
+#include <toml.hpp>
 
 #include "ExecutableSupport.hpp"
 #include "Exception.hpp"
@@ -63,14 +64,21 @@ int main(int argc, char *argv[])
     {
 		FHNOdeSystem ode;
 		EulerIvpOdeSolver euler_solver;
-		std::vector<double> initial_conditions;
 
-		// Set initial conditions, u = -1.0; r = 0.0
-		initial_conditions.push_back(-1.0);
-		initial_conditions.push_back(0.0);
+		const auto sysParams = toml::parse(
+			FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
+
+		auto initial_conditions = toml::find<std::vector<double>>(
+			sysParams, "initial_conditions");
+
+		const double start_time = toml::find<double>(sysParams, "start_time");
+		const double end_time = toml::find<double>(sysParams, "end_time");
+		const double timestep = toml::find<double>(sysParams, "timestep");
+		const double sampling_step = toml::find<double>(sysParams, 
+			"sampling_step");
 
 		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
-			0, 5, 0.01, 0.1);
+			start_time, end_time, timestep, sampling_step);
 
 		solution.WriteToFile("chaste_modelling", "ode_solution", "sec");
 	}
