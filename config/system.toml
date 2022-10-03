@@ -1,1 +1,6 @@
 slowWave = false
+initial_conditions = [-1.0, 0.0]
+start_time = 0.0
+end_time = 100.0
+timestep = 0.01
+sampling_step = 0.1
