@@ -43,20 +43,20 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 
 void FHNOdeSystem::ReadParamConfig(std::string configFile)
 {
-	std::string tableName;
+	std::string table_name;
 	const auto params = toml::parse(configFile);
 
 	if (mSlowWave)
 	{
-		tableName = "FHNSlowWave";
+		table_name = "FHNSlowWave";
 	}
 
 	else
 	{
-		tableName = "FHNOriginal";
+		table_name = "FHNOriginal";
 	}
 
-	const auto& FHNOdeSystemParams = toml::find(params, tableName);
+	const auto& FHNOdeSystemParams = toml::find(params, table_name);
 
 	mA = toml::find<double>(FHNOdeSystemParams, "A");
 	mB = toml::find<double>(FHNOdeSystemParams, "B");
