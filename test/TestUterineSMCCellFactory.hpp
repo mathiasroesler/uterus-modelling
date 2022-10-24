@@ -30,6 +30,15 @@ class TestUterineSMC2dCellFactory : public CxxTest::TestSuite
 public:
     void TestUterineSMC2dCellFactoryClass()
     {
+		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
+        HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
+        HeartConfig::Instance()->SetOutputDirectory("MonodomainTutorial");
+        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+
+        HeartConfig::Instance()->SetVisualizeWithMeshalyzer(true);
+        HeartConfig::Instance()->SetVisualizeWithCmgui(true);
+        HeartConfig::Instance()->SetVisualizeWithVtk(true);
+
 		UterineSMC2dCellFactory factory;
     }
 };
