@@ -1,5 +1,5 @@
-#ifndef TESTUTERINESMCCELLFACTORY_HPP_
-#define TESTUTERINESMCCELLFACTORY_HPP_
+#ifndef TESTUTERINESMC2DCELLFACTORY_HPP_
+#define TESTUTERINESMC2DCELLFACTORY_HPP_
 
 #include <cxxtest/TestSuite.h>
 /* Most Chaste code uses PETSc to solve linear algebra problems.  This involves starting PETSc at the beginning of a test-suite
@@ -43,4 +43,4 @@ public:
     }
 };
 
-#endif /*TESTUTERINESMCCELLFACTORY_HPP_*/
+#endif /*TESTUTERINESMC2DCELLFACTORY_HPP_*/
