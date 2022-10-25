@@ -42,13 +42,14 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
 #include <string>
+#include <toml.hpp>
 
 #include "ExecutableSupport.hpp"
 #include "Exception.hpp"
 #include "PetscTools.hpp"
 #include "PetscException.hpp"
 
-#include "Hello.hpp"
+#include "FHNOdeSystem.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -61,24 +62,27 @@ int main(int argc, char *argv[])
     // you clean up PETSc before quitting.
     try
     {
-        if (argc<2)
-        {
-            ExecutableSupport::PrintError("Usage: ExampleApp arguments ...", true);
-            exit_code = ExecutableSupport::EXIT_BAD_ARGUMENTS;
-        }
-        else
-        {
-            for (int i=1; i<argc; i++)
-            {
-                if (PetscTools::AmMaster())
-                {
-                    std::string arg_i(argv[i]);
-                    Hello world(arg_i);
-                    std::cout << "Argument " << i << " is " << world.GetMessage() << std::endl << std::flush;
-                }
-            }
-        }
-    }
+		FHNOdeSystem ode;
+		EulerIvpOdeSolver euler_solver;
+
+		const auto sysParams = toml::parse(
+			FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
+
+		auto initial_conditions = toml::find<std::vector<double>>(
+			sysParams, "initial_conditions");
+
+		const double start_time = toml::find<double>(sysParams, "start_time");
+		const double end_time = toml::find<double>(sysParams, "end_time");
+		const double timestep = toml::find<double>(sysParams, "timestep");
+		const double sampling_step = toml::find<double>(sysParams, 
+			"sampling_step");
+
+		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
+			start_time, end_time, timestep, sampling_step);
+
+		solution.WriteToFile("chaste_modelling", "ode_solution", "sec");
+	}
+
     catch (const Exception& e)
     {
         ExecutableSupport::PrintError(e.GetMessage());
@@ -86,7 +90,7 @@ int main(int argc, char *argv[])
     }
 
     // Optional - write the machine info to file.
-    ExecutableSupport::WriteMachineInfoFile("machine_info");
+    // ExecutableSupport::WriteMachineInfoFile("machine_info");
 
     // End by finalizing PETSc, and returning a suitable exit code.
     // 0 means 'no error'
