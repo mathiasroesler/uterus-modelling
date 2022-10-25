@@ -44,20 +44,4 @@ public:
 	void PrintParams();
 };
 
-template<>
-void OdeSystemInformation<FHNOdeSystem>::Initialise()
-{
-	// FHN source variable
-    this->mVariableNames.push_back("u");
-    this->mVariableUnits.push_back("mV");
-    this->mInitialConditions.push_back(-1.0);
-
-	// FHN recovery variable
-	this->mVariableNames.push_back("r");
-	this->mVariableUnits.push_back("mV");
-	this->mInitialConditions.push_back(0.0);
-
-    this->mInitialised = true;
-}
-
 #endif // FHNODESYSTEM_HPP
