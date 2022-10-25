@@ -9,6 +9,8 @@ class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
 private:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
+	double mpX_location;
+	double mpY_location;
 
 public:
 	UterineSMC2dCellFactory();
