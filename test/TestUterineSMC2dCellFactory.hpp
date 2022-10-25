@@ -12,7 +12,7 @@ public:
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
-        HeartConfig::Instance()->SetOutputDirectory("MonodomainTutorial");
+        HeartConfig::Instance()->SetOutputDirectory("MonodomainTest");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
