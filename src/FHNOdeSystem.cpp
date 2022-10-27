@@ -44,6 +44,8 @@ void FHNOdeSystem::ReadParamConfig(std::string configFile)
 	std::string table_name;
 	const auto params = toml::parse(configFile);
 
+	mSlowWave = toml::find<bool>(params, "slowWave");
+
 	if (mSlowWave)
 	{
 		table_name = "FHNSlowWave";
