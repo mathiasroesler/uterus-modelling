@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
     try
     {
 		simulation_0d();
+		simulation_2d();
 	}
 
     catch (const Exception& e)
