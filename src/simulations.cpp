@@ -1,3 +1,4 @@
+#include <iostream>
 #include "simulations.hpp"
 
 void simulation_0d()
@@ -17,6 +18,8 @@ void simulation_0d()
 	const double sampling_step = toml::find<double>(sysParams, 
 		"sampling_step");
 
+	std::cout << "Running 0D simulation..." << std::endl;
+
 	OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
 		start_time, end_time, timestep, sampling_step);
 
@@ -26,28 +29,29 @@ void simulation_0d()
 
 void simulation_2d()
 {
-		HeartConfig::Instance()->SetSimulationDuration(450.0); //ms
-        HeartConfig::Instance()->SetMeshFileName("/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements");
-        HeartConfig::Instance()->SetOutputDirectory("Monodomain_2D");
-        HeartConfig::Instance()->SetOutputFilenamePrefix("results");
+	HeartConfig::Instance()->SetSimulationDuration(450.0); //ms
+	HeartConfig::Instance()->SetMeshFileName("/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements");
+	HeartConfig::Instance()->SetOutputDirectory("Monodomain_2D");
+	HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
-        HeartConfig::Instance()->SetVisualizeWithVtk(true);
+	HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineSMC2dCellFactory factory;
+	UterineSMC2dCellFactory factory;
 
-        MonodomainProblem<2> monodomain_problem( &factory );
+	MonodomainProblem<2> monodomain_problem( &factory );
 
-        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
+	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
 
-        HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
-        HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
+	HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
+	HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
 
-        HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
+	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
 
-        monodomain_problem.Initialise();
-        monodomain_problem.Solve();
+	std::cout << "Running 2D simulation..." << std::endl;
+	monodomain_problem.Initialise();
+	monodomain_problem.Solve();
 
-        HeartEventHandler::Headings();
-        HeartEventHandler::Report();
+	HeartEventHandler::Headings();
+	HeartEventHandler::Report();
 }
 
