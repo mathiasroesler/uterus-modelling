@@ -34,7 +34,7 @@ public:
 
 		ode.ReadParamConfig("projects/chaste_modelling/config/params.toml");
 		ode.ReadParamConfig("/usr/local/config/params.toml");
-		ode.ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+		ode.ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
     }
 };
 
