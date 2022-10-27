@@ -13,10 +13,8 @@
 
 namespace FHN_ODE_SYSTEM_CONSTANTS
 {
-	const std::string PARAM_CONFIG_PATH = 
-		"/usr/local/config/params.toml";
-	const std::string SYS_CONFIG_PATH = 
-		"/usr/local/config/system.toml";
+	const std::string CONFIG_PATH = 
+		"/usr/local/config/0D_params.toml";
 }
 
 class FHNOdeSystem : public AbstractOdeSystem
@@ -35,12 +33,11 @@ private:
 
 public:
     FHNOdeSystem();
-	FHNOdeSystem(std::string paramConfigFile, std::string sysConfigFile);
+	FHNOdeSystem(std::string paramConfigFile);
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
 	void ReadParamConfig(std::string configFile);
-	void ReadSysConfig(std::string configFile);
 	void PrintParams();
 };
 

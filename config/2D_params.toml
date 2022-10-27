@@ -1,0 +1,3 @@
+sim_duration = 500 // ms
+mesh_name = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements"
+conductivities = [0.0, 0.0] // x, y

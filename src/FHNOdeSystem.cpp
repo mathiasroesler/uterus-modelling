@@ -6,17 +6,15 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
 	// Initialise parameters with default config files
-	ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
-	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
-FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile, 
-	std::string sysConfigFile) : AbstractOdeSystem(2)
+FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile)
+	: AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadSysConfig(sysConfigFile);
 	ReadParamConfig(paramConfigFile);
 }
 
@@ -46,6 +44,8 @@ void FHNOdeSystem::ReadParamConfig(std::string configFile)
 	std::string table_name;
 	const auto params = toml::parse(configFile);
 
+	mSlowWave = toml::find<bool>(params, "slowWave");
+
 	if (mSlowWave)
 	{
 		table_name = "FHNSlowWave";
@@ -68,14 +68,6 @@ void FHNOdeSystem::ReadParamConfig(std::string configFile)
 	mGamma = toml::find<double>(FHNOdeSystemParams, "gamma");
 	mStim = toml::find<double>(FHNOdeSystemParams, "Istim");
 	
-}
-
-
-void FHNOdeSystem::ReadSysConfig(std::string configFile)
-{
-	const auto sysParams = toml::parse(configFile);
-	
-	mSlowWave = toml::find<bool>(sysParams, "slowWave");
 }
 
 
