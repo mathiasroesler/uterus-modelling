@@ -21,7 +21,7 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 	{
 		if (mpChay_keizer)
 		{
-			return new CellChayKeizerFromCellML(mpSolver, mpStimulus);
+			return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
 		}
 
 		else
