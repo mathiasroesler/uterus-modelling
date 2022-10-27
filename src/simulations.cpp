@@ -7,7 +7,7 @@ void simulation_0d()
 	EulerIvpOdeSolver euler_solver;
 
 	const auto sysParams = toml::parse(
-		FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
+		FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 
 	auto initial_conditions = toml::find<std::vector<double>>(
 		sysParams, "initial_conditions");
