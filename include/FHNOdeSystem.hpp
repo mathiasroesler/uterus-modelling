@@ -33,7 +33,7 @@ private:
 
 public:
     FHNOdeSystem();
-	FHNOdeSystem(std::string paramConfigFile, std::string sysConfigFile);
+	FHNOdeSystem(std::string paramConfigFile);
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);

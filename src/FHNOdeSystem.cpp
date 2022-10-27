@@ -10,8 +10,8 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 }
 
 
-FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile, 
-	std::string sysConfigFile) : AbstractOdeSystem(2)
+FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile)
+	: AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
