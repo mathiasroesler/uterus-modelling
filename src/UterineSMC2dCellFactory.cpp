@@ -3,10 +3,11 @@
 
 UterineSMC2dCellFactory::UterineSMC2dCellFactory() : 
 	AbstractCardiacCellFactory<2>(),
-	mpStimulus(new SimpleStimulus(-5e5, 0.5))
+	mpStimulus(new SimpleStimulus(-5e5, 5.0))
 {
 	mpX_location = 0.04;
 	mpY_location = 0.02;
+	mpChay_keizer = true;
 }
 
 
@@ -18,11 +19,28 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 	// if x<=0.02 and y<=0.02 
 	if (x < mpX_location && y < mpY_location) 
 	{
-		return new CellHodgkinHuxley1952FromCellML(mpSolver, mpStimulus);
+		if (mpChay_keizer)
+		{
+			return new CellChayKeizerFromCellML(mpSolver, mpStimulus);
+		}
+
+		else
+		{
+			return new CellHodgkinHuxley1952FromCellML(mpSolver, mpStimulus);
+		}
 	}
 	else
 	{
 		/* The other cells have zero stimuli. */
-		return new CellHodgkinHuxley1952FromCellML(mpSolver, mpZeroStimulus);
+		
+		if (mpChay_keizer)
+		{
+			return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
+		}
+
+		else
+		{
+			return new CellHodgkinHuxley1952FromCellML(mpSolver, mpZeroStimulus);
+		}
 	}
 }
