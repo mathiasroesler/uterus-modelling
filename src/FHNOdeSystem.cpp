@@ -6,8 +6,7 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
 	// Initialise parameters with default config files
-	ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
-	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
@@ -16,7 +15,6 @@ FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile,
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadSysConfig(sysConfigFile);
 	ReadParamConfig(paramConfigFile);
 }
 
