@@ -29,8 +29,17 @@ void simulation_0d()
 
 void simulation_2d()
 {
-	HeartConfig::Instance()->SetSimulationDuration(450.0); //ms
-	HeartConfig::Instance()->SetMeshFileName("/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements");
+	// Get parameters from config file
+	const auto sys_params = toml::parse(
+		USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+
+	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
+	const std::string mesh_path = toml::find<std::string>(sys_params, "mesh_path");
+	auto conductivities = toml::find<std::vector<double>>(
+		sys_params, "conductivities");	
+
+	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
+	HeartConfig::Instance()->SetMeshFileName(mesh_path);
 	HeartConfig::Instance()->SetOutputDirectory("Monodomain_2D");
 	HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
@@ -40,7 +49,8 @@ void simulation_2d()
 
 	MonodomainProblem<2> monodomain_problem( &factory );
 
-	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
+	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
+		conductivities[0], conductivities[1]));
 
 	HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
 	HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
