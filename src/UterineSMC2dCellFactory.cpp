@@ -18,27 +18,27 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 	if (x > mpX_stim_start && x < mpX_stim_end && 
 			y > mpY_stim_start && y < mpY_stim_end)
 	{
-		switch (mpCell_type)
+		switch (mpCell_id)
 		{
-			case "ChayKeizer":
-				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
-
-			case "HodgkinHuxley":
+			case 0:
 				return new CellHodgkinHuxley1952FromCellML(mpSolver,
 					mpStimulus);
+
+			case 1:
+				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
 		}
 	}
 	else
 	{
 		/* The other cells have zero stimuli. */
-		switch (mpCell_type)
+		switch (mpCell_id)
 		{
-			case "ChayKeizer":
-				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
-
-			case "HodgkinHuxley":
+			case 0:
 				return new CellHodgkinHuxley1952FromCellML(mpSolver,
 					mpZeroStimulus);
+
+			case 1:
+				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
 		}	
 	}
 }
@@ -57,4 +57,5 @@ void UterineSMC2dCellFactory::ReadConfigPath(std::string config_path)
 	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
 	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
 	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
+	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }

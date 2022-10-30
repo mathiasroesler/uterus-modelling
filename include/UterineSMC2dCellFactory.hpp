@@ -21,6 +21,7 @@ private:
 	double mpY_stim_start;
 	double mpY_stim_end;
 	std::string mpCell_type;
+	unsigned short int mpCell_id; // 0 for HH, 1 for CK
 
 
 public:
