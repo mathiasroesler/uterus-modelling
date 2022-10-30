@@ -1,3 +1,16 @@
 sim_duration = 500.0 #ms
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements"
 conductivities = [0.0, 0.0] #x, y
+cell = ChayKeizer
+
+[ChayKeizer]
+	x_stim_start = 0.0
+	x_stim_end = 0.04
+	y_stim_start = 0.0
+	y_stim_end = 0.02
+
+[HodgkinHuxeley]
+	x_stim_start = 0.0
+	x_stim_end = 0.04
+	y_stim_start = 0.0
+	y_stim_end = 0.02
