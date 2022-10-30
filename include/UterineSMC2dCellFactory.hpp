@@ -6,6 +6,12 @@
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer.hpp"
 
+namespace USMC_2D_SYSTEM_CONSTANTS
+{
+	const std::string CONFIG_PATH = 
+		"/usr/local/config/2D_params.toml";
+}
+
 class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
 private:
