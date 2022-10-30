@@ -1,6 +1,7 @@
 #ifndef UTERINESMC2DCELLFACTORY_HPP
 #define UTERINESMC2DCELLFACTORY_HPP
 
+#include <toml.hpp>
 #include "MonodomainProblem.hpp"
 #include "SimpleStimulus.hpp"
 #include "HodgkinHuxley1952.hpp"
