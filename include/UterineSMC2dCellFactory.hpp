@@ -16,9 +16,12 @@ class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
 private:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
-	double mpX_location;
-	double mpY_location;
-	bool mpChay_keizer; // True if the cell model is Chay-Keizer
+	double mpX_stim_start;
+	double mpX_stim_end;
+	double mpY_stim_start;
+	double mpY_stim_end;
+	std::string mpCell_type;
+
 
 public:
 	UterineSMC2dCellFactory();
