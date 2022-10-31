@@ -26,6 +26,10 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 
 			case 1:
 				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
+		
+			default:
+				return new CellHodgkinHuxley1952FromCellML(mpSolver,
+					mpStimulus);
 		}
 	}
 	else
@@ -39,6 +43,10 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 
 			case 1:
 				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
+
+			default:
+				return new CellHodgkinHuxley1952FromCellML(mpSolver,
+					mpStimulus);
 		}	
 	}
 }
