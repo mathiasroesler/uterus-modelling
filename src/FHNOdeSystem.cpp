@@ -6,7 +6,7 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
 	// Initialise parameters with default config files
-	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
+	ReadConfigParams(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
@@ -15,7 +15,7 @@ FHNOdeSystem::FHNOdeSystem(std::string param_config_file)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadParamConfig(param_config_file);
+	ReadConfigParams(param_config_file);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
@@ -39,7 +39,7 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 }
 
 
-void FHNOdeSystem::ReadParamConfig(std::string config_file)
+void FHNOdeSystem::ReadConfigParams(std::string config_file)
 {
 	std::string table_name;
 	const auto params = toml::parse(config_file);
