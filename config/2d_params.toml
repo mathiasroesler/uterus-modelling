@@ -1,7 +1,8 @@
 sim_duration = 500.0 #ms
-mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_800_elements"
+mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
 conductivities = [0.0, 0.0] #x, y
-cell_type = "HodgkinHuxley"
+capacitance = 5.3 # uF/cm2
+cell_type = "ChayKeizer"
 
 [HodgkinHuxley]
 	x_stim_start = 0.0
@@ -12,7 +13,7 @@ cell_type = "HodgkinHuxley"
 
 [ChayKeizer]
 	x_stim_start = 0.0
-	x_stim_end = 0.04
+	x_stim_end = 0.0
 	y_stim_start = 0.0
-	y_stim_end = 0.02
+	y_stim_end = 0.0
 	cell_id = 1

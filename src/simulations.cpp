@@ -37,6 +37,7 @@ void simulation_2d()
 	const std::string mesh_path = toml::find<std::string>(sys_params, "mesh_path");
 	auto conductivities = toml::find<std::vector<double>>(
 		sys_params, "conductivities");	
+	const double capacitance = toml::find<double>(sys_params, "capacitance");
 
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
 	HeartConfig::Instance()->SetMeshFileName(mesh_path);
@@ -53,9 +54,10 @@ void simulation_2d()
 		conductivities[0], conductivities[1]));
 
 	// HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
-	// HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
+	HeartConfig::Instance()->SetCapacitance(capacitance); // uF/cm^2
 
 	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
+	HeartConfig::Instance()->SetDefaultIonicModel("ChayKeizerI");
 
 	std::cout << "Running 2D simulation..." << std::endl;
 	factory.PrintParams();
