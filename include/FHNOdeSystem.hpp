@@ -29,15 +29,15 @@ private:
 	double mGamma;
 	double mEpsilon;
 	double mStim;
-	bool mSlowWave; // True if slow-wave version of FHN
+	bool mSlow_wave; // True if slow-wave version of FHN
 
 public:
     FHNOdeSystem();
-	FHNOdeSystem(std::string paramConfigFile);
+	FHNOdeSystem(std::string param_config_file);
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
-	void ReadParamConfig(std::string configFile);
+	void ReadParamConfig(std::string config_file);
 	void PrintParams();
 };
 

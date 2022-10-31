@@ -1,4 +1,4 @@
-slowWave = false
+slow_wave = false
 initial_conditions = [-1.0, 0.0]
 start_time = 0.0
 end_time = 100.0

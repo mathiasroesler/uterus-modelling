@@ -10,12 +10,12 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 }
 
 
-FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile)
+FHNOdeSystem::FHNOdeSystem(std::string param_config_file)
 	: AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadParamConfig(paramConfigFile);
+	ReadParamConfig(param_config_file);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
@@ -23,7 +23,7 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 {
 	double beta;
 
-	if (mSlowWave)
+	if (mSlow_wave)
 	{
  		beta = mC * sin(2*M_PI*mFreq*time); // Define the beta function
 	}
@@ -39,14 +39,14 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 }
 
 
-void FHNOdeSystem::ReadParamConfig(std::string configFile)
+void FHNOdeSystem::ReadParamConfig(std::string config_file)
 {
 	std::string table_name;
-	const auto params = toml::parse(configFile);
+	const auto params = toml::parse(config_file);
 
-	mSlowWave = toml::find<bool>(params, "slowWave");
+	mSlow_wave = toml::find<bool>(params, "slow_wave");
 
-	if (mSlowWave)
+	if (mSlow_wave)
 	{
 		table_name = "FHNSlowWave";
 	}
@@ -83,7 +83,7 @@ void FHNOdeSystem::PrintParams()
 	std::cout << "mEpsilon = " << mEpsilon << "\n";
 	std::cout << "mGamma = " << mGamma << "\n";
 	std::cout << "mStim = " << mStim << "\n";
-	std::cout << "mSlowWave = " << mSlowWave << "\n";
+	std::cout << "mSlow_wave = " << mSlow_wave << "\n";
 }
 
 template<>
