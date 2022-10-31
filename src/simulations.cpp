@@ -52,12 +52,13 @@ void simulation_2d()
 	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
 		conductivities[0], conductivities[1]));
 
-	HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
-	HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
+	// HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
+	// HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
 
 	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
 
 	std::cout << "Running 2D simulation..." << std::endl;
+	factory.PrintParams();
 	monodomain_problem.Initialise();
 	monodomain_problem.Solve();
 
