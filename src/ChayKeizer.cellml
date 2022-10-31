@@ -54,7 +54,13 @@ http://www.CellML.org/
         <variable name="I_K" public_interface="in" units="picoA"/>
         <variable name="I_KCa" public_interface="in" units="picoA"/>
         <variable name="I_leak" public_interface="in" units="picoA"/>
-        <variable initial_value="0" name="I_stim" units="picoA"/>
+      	<variable initial_value="0" name="I_stim" units="picoA" cmeta:id="membrane_stimulus_current">
+        	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            	<rdf:Description rdf:about="#membrane_stimulus_current">
+					<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
+            	</rdf:Description>
+        	</rdf:RDF>
+		</variable>
         <variable initial_value="5300" name="Cm" units="picoF"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
