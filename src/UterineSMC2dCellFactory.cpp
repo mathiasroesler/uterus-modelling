@@ -67,3 +67,14 @@ void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
 	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }
+
+
+void UterineSMC2dCellFactory::PrintParams()
+{
+	std::cout << "mpX_stim_start = " << mpX_stim_start << "\n";
+	std::cout << "mpX_stim_end = " << mpX_stim_end << "\n";
+	std::cout << "mpY_stim_start = " << mpY_stim_start << "\n";
+	std::cout << "mpY_stim_end = " << mpY_stim_end << "\n";
+	std::cout << "mpCell_type = " << mpCell_type << "\n";
+	std::cout << "mpCell_id = " << mpCell_id << "\n";
+}
