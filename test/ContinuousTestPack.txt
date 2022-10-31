@@ -1,4 +1,4 @@
-TestReadParamConfig.hpp
+TestRead0dParamConfig.hpp
 TestFHNOdeSystemConstructor.hpp
 TestFHNOdeSystem.hpp
 TestUterineSMC2dCellFactory.hpp
