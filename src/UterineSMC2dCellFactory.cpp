@@ -44,11 +44,11 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 }
 
 
-void UterineSMC2dCellFactory::ReadConfigPath(std::string config_path)
+void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
 {
 	const auto params = toml::parse(config_path);
 	
-	mpCell_type = toml::find<std::string>("cell_type");
+	mpCell_type = toml::find<std::string>(params, "cell_type");
 
 	// The cell type serves as a table name in the config file
 	const auto& cell_params = toml::find(params, mpCell_type);
