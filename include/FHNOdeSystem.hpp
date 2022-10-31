@@ -14,7 +14,7 @@
 namespace FHN_ODE_SYSTEM_CONSTANTS
 {
 	const std::string CONFIG_PATH = 
-		"/usr/local/config/0D_params.toml";
+		"/usr/local/config/0d_params.toml";
 }
 
 class FHNOdeSystem : public AbstractOdeSystem
