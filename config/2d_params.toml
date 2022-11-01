@@ -1,7 +1,7 @@
 sim_duration = 500.0 #ms
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
 conductivities = [0.0, 0.0] #x, y
-capacitance = 5.3 # uF/cm2
+capacitance = 5300.0 # fF
 cell_type = "ChayKeizer"
 
 [HodgkinHuxley]
