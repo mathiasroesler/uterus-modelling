@@ -19,19 +19,19 @@ http://www.CellML.org/
     <units name="milliV">
         <unit prefix="milli" units="volt"/>
     </units>
-    <units name="picoA">
-        <unit prefix="pico" units="ampere"/>
+    <units name="nanoA">
+        <unit prefix="nano" units="ampere"/>
     </units>
-    <units name="picoF">
-        <unit prefix="pico" units="farad"/>
+    <units name="femtoF">
+        <unit prefix="femto" units="farad"/>
     </units>
-    <units name="nanoS">
-        <unit prefix="nano" units="siemens"/>
+    <units name="picoS">
+        <unit prefix="pico" units="siemens"/>
     </units>
-    <units name="microM_per_picoA_millisec">
+    <units name="microM_per_femtoA_millisec">
         <unit prefix="micro" units="mole"/>
         <unit exponent="-1" units="litre"/>
-        <unit exponent="-1" prefix="pico" units="ampere"/>
+        <unit exponent="-1" prefix="femto" units="ampere"/>
         <unit exponent="-1" prefix="milli" units="second"/>
     </units>
     <units name="microM">
@@ -44,24 +44,24 @@ http://www.CellML.org/
     <component name="membrane">
         <variable name="time" public_interface="in" units="millisec"/>
         <variable cmeta:id="membrane_voltage" initial_value="-60" name="V" public_interface="out" units="milliV">
-        <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-            <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_voltage">
-                <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
-            </rdf:Description>
-        </rdf:RDF>
-        </variable>
-        <variable name="I_Ca" public_interface="in" units="picoA"/>
-        <variable name="I_K" public_interface="in" units="picoA"/>
-        <variable name="I_KCa" public_interface="in" units="picoA"/>
-        <variable name="I_leak" public_interface="in" units="picoA"/>
-      	<variable initial_value="0" name="I_stim" units="picoA" cmeta:id="membrane_stimulus_current">
+		<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+			<rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_voltage">
+				<bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+			</rdf:Description>
+		</rdf:RDF>
+		</variable>
+        <variable name="I_Ca" public_interface="in" units="nanoA"/>
+        <variable name="I_K" public_interface="in" units="nanoA"/>
+        <variable name="I_KCa" public_interface="in" units="nanoA"/>
+        <variable name="I_leak" public_interface="in" units="nanoA"/>
+      	<variable initial_value="0" name="I_stim" units="nanoA" cmeta:id="membrane_stimulus_current">
         	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
             	<rdf:Description rdf:about="#membrane_stimulus_current">
 					<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_stimulus_current"/>
             	</rdf:Description>
         	</rdf:RDF>
 		</variable>
-        <variable initial_value="5300" name="Cm" units="picoF"/>
+        <variable initial_value="5300" name="Cm" units="femtoF"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -77,13 +77,22 @@ http://www.CellML.org/
                     <apply>
                         <minus/>
                         <apply>
-                            <plus/>
-                            <ci>I_K</ci>
-                            <ci>I_Ca</ci>
-                            <ci>I_KCa</ci>
+                            <minus/>
+                            <apply>
+                                <minus/>
+                                <apply>
+                                    <minus/>
+                                    <apply>
+                                        <minus/>
+                                        <ci>I_K</ci>
+                                    </apply>
+                                    <ci>I_Ca</ci>
+                                </apply>
+                                <ci>I_KCa</ci>
+                            </apply>
                             <ci>I_leak</ci>
-                            <ci>I_stim</ci>
                         </apply>
+                        <ci>I_stim</ci>
                     </apply>
                     <ci>Cm</ci>
                 </apply>
@@ -93,8 +102,8 @@ http://www.CellML.org/
     <!-- Leak channel contribution-->
     <component name="leak_channel">
         <variable name="V" public_interface="in" units="milliV"/>
-        <variable name="I_leak" public_interface="out" units="picoA"/>
-        <variable initial_value="150" name="g_leak" units="nanoS"/>
+        <variable name="I_leak" public_interface="out" units="nanoA"/>
+        <variable initial_value="150" name="g_leak" units="picoS"/>
         <variable initial_value="-75" name="V_leak" units="milliV"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -115,9 +124,9 @@ http://www.CellML.org/
     <!-- Ca channel contribution-->
     <component name="Ca_channel">
         <variable name="V" public_interface="in" units="milliV"/>
-        <variable name="I_Ca" public_interface="out" units="picoA"/>
+        <variable name="I_Ca" public_interface="out" units="nanoA"/>
         <variable initial_value="25" name="V_Ca" units="milliV"/>
-        <variable initial_value="1000" name="g_Ca" units="nanoS"/>
+        <variable initial_value="1000" name="g_Ca" units="picoS"/>
         <variable initial_value="-20" name="v_1" units="milliV"/>
         <variable initial_value="24" name="v_2" units="milliV"/>
         <variable name="m_inf" units="dimensionless"/>
@@ -166,8 +175,8 @@ http://www.CellML.org/
     <component name="K_channel">
         <variable name="time" public_interface="in" units="millisec"/>
         <variable name="V" public_interface="in" units="milliV"/>
-        <variable name="I_K" public_interface="out" units="picoA"/>
-        <variable initial_value="2700" name="g_K" units="nanoS"/>
+        <variable name="I_K" public_interface="out" units="nanoA"/>
+        <variable initial_value="2700" name="g_K" units="picoS"/>
         <variable initial_value="-75" name="V_K" public_interface="out" units="milliV"/>
         <variable initial_value="-16" name="v_3" units="milliV"/>
         <variable initial_value="11.2" name="v_4" units="milliV"/>
@@ -264,9 +273,9 @@ http://www.CellML.org/
         <variable name="V" public_interface="in" units="milliV"/>
         <variable name="V_K" public_interface="in" units="milliV"/>
         <variable name="Ca_concentration" public_interface="in" units="microM"/>
-        <variable name="I_KCa" public_interface="out" units="picoA"/>
+        <variable name="I_KCa" public_interface="out" units="nanoA"/>
         <variable initial_value="5" name="K_KCa" units="microM"/>
-        <variable initial_value="2000" name="g_KCa" units="nanoS"/>
+        <variable initial_value="2000" name="g_KCa" units="picoS"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -295,10 +304,10 @@ http://www.CellML.org/
     <!-- Intracellular Ca concentration -->
     <component name="intracellular_Ca">
         <variable name="time" public_interface="in" units="millisec"/>
-        <variable name="I_Ca" public_interface="in" units="picoA"/>
+        <variable name="I_Ca" public_interface="in" units="nanoA"/>
         <variable initial_value="0.018" name="Ca_concentration" public_interface="out" units="microM"/>
         <variable initial_value="1e-3" name="f_i" units="dimensionless"/>
-        <variable initial_value="4.5e-6" name="alpha" units="microM_per_picoA_millisec"/>
+        <variable initial_value="4.5e-6" name="alpha" units="microM_per_femtoA_millisec"/>
         <variable initial_value="0.15" name="v_LPM" units="per_millisec"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -387,4 +396,9 @@ http://www.CellML.org/
         <map_variables variable_1="V" variable_2="V"/>
         <map_variables variable_1="I_leak" variable_2="I_leak"/>
     </connection>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+        <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" rdf:about="#membrane_voltage">
+            <bqbiol:is xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_voltage" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+        </rdf:Description>
+    </rdf:RDF>
 </model>
