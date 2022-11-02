@@ -44,15 +44,19 @@ void simulation_2d()
 		"mesh_path");
 	const std::string cell_type = toml::find<std::string>(sys_params, 
 		"cell_type");
+	const std::string save_dir = toml::find<std::string>(sys_params,
+		"save_dir"); // Top folder to save results
+
 	auto conductivities = toml::find<std::vector<double>>(
 		sys_params, "conductivities");	
 	const double capacitance = toml::find<double>(sys_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
+	std::string save_path = save_dir + "/" + cell_type;
 
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
 	HeartConfig::Instance()->SetMeshFileName(mesh_path);
-	HeartConfig::Instance()->SetOutputDirectory("Monodomain_2D");
+	HeartConfig::Instance()->SetOutputDirectory(save_path);
 	HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
 	HeartConfig::Instance()->SetVisualizeWithVtk(true);
