@@ -37,12 +37,18 @@ void simulation_2d()
 	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
 	const double ode_timestep = toml::find<double>(sys_params, "ode_timestep");
 	const double pde_timestep = toml::find<double>(sys_params, "pde_timestep");
-	const double print_timestep = toml::find<double>(sys_params, "print_timestep");
+	const double print_timestep = toml::find<double>(sys_params, 
+		"print_timestep");
 
-	const std::string mesh_path = toml::find<std::string>(sys_params, "mesh_path");
+	const std::string mesh_path = toml::find<std::string>(sys_params, 
+		"mesh_path");
+	const std::string cell_type = toml::find<std::string>(sys_params, 
+		"cell_type");
 	auto conductivities = toml::find<std::vector<double>>(
 		sys_params, "conductivities");	
 	const double capacitance = toml::find<double>(sys_params, "capacitance");
+	
+	std::string default_ionic_model = cell_type + "I";
 
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
 	HeartConfig::Instance()->SetMeshFileName(mesh_path);
@@ -63,7 +69,7 @@ void simulation_2d()
 
 	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(ode_timestep, 
 		pde_timestep, print_timestep);
-	HeartConfig::Instance()->SetDefaultIonicModel("ChayKeizerI");
+	HeartConfig::Instance()->SetDefaultIonicModel(default_ionic_model);
 
 	std::cout << "Running 2D simulation..." << std::endl;
 	factory.PrintParams();
