@@ -1,26 +1,37 @@
 save_dir = "Monodomain_2d"
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
-conductivities = [0.0, 0.0] #x, y
-capacitance = 5300.0 # uF/cm2
 
 # Time paramters in millisec
 sim_duration = 1000.0 
-ode_timestep = 1.0
-pde_timestep = 1.0
+ode_timestep = 0.1
+pde_timestep = 0.1
 print_timestep = 1.0
 
 # Cell parameters
-cell_type = "ChayKeizer"
+cell_type = "HodgkinHuxley"
+
 [HodgkinHuxley]
+	# Stimulus parameters
 	x_stim_start = 0.0
 	x_stim_end = 0.04
 	y_stim_start = 0.0
 	y_stim_end = 0.02
+
+	# Cell properties
+	capacitance = 1.0 # uF/cm2
+	conductivities = [0.0, 0.0] #x, y
+
 	cell_id = 0
 
 [ChayKeizer]
+	# Stimulus parameters
 	x_stim_start = 0.0
 	x_stim_end = 0.0
 	y_stim_start = 0.0
 	y_stim_end = 0.0
+
+	# Cell properties
+	capacitance = 5300.0 # uF/cm2
+	conductivities = [0.0, 0.0] #x, y
+
 	cell_id = 1

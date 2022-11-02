@@ -47,9 +47,12 @@ void simulation_2d()
 	const std::string save_dir = toml::find<std::string>(sys_params,
 		"save_dir"); // Top folder to save results
 
+	const auto& cell_params = toml::find(sys_params, cell_type);
+
+	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
-		sys_params, "conductivities");	
-	const double capacitance = toml::find<double>(sys_params, "capacitance");
+		cell_params, "conductivities");	
+	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
 	std::string save_path = save_dir + "/" + cell_type;
@@ -69,7 +72,7 @@ void simulation_2d()
 		conductivities[0], conductivities[1]));
 
 	// HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
-	HeartConfig::Instance()->SetCapacitance(1/capacitance); // uF/cm^2
+	HeartConfig::Instance()->SetCapacitance(capacitance); // uF/cm^2
 
 	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(ode_timestep, 
 		pde_timestep, print_timestep);
