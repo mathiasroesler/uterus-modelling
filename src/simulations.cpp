@@ -33,7 +33,12 @@ void simulation_2d()
 	const auto sys_params = toml::parse(
 		USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 
+	// Time constants
 	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
+	const double ode_timestep = toml::find<double>(sys_params, "ode_timestep");
+	const double pde_timestep = toml::find<double>(sys_params, "pde_timestep");
+	const double print_timestep = toml::find<double>(sys_params, "print_timestep");
+
 	const std::string mesh_path = toml::find<std::string>(sys_params, "mesh_path");
 	auto conductivities = toml::find<std::vector<double>>(
 		sys_params, "conductivities");	
@@ -54,9 +59,10 @@ void simulation_2d()
 		conductivities[0], conductivities[1]));
 
 	// HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
-	HeartConfig::Instance()->SetCapacitance(capacitance); // uF/cm^2
+	HeartConfig::Instance()->SetCapacitance(1/capacitance); // uF/cm^2
 
-	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(0.01, 0.01, 0.1);
+	HeartConfig::Instance()->SetOdePdeAndPrintingTimeSteps(ode_timestep, 
+		pde_timestep, print_timestep);
 	HeartConfig::Instance()->SetDefaultIonicModel("ChayKeizerI");
 
 	std::cout << "Running 2D simulation..." << std::endl;
