@@ -6,18 +6,16 @@ FHNOdeSystem::FHNOdeSystem() : AbstractOdeSystem(2)
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
 	// Initialise parameters with default config files
-	ReadSysConfig(FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
-	ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+	ReadConfigParams(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
-FHNOdeSystem::FHNOdeSystem(std::string paramConfigFile, 
-	std::string sysConfigFile) : AbstractOdeSystem(2)
+FHNOdeSystem::FHNOdeSystem(std::string param_config_file)
+	: AbstractOdeSystem(2)
 {
 	mpSystemInfo = OdeSystemInformation<FHNOdeSystem>::Instance();
 
-	ReadSysConfig(sysConfigFile);
-	ReadParamConfig(paramConfigFile);
+	ReadConfigParams(param_config_file);
 }
 
 void FHNOdeSystem::EvaluateYDerivatives(double time, 
@@ -25,7 +23,7 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 {
 	double beta;
 
-	if (mSlowWave)
+	if (mSlow_wave)
 	{
  		beta = mC * sin(2*M_PI*mFreq*time); // Define the beta function
 	}
@@ -41,12 +39,14 @@ void FHNOdeSystem::EvaluateYDerivatives(double time,
 }
 
 
-void FHNOdeSystem::ReadParamConfig(std::string configFile)
+void FHNOdeSystem::ReadConfigParams(std::string config_file)
 {
 	std::string table_name;
-	const auto params = toml::parse(configFile);
+	const auto params = toml::parse(config_file);
 
-	if (mSlowWave)
+	mSlow_wave = toml::find<bool>(params, "slow_wave");
+
+	if (mSlow_wave)
 	{
 		table_name = "FHNSlowWave";
 	}
@@ -71,14 +71,6 @@ void FHNOdeSystem::ReadParamConfig(std::string configFile)
 }
 
 
-void FHNOdeSystem::ReadSysConfig(std::string configFile)
-{
-	const auto sysParams = toml::parse(configFile);
-	
-	mSlowWave = toml::find<bool>(sysParams, "slowWave");
-}
-
-
 void FHNOdeSystem::PrintParams()
 {
 	// Print all parameters for testing purposes
@@ -91,5 +83,22 @@ void FHNOdeSystem::PrintParams()
 	std::cout << "mEpsilon = " << mEpsilon << "\n";
 	std::cout << "mGamma = " << mGamma << "\n";
 	std::cout << "mStim = " << mStim << "\n";
-	std::cout << "mSlowWave = " << mSlowWave << "\n";
+	std::cout << "mSlow_wave = " << mSlow_wave << "\n";
 }
+
+template<>
+void OdeSystemInformation<FHNOdeSystem>::Initialise()
+{
+	// FHN source variable
+    this->mVariableNames.push_back("u");
+    this->mVariableUnits.push_back("mV");
+    this->mInitialConditions.push_back(-1.0);
+
+	// FHN recovery variable
+	this->mVariableNames.push_back("r");
+	this->mVariableUnits.push_back("mV");
+	this->mInitialConditions.push_back(0.0);
+
+    this->mInitialised = true;
+}
+

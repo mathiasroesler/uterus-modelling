@@ -49,7 +49,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "PetscTools.hpp"
 #include "PetscException.hpp"
 
-#include "FHNOdeSystem.hpp"
+#include "simulations.hpp"
 
 int main(int argc, char *argv[])
 {
@@ -62,25 +62,8 @@ int main(int argc, char *argv[])
     // you clean up PETSc before quitting.
     try
     {
-		FHNOdeSystem ode;
-		EulerIvpOdeSolver euler_solver;
-
-		const auto sysParams = toml::parse(
-			FHN_ODE_SYSTEM_CONSTANTS::SYS_CONFIG_PATH);
-
-		auto initial_conditions = toml::find<std::vector<double>>(
-			sysParams, "initial_conditions");
-
-		const double start_time = toml::find<double>(sysParams, "start_time");
-		const double end_time = toml::find<double>(sysParams, "end_time");
-		const double timestep = toml::find<double>(sysParams, "timestep");
-		const double sampling_step = toml::find<double>(sysParams, 
-			"sampling_step");
-
-		OdeSolution solution = euler_solver.Solve(&ode, initial_conditions, 
-			start_time, end_time, timestep, sampling_step);
-
-		solution.WriteToFile("chaste_modelling", "ode_solution", "sec");
+		simulation_0d();
+		simulation_2d();
 	}
 
     catch (const Exception& e)

@@ -1,5 +1,5 @@
-#ifndef TESTREADCONFIG_HPP_
-#define TESTREADCONFIG_HPP_
+#ifndef TESTREAD0DPARAMCONFIG_HPP_
+#define TESTREAD0DPARAMCONFIG_HPP_
 
 #include <cxxtest/TestSuite.h>
 /* Most Chaste code uses PETSc to solve linear algebra problems.  This involves starting PETSc at the beginning of a test-suite
@@ -25,18 +25,20 @@
  * components of Chaste.
  */
 
-class TestReadParamConfig : public CxxTest::TestSuite
+class TestRead0dParamConfig : public CxxTest::TestSuite
 {
 public:
-    void TestReadParamConfigClass()
+    void TestRead0dParamConfigClass()
     {
         FHNOdeSystem ode; // Create an FHN ODE system
 
-		ode.ReadParamConfig("projects/chaste_modelling/config/params.toml");
-		ode.ReadParamConfig("/usr/local/config/params.toml");
-		ode.ReadParamConfig(FHN_ODE_SYSTEM_CONSTANTS::PARAM_CONFIG_PATH);
+		ode.ReadConfigParams("projects/chaste_modelling/config/0d_params.toml");
+		ode.ReadConfigParams("/usr/local/config/0d_params.toml");
+		ode.ReadConfigParams(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
+
+		ode.PrintParams();
     }
 };
 
-#endif /*TESTREADCONFIG_HPP_*/
+#endif /*TESTREAD0DPARAMCONFIG_HPP_*/
 

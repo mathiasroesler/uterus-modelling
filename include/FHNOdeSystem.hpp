@@ -13,10 +13,8 @@
 
 namespace FHN_ODE_SYSTEM_CONSTANTS
 {
-	const std::string PARAM_CONFIG_PATH = 
-		"/usr/local/config/params.toml";
-	const std::string SYS_CONFIG_PATH = 
-		"/usr/local/config/system.toml";
+	const std::string CONFIG_PATH = 
+		"/usr/local/config/0d_params.toml";
 }
 
 class FHNOdeSystem : public AbstractOdeSystem
@@ -31,33 +29,16 @@ private:
 	double mGamma;
 	double mEpsilon;
 	double mStim;
-	bool mSlowWave; // True if slow-wave version of FHN
+	bool mSlow_wave; // True if slow-wave version of FHN
 
 public:
     FHNOdeSystem();
-	FHNOdeSystem(std::string paramConfigFile, std::string sysConfigFile);
+	FHNOdeSystem(std::string param_config_file);
 
     void EvaluateYDerivatives(double time, const std::vector<double>& rY,
                               std::vector<double>& rDY);
-	void ReadParamConfig(std::string configFile);
-	void ReadSysConfig(std::string configFile);
+	void ReadConfigParams(std::string config_file);
 	void PrintParams();
 };
-
-template<>
-void OdeSystemInformation<FHNOdeSystem>::Initialise()
-{
-	// FHN source variable
-    this->mVariableNames.push_back("u");
-    this->mVariableUnits.push_back("mV");
-    this->mInitialConditions.push_back(-1.0);
-
-	// FHN recovery variable
-	this->mVariableNames.push_back("r");
-	this->mVariableUnits.push_back("mV");
-	this->mInitialConditions.push_back(0.0);
-
-    this->mInitialised = true;
-}
 
 #endif // FHNODESYSTEM_HPP
