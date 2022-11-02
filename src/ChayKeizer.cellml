@@ -39,7 +39,7 @@ http://www.CellML.org/
         <unit exponent="-1" units="litre"/>
     </units>
     <component name="environment">
-        <variable name="time" public_interface="out" units="second"/>
+        <variable name="time" public_interface="out" units="millisec"/>
     </component>
     <component name="membrane">
         <variable name="time" public_interface="in" units="millisec"/>
