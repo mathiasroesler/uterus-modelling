@@ -15,7 +15,7 @@ namespace USMC_2D_SYSTEM_CONSTANTS
 
 class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
-private:
+protected:
     boost::shared_ptr<SimpleStimulus> mpStimulus;
 	double mpX_stim_start;
 	double mpX_stim_end;
