@@ -30,11 +30,8 @@ class TestRead2dParamConfig : public CxxTest::TestSuite
 public:
     void TestRead2dParamConfigClass()
     {
-        UterineSMC2dCellFactory uSMC_factory; // Create an FHN ODE system
+        UterineSMC2dCellFactory uSMC_factory; // Create a uSMC cell factory
 
-		uSMC_factory.ReadConfigParams(
-			"projects/chaste_modelling/config/2d_params.toml");
-		uSMC_factory.ReadConfigParams("/usr/local/config/2d_params.toml");
 		uSMC_factory.ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 
 		uSMC_factory.PrintParams();
