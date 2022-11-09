@@ -12,12 +12,15 @@ public:
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
-        HeartConfig::Instance()->SetOutputDirectory("MonodomainTest");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
 		UterineSMC2dRegularCellFactory factory;
+		std::string cell_type = factory.GetCellType();
+
+		std::string save_dir = "MonodomainTest/" + cell_type + "/regular";
+        HeartConfig::Instance()->SetOutputDirectory(save_dir);
 
 		factory.PrintParams();
 
