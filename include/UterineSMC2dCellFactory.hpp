@@ -3,7 +3,6 @@
 
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
-#include "SimpleStimulus.hpp"
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer.hpp"
 
