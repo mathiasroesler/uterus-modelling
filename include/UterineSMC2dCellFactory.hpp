@@ -29,6 +29,7 @@ public:
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	void ReadConfigParams(std::string config_path);
 	void PrintParams();
+	std::string GetCellType();
 
 };
 

@@ -56,3 +56,9 @@ void UterineSMC2dCellFactory::PrintParams()
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
 }
+
+
+std::string UterineSMC2dCellFactory::GetCellType()
+{
+	return mpCell_type;
+}
