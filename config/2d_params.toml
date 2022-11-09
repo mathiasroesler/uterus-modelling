@@ -23,8 +23,9 @@ cell_type = "HodgkinHuxley"
 
 	# Stimulus
 	magnitude = -2e5 # uA/cm2
+	period = 0.1
 	duration = 0.5 # ms
-	start_time = 5 # ms
+	start_time = 5.0 # ms
 
 	cell_id = 0
 
@@ -41,7 +42,8 @@ cell_type = "HodgkinHuxley"
 
 	# Stimulus
 	magnitude = -2e5 # uA/cm2
+	period = 0.1
 	duration = 0.5 # ms
-	start_time = 5 # ms
+	start_time = 5.0 # ms
 
 	cell_id = 1
