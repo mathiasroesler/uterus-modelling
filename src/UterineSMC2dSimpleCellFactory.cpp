@@ -3,7 +3,7 @@
 
 UterineSMC2dSimpleCellFactory::UterineSMC2dSimpleCellFactory() : 
 	UterineSMC2dCellFactory(), 
-	mpStimulus(new SimpleStimulus(-2e5, 0.5, 10)) // uA/cm2, ms, ms
+	mpStimulus(new SimpleStimulus(0.0, 0.0))
 {
 	const auto params = toml::parse(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 	
