@@ -1,5 +1,6 @@
 save_dir = "Monodomain_2d"
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
+stimulus_type = "simple"
 
 # Time paramters in millisec
 sim_duration = 50.0

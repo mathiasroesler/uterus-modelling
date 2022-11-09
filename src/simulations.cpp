@@ -46,6 +46,8 @@ void simulation_2d()
 		"cell_type");
 	const std::string save_dir = toml::find<std::string>(sys_params,
 		"save_dir"); // Top folder to save results
+	const std::string stimulus_type = toml::find<std::string>(sys_params,
+		"stimulus_type"); // Regular or simple stimulus
 
 	const auto& cell_params = toml::find(sys_params, cell_type);
 
@@ -55,7 +57,7 @@ void simulation_2d()
 	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
-	std::string save_path = save_dir + "/" + cell_type;
+	std::string save_path = save_dir + "/" + cell_type + "/" + stimulus_type;
 
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
 	HeartConfig::Instance()->SetMeshFileName(mesh_path);
@@ -64,9 +66,24 @@ void simulation_2d()
 
 	HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-	UterineSMC2dSimpleCellFactory factory;
+	UterineSMC2dCellFactory *factory = NULL;
 
-	MonodomainProblem<2> monodomain_problem( &factory );
+	if (stimulus_type == "simple")
+	{
+		factory = new UterineSMC2dSimpleCellFactory();
+	}
+
+	else if (stimulus_type == "regular")
+	{
+		factory = new UterineSMC2dRegularCellFactory();
+	}
+
+	else
+	{
+		throw "Unrecognized stimulus type";
+	}
+
+	MonodomainProblem<2> monodomain_problem( factory );
 
 	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
 		conductivities[0], conductivities[1]));
@@ -79,7 +96,7 @@ void simulation_2d()
 	HeartConfig::Instance()->SetDefaultIonicModel(default_ionic_model);
 
 	std::cout << "Running 2D simulation..." << std::endl;
-	factory.PrintParams();
+	factory->PrintParams();
 	monodomain_problem.Initialise();
 	monodomain_problem.Solve();
 
