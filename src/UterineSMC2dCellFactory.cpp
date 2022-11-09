@@ -3,7 +3,7 @@
 
 UterineSMC2dCellFactory::UterineSMC2dCellFactory() : 
 	AbstractCardiacCellFactory<2>(),
-	mpStimulus(new SimpleStimulus(-20, 0.5, 10)) // uA/cm2, ms, ms
+	mpStimulus(new SimpleStimulus(-2e5, 0.5, 10)) // uA/cm2, ms, ms
 {
 	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
@@ -14,7 +14,7 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 {
 	double x = pNode->rGetLocation()[0];
 	double y = pNode->rGetLocation()[1];
-	// if x<=0.02 and y<=0.02 
+
 	if (x > mpX_stim_start && x < mpX_stim_end && 
 			y > mpY_stim_start && y < mpY_stim_end)
 	{
