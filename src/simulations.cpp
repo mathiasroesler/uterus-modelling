@@ -64,7 +64,7 @@ void simulation_2d()
 
 	HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-	UterineSMC2dCellFactory factory;
+	UterineSMC2dSimpleCellFactory factory;
 
 	MonodomainProblem<2> monodomain_problem( &factory );
 
