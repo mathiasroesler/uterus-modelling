@@ -1,14 +1,14 @@
-#ifndef TESTUTERINESMC2DCELLFACTORY_HPP_
-#define TESTUTERINESMC2DCELLFACTORY_HPP_
+#ifndef TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_
+#define TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_
 
 #include <cxxtest/TestSuite.h>
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineSMC2dCellFactory.hpp"
+#include "UterineSMC2dSimpleCellFactory.hpp"
 
-class TestUterineSMC2dCellFactory : public CxxTest::TestSuite
+class TestUterineSMC2dSimpleCellFactory : public CxxTest::TestSuite
 {
 public:
-    void TestUterineSMC2dCellFactoryClass()
+    void TestUterineSMC2dSimpleCellFactoryClass()
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
@@ -17,7 +17,9 @@ public:
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineSMC2dCellFactory factory;
+		UterineSMC2dSimpleCellFactory factory;
+
+		factory.PrintParams();
 
         MonodomainProblem<2> monodomain_problem( &factory );
 
@@ -38,4 +40,5 @@ public:
     }
 };
 
-#endif /*TESTUTERINESMC2DCELLFACTORY_HPP_*/
+#endif /*TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_*/
+
