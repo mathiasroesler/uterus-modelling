@@ -3,7 +3,7 @@
 
 UterineSMC2dRegularCellFactory::UterineSMC2dRegularCellFactory() : 
 	UterineSMC2dCellFactory(), 
-	mpStimulus(new RegularStimulus(0.0, 0.0, 0.0, 0.0))
+	mpStimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0))
 {
 	const auto params = toml::parse(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 	
@@ -12,7 +12,7 @@ UterineSMC2dRegularCellFactory::UterineSMC2dRegularCellFactory() :
 	
 	// Stimulus parameters
 	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
-	mpStimulus->SetPerido(toml::find<doubel>(cell_params, "period"));
+	mpStimulus->SetPeriod(toml::find<double>(cell_params, "period"));
 	mpStimulus->SetDuration(toml::find<double>(cell_params, "duration"));
 	mpStimulus->SetStartTime(toml::find<double>(cell_params, "start_time"));
 }
