@@ -43,19 +43,7 @@ AbstractCardiacCell* UterineSMC2dSimpleCellFactory::CreateCardiacCellForTissueNo
 	else
 	{
 		/* The other cells have zero stimuli. */
-		switch (mpCell_id)
-		{
-			case 0:
-				return new CellHodgkinHuxley1952FromCellML(mpSolver,
-					mpZeroStimulus);
-
-			case 1:
-				return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
-
-			default:
-				return new CellHodgkinHuxley1952FromCellML(mpSolver,
-					mpZeroStimulus);
-		}	
+		return UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(pNode);
 	}
 }
 
