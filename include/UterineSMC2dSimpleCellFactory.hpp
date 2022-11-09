@@ -5,8 +5,6 @@
 #include "UterineSMC2dCellFactory.hpp"
 #include "MonodomainProblem.hpp"
 #include "SimpleStimulus.hpp"
-#include "HodgkinHuxley1952.hpp"
-#include "ChayKeizer.hpp"
 
 class UterineSMC2dSimpleCellFactory : public UterineSMC2dCellFactory
 {
