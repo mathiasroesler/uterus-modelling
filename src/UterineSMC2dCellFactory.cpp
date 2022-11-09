@@ -61,10 +61,18 @@ void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
 	// The cell type serves as a table name in the config file
 	const auto& cell_params = toml::find(params, mpCell_type);
 	
+	// Stimulus location parameters
 	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
 	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
 	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
 	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
+
+	// Stimulus parameters
+	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
+	mpStimulus->SetDuration(toml::find<double>(cell_params, "duration"));
+	mpStimulus->SetStartTime(toml::find<double>(cell_params, "start_time"));
+
+	// Cell id
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }
 
