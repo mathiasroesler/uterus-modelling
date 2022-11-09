@@ -7,6 +7,26 @@ UterineSMC2dCellFactory::UterineSMC2dCellFactory() :
 	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
+
+AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
+	Node<2>* pNode)
+{
+	switch (mpCell_id)
+	{
+		case 0:
+			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+				mpZeroStimulus);
+
+		case 1:
+			return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
+
+		default:
+			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+				mpZeroStimulus);
+	}	
+}
+
+
 void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
 {
 	const auto params = toml::parse(config_path);
