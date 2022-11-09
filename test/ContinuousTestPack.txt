@@ -1,5 +1,6 @@
 TestRead0dParamConfig.hpp
 TestFHNOdeSystemConstructor.hpp
 TestFHNOdeSystem.hpp
-TestUterineSMC2dSimpleCellFactory.hpp
 TestRead2dParamConfig.hpp
+TestUterineSMC2dSimpleCellFactory.hpp
+TestUterineSMC2dRegularCellFactory.hpp
