@@ -3,7 +3,7 @@
 
 UterineSMC2dCellFactory::UterineSMC2dCellFactory() : 
 	AbstractCardiacCellFactory<2>(),
-	mpStimulus(new SimpleStimulus(-20, 0.5)) // uA/cm2, ms
+	mpStimulus(new SimpleStimulus(-20, 0.5, 10)) // uA/cm2, ms, ms
 {
 	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
