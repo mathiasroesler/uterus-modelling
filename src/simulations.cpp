@@ -1,4 +1,3 @@
-#include <iostream>
 #include "simulations.hpp"
 
 void simulation_0d()
@@ -80,7 +79,11 @@ void simulation_2d()
 
 	else
 	{
-		throw "Unrecognized stimulus type";
+		const std::string err_message = "Unrecognized stimulus type";
+		const std::string err_filename = "simulations.cpp";
+		unsigned line_number = 86;
+
+		throw Exception(err_message, err_filename, line_number);
 	}
 
 	MonodomainProblem<2> monodomain_problem( factory );
