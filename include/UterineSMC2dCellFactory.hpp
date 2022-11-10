@@ -3,7 +3,6 @@
 
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
-#include "SimpleStimulus.hpp"
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer.hpp"
 
@@ -15,8 +14,7 @@ namespace USMC_2D_SYSTEM_CONSTANTS
 
 class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
-private:
-    boost::shared_ptr<SimpleStimulus> mpStimulus;
+protected:
 	double mpX_stim_start;
 	double mpX_stim_end;
 	double mpY_stim_start;
@@ -29,7 +27,8 @@ public:
 	UterineSMC2dCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	void ReadConfigParams(std::string config_path);
-	void PrintParams();
+	std::string GetCellType();
+	virtual void PrintParams();
 
 };
 

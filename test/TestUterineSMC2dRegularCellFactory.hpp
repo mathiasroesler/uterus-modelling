@@ -1,23 +1,28 @@
-#ifndef TESTUTERINESMC2DCELLFACTORY_HPP_
-#define TESTUTERINESMC2DCELLFACTORY_HPP_
+#ifndef TESTUTERINESMC2DREGULARCELLFACTORY_HPP_
+#define TESTUTERINESMC2DREGULARCELLFACTORY_HPP_
 
 #include <cxxtest/TestSuite.h>
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineSMC2dCellFactory.hpp"
+#include "UterineSMC2dRegularCellFactory.hpp"
 
-class TestUterineSMC2dCellFactory : public CxxTest::TestSuite
+class TestUterineSMC2dRegularCellFactory : public CxxTest::TestSuite
 {
 public:
-    void TestUterineSMC2dCellFactoryClass()
+    void TestUterineSMC2dRegularCellFactoryClass()
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
-        HeartConfig::Instance()->SetOutputDirectory("MonodomainTest");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineSMC2dCellFactory factory;
+		UterineSMC2dRegularCellFactory factory;
+		std::string cell_type = factory.GetCellType();
+
+		std::string save_dir = "MonodomainTest/" + cell_type + "/regular";
+        HeartConfig::Instance()->SetOutputDirectory(save_dir);
+
+		factory.PrintParams();
 
         MonodomainProblem<2> monodomain_problem( &factory );
 
@@ -38,4 +43,6 @@ public:
     }
 };
 
-#endif /*TESTUTERINESMC2DCELLFACTORY_HPP_*/
+#endif /*TESTUTERINESMC2DREGULARCELLFACTORY_HPP_*/
+
+

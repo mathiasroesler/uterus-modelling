@@ -32,8 +32,6 @@ public:
     {
         FHNOdeSystem ode; // Create an FHN ODE system
 
-		ode.ReadConfigParams("projects/chaste_modelling/config/0d_params.toml");
-		ode.ReadConfigParams("/usr/local/config/0d_params.toml");
 		ode.ReadConfigParams(FHN_ODE_SYSTEM_CONSTANTS::CONFIG_PATH);
 
 		ode.PrintParams();
