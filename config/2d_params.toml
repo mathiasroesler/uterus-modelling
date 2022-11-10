@@ -1,6 +1,6 @@
 save_dir = "Monodomain_2d"
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
-stimulus_type = "simple"
+stimulus_type = "regular"
 
 # Time paramters in millisec
 sim_duration = 50.0
@@ -24,9 +24,9 @@ cell_type = "HodgkinHuxley"
 
 	# Stimulus
 	magnitude = -2e5 # uA/cm2
-	period = 0.1
+	period = 10.0 #ms
 	duration = 0.5 # ms
-	start_time = 5.0 # ms
+	start_time = 1.0 # ms
 
 	cell_id = 0
 
@@ -43,7 +43,7 @@ cell_type = "HodgkinHuxley"
 
 	# Stimulus
 	magnitude = -2e5 # uA/cm2
-	period = 0.1
+	period = 0.1 # ms
 	duration = 0.5 # ms
 	start_time = 5.0 # ms
 
