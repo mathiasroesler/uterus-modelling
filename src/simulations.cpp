@@ -86,7 +86,7 @@ void simulation_2d()
 		throw Exception(err_message, err_filename, line_number);
 	}
 
-	MonodomainProblem<2> monodomain_problem( factory );
+	MonodomainProblem<2> monodomain_problem(factory);
 
 	HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
 		conductivities[0], conductivities[1]));
@@ -98,8 +98,17 @@ void simulation_2d()
 		pde_timestep, print_timestep);
 	HeartConfig::Instance()->SetDefaultIonicModel(default_ionic_model);
 
+	// Print information on the simulation to screen
 	std::cout << "Running 2D simulation..." << std::endl;
+
+	std::cout << "\nStimulus type: " << stimulus_type << std::endl;
+	std::cout << "\nuSMC cell factory parameters:\n" << std::endl;
 	factory->PrintParams();
+	std::cout << "x axis conductance = " << conductivities[0] << std::endl;
+	std::cout << "y axis conductance = " << conductivities[1] << std::endl;
+
+	std::cout << std::endl;
+
 	monodomain_problem.Initialise();
 	monodomain_problem.Solve();
 
