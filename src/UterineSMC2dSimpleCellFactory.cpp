@@ -33,7 +33,7 @@ AbstractCardiacCell* UterineSMC2dSimpleCellFactory::CreateCardiacCellForTissueNo
 					mpStimulus);
 
 			case 1:
-				return new CellChayKeizerFromCellML(mpSolver, mpStimulus);
+				return new CellChayKeizer1983FromCellML(mpSolver, mpStimulus);
 		
 			case 2:
 				return new CellMeans2022FromCellML(mpSolver, mpStimulus);
