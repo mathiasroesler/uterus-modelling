@@ -35,6 +35,9 @@ AbstractCardiacCell* UterineSMC2dSimpleCellFactory::CreateCardiacCellForTissueNo
 			case 1:
 				return new CellChayKeizerFromCellML(mpSolver, mpStimulus);
 		
+			case 2:
+				return new CellMeans2022FromCellML(mpSolver, mpStimulus);
+		
 			default:
 				return new CellHodgkinHuxley1952FromCellML(mpSolver,
 					mpStimulus);

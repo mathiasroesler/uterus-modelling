@@ -5,6 +5,7 @@
 #include "MonodomainProblem.hpp"
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer.hpp"
+#include "Means2022.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
