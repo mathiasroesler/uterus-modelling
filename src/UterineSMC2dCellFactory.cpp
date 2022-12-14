@@ -18,7 +18,10 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 				mpZeroStimulus);
 
 		case 1:
-			return new CellChayKeizerFromCellML(mpSolver, mpZeroStimulus);
+			return new CellChayKeizer1983FromCellML(mpSolver, mpZeroStimulus);
+
+		case 2:
+			return new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
 
 		default:
 			return new CellHodgkinHuxley1952FromCellML(mpSolver,

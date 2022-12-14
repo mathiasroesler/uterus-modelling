@@ -4,7 +4,8 @@
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
 #include "HodgkinHuxley1952.hpp"
-#include "ChayKeizer.hpp"
+#include "ChayKeizer1983.hpp"
+#include "Means2022.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
