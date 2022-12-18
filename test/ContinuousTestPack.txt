@@ -4,5 +4,6 @@ TestFHNOdeSystemConstructor.hpp
 TestFHNOdeSystem.hpp
 TestUterineSMC2dSimpleCellFactory.hpp
 TestUterineSMC2dRegularCellFactory.hpp
+TestUterineSMC2dZeroCellFactory.hpp
 TestChayKeizer1983CellSimulation.hpp
 TestMeans2022CellSimulation.hpp
