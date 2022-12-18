@@ -1,15 +1,15 @@
 save_dir = "Monodomain_2d"
 mesh_path = "/home/mathias/Chaste/mesh/test/data/2D_0_to_1mm_200_elements"
-stimulus_type = "simple"
+stimulus_type = "zero"
 
 # Time paramters in millisec
-sim_duration = 50.0
-ode_timestep = 0.01
-pde_timestep = 0.01
-print_timestep = 0.1
+sim_duration = 7000.0
+ode_timestep = 0.1
+pde_timestep = 0.1
+print_timestep = 1.0
 
 # Cell parameters
-cell_type = "Means"
+cell_type = "ChayKeizer"
 
 [HodgkinHuxley]
 	# Stimulus parameters
