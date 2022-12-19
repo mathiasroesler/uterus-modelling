@@ -18,6 +18,7 @@ private:
 public:
 	UterineSMC2dSimpleCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
+	void ReadConfigParams(std::string config_path);
 	void PrintParams();
 };
 

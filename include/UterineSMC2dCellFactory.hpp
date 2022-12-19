@@ -24,8 +24,8 @@ protected:
 public:
 	UterineSMC2dCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
-	void ReadConfigParams(std::string config_path);
 	std::string GetCellType();
+	virtual void ReadConfigParams(std::string config_path);
 	virtual void PrintParams();
 
 };

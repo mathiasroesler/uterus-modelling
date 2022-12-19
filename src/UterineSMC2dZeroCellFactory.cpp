@@ -15,6 +15,12 @@ AbstractCardiacCell* UterineSMC2dZeroCellFactory::CreateCardiacCellForTissueNode
 }
 
 
+void UterineSMC2dZeroCellFactory::ReadConfigParams(std::string config_path)
+{
+	UterineSMC2dCellFactory::ReadConfigParams(config_path);
+}
+
+
 void UterineSMC2dZeroCellFactory::PrintParams()
 {
 	UterineSMC2dCellFactory::PrintParams();

@@ -5,22 +5,7 @@ UterineSMC2dRegularCellFactory::UterineSMC2dRegularCellFactory() :
 	UterineSMC2dCellFactory(), 
 	mpStimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0))
 {
-	const auto params = toml::parse(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
-	
-	// The cell type serves as a table name in the config file
-	const auto& cell_params = toml::find(params, mpCell_type);
-
-	// Stimulus location parameters
-	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
-	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
-	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
-	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
-	
-	// Stimulus parameters
-	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
-	mpStimulus->SetPeriod(toml::find<double>(cell_params, "period"));
-	mpStimulus->SetDuration(toml::find<double>(cell_params, "duration"));
-	mpStimulus->SetStartTime(toml::find<double>(cell_params, "start_time"));
+	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
@@ -56,6 +41,28 @@ AbstractCardiacCell* UterineSMC2dRegularCellFactory::CreateCardiacCellForTissueN
 		return UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(pNode);
 	}
 }
+
+
+void UterineSMC2dRegularCellFactory::ReadConfigParams(std::string config_path)
+{
+	UterineSMC2dCellFactory::ReadConfigParams(config_path);
+	const auto params = toml::parse(config_path);
+	
+	// The cell type serves as a table name in the config file
+	const auto& cell_params = toml::find(params, mpCell_type);
+
+	// Stimulus location parameters
+	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
+	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
+	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
+	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
+	
+	// Stimulus parameters
+	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
+	mpStimulus->SetPeriod(toml::find<double>(cell_params, "period"));
+	mpStimulus->SetDuration(toml::find<double>(cell_params, "duration"));
+	mpStimulus->SetStartTime(toml::find<double>(cell_params, "start_time"));
+} 
 
 
 void UterineSMC2dRegularCellFactory::PrintParams()
