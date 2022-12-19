@@ -9,6 +9,12 @@ UterineSMC2dRegularCellFactory::UterineSMC2dRegularCellFactory() :
 	
 	// The cell type serves as a table name in the config file
 	const auto& cell_params = toml::find(params, mpCell_type);
+
+	// Stimulus location parameters
+	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
+	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
+	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
+	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
 	
 	// Stimulus parameters
 	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
@@ -55,6 +61,10 @@ AbstractCardiacCell* UterineSMC2dRegularCellFactory::CreateCardiacCellForTissueN
 void UterineSMC2dRegularCellFactory::PrintParams()
 {
 	UterineSMC2dCellFactory::PrintParams();
+	std::cout << "mpX_stim_start = " << mpX_stim_start << "\n";
+	std::cout << "mpX_stim_end = " << mpX_stim_end << "\n";
+	std::cout << "mpY_stim_start = " << mpY_stim_start << "\n";
+	std::cout << "mpY_stim_end = " << mpY_stim_end << "\n";
 	std::cout << "mpStimulus magnitude = " << mpStimulus->GetMagnitude() << std::endl;
 	std::cout << "mpStimulus period = " << mpStimulus->GetPeriod() << std::endl;
 	std::cout << "mpStimulus duration = " << mpStimulus->GetDuration() << std::endl;

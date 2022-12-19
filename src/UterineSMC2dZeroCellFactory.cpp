@@ -18,7 +18,6 @@ AbstractCardiacCell* UterineSMC2dZeroCellFactory::CreateCardiacCellForTissueNode
 void UterineSMC2dZeroCellFactory::PrintParams()
 {
 	UterineSMC2dCellFactory::PrintParams();
-	std::cout << "Zero stimulus" << std::endl;
 }
 
 

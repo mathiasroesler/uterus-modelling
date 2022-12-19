@@ -17,10 +17,6 @@ namespace USMC_2D_SYSTEM_CONSTANTS
 class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
 {
 protected:
-	double mpX_stim_start;
-	double mpX_stim_end;
-	double mpY_stim_start;
-	double mpY_stim_end;
 	std::string mpCell_type;
 	unsigned short int mpCell_id; // 0 for HH, 1 for CK
 
