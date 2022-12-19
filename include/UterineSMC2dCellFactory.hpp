@@ -3,6 +3,7 @@
 
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
+#include "ZeroStimulus.hpp"
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer1983.hpp"
 #include "Means2022.hpp"
