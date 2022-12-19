@@ -5,7 +5,7 @@
 #include "AbstractCvodeCell.hpp"
 #include "CellProperties.hpp"
 #include "EulerIvpOdeSolver.hpp"
-#include "RegularStimulus.hpp"
+#include "ZeroStimulus.hpp"
 #include "ChayKeizer1983Cvode.hpp"
 #include "SteadyStateRunner.hpp"
 #include "FakePetscSetup.hpp"
@@ -16,7 +16,7 @@ public:
     void TestChayKeizerCellSimulationClass()
     {
 #ifdef CHASTE_CVODE
-        boost::shared_ptr<RegularStimulus> p_stimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0));
+        boost::shared_ptr<ZeroStimulus> p_stimulus(new ZeroStimulus());
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
         boost::shared_ptr<AbstractCvodeCell> p_model(new CellChayKeizer1983FromCellMLCvode(p_solver, p_stimulus));
 
