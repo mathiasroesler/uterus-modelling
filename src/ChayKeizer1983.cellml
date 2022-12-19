@@ -23,7 +23,7 @@ http://www.CellML.org/
         <unit prefix="nano" units="ampere"/>
     </units>
     <units name="femtoF">
-        <unit prefix="femto" units="farad"/>
+        <unit prefix="nano" units="farad"/>
     </units>
     <units name="picoS">
         <unit prefix="pico" units="siemens"/>
