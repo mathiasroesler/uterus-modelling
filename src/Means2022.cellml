@@ -333,7 +333,14 @@ below without NCX current inaca; note jnaca still computed...-->
         <variable name="R" public_interface="out" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="out" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="out" units="kelvin"/>
-        <variable name="Cm" public_interface="out" units="uF_per_cm2"/>
+        <variable initial_value="1.0" name="Cm" units="uF_per_cm2" cmeta:id="membrane_capacitance">
+        	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            	<rdf:Description rdf:about="#membrane_capacitance">
+					<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+            	</rdf:Description>
+        	</rdf:RDF>
+		</variable>
+			
         <variable name="gna" public_interface="out" units="nS_per_pF"/>
         <variable name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
@@ -468,11 +475,6 @@ buff = 0.0165{dimensionless};-->
                 <eq/>
                 <ci>temp</ci>
                 <cn cellml:units="kelvin">308.0</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>Cm</ci>
-                <cn cellml:units="uF_per_cm2">1.0</cn>
             </apply>
             <!--below commented out; base value given in cellml
 gna = 0{nS_per_pF};-->
