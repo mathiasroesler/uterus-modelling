@@ -46,7 +46,7 @@ void simulation_2d()
 	const std::string save_dir = toml::find<std::string>(sys_params,
 		"save_dir"); // Top folder to save results
 	const std::string stimulus_type = toml::find<std::string>(sys_params,
-		"stimulus_type"); // Regular or simple stimulus
+		"stimulus_type"); // Regular, simple or zero stimulus
 
 	const auto& cell_params = toml::find(sys_params, cell_type);
 
@@ -75,6 +75,11 @@ void simulation_2d()
 	else if (stimulus_type == "regular")
 	{
 		factory = new UterineSMC2dRegularCellFactory();
+	}
+
+	else if (stimulus_type == "zero")
+	{
+		factory = new UterineSMC2dZeroCellFactory();
 	}
 
 	else

@@ -23,7 +23,7 @@ http://www.CellML.org/
         <unit prefix="nano" units="ampere"/>
     </units>
     <units name="femtoF">
-        <unit prefix="femto" units="farad"/>
+        <unit prefix="nano" units="farad"/>
     </units>
     <units name="picoS">
         <unit prefix="pico" units="siemens"/>
@@ -61,7 +61,14 @@ http://www.CellML.org/
             	</rdf:Description>
         	</rdf:RDF>
 		</variable>
-        <variable initial_value="5300" name="Cm" units="femtoF"/>
+        <variable initial_value="5300.0" name="Cm" units="femtoF" cmeta:id="membrane_capacitance">
+        	<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/">
+            	<rdf:Description rdf:about="#membrane_capacitance">
+					<bqbiol:is rdf:resource="https://chaste.comlab.ox.ac.uk/cellml/ns/oxford-metadata#membrane_capacitance"/>
+            	</rdf:Description>
+        	</rdf:RDF>
+		</variable>
+			
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
