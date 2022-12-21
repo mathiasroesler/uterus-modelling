@@ -10,17 +10,17 @@
 #include "SteadyStateRunner.hpp"
 #include "FakePetscSetup.hpp"
 
-class TestChayKeizerCellSimulation : public CxxTest::TestSuite
+class TestMeansCellSimulation : public CxxTest::TestSuite
 {
 public:
-    void TestChayKeizerCellSimulationClass()
+    void TestMeansCellSimulationClass()
     {
 #ifdef CHASTE_CVODE
         boost::shared_ptr<SimpleStimulus> p_stimulus(new SimpleStimulus(-0.5, 2000.0, 1000.0));
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
         boost::shared_ptr<AbstractCvodeCell> p_model(new CellMeans2022FromCellMLCvode(p_solver, p_stimulus));
 
-        p_model->SetTolerances(1e-8, 1e-8);
+        p_model->SetTolerances(1e-7, 1e-7);
 
         double max_timestep = 0.1;
 
@@ -28,7 +28,7 @@ public:
 
         double sampling_timestep = max_timestep;
         double start_time = 0.0;
-        double end_time = 6000.0;
+        double end_time = 5000.0;
         OdeSolution solution = p_model->Compute(start_time, end_time, sampling_timestep);
 
         solution.CalculateDerivedQuantitiesAndParameters(p_model.get());
