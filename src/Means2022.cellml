@@ -28,10 +28,6 @@
         <unit units="coulomb"/>
         <unit exponent="-1" units="mole"/>
     </units>
-    <units name="uA_per_uF">
-        <unit prefix="micro" units="ampere"/>
-        <unit exponent="-1" prefix="micro" units="farad"/>
-    </units>
     <units name="per_msec">
         <unit exponent="-1" prefix="milli" units="second"/>
     </units>
