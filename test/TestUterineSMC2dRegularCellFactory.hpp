@@ -1,14 +1,14 @@
-#ifndef TESTUTERINESMC2DREGULARCELLFACTORY_HPP_
-#define TESTUTERINESMC2DREGULARCELLFACTORY_HPP_
+#ifndef TESTUTERINEREGULARCELLFACTORY_HPP_
+#define TESTUTERINEREGULARCELLFACTORY_HPP_
 
 #include <cxxtest/TestSuite.h>
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineSMC2dRegularCellFactory.hpp"
+#include "UterineRegularCellFactory.hpp"
 
-class TestUterineSMC2dRegularCellFactory : public CxxTest::TestSuite
+class TestUterineRegularCellFactory : public CxxTest::TestSuite
 {
 public:
-    void TestUterineSMC2dRegularCellFactoryClass()
+    void TestUterineRegularCellFactoryClass()
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
@@ -16,7 +16,7 @@ public:
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineSMC2dRegularCellFactory factory;
+		UterineRegularCellFactory factory;
 		std::string cell_type = factory.GetCellType();
 
 		std::string save_dir = "MonodomainTest/" + cell_type + "/regular";
@@ -43,6 +43,6 @@ public:
     }
 };
 
-#endif /*TESTUTERINESMC2DREGULARCELLFACTORY_HPP_*/
+#endif /*TESTUTERINEREGULARCELLFACTORY_HPP_*/
 
 
