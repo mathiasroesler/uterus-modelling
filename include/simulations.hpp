@@ -5,9 +5,9 @@
 #include "Exception.hpp"
 #include "PetscException.hpp"
 #include "FHNOdeSystem.hpp"
-#include "UterineSMC2dSimpleCellFactory.hpp"
-#include "UterineSMC2dRegularCellFactory.hpp"
-#include "UterineSMC2dZeroCellFactory.hpp"
+#include "UterineSimpleCellFactory.hpp"
+#include "UterineRegularCellFactory.hpp"
+#include "UterineZeroCellFactory.hpp"
 
 void simulation_0d();
 void simulation_2d();
