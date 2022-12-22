@@ -65,21 +65,21 @@ void simulation_2d()
 
 	HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-	UterineSMC2dCellFactory *factory = NULL;
+	AbstractUterineCellFactory *factory = NULL;
 
 	if (stimulus_type == "simple")
 	{
-		factory = new UterineSMC2dSimpleCellFactory();
+		factory = new UterineSimpleCellFactory();
 	}
 
 	else if (stimulus_type == "regular")
 	{
-		factory = new UterineSMC2dRegularCellFactory();
+		factory = new UterineRegularCellFactory();
 	}
 
 	else if (stimulus_type == "zero")
 	{
-		factory = new UterineSMC2dZeroCellFactory();
+		factory = new UterineZeroCellFactory();
 	}
 
 	else

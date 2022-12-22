@@ -1,15 +1,15 @@
-#include "UterineSMC2dRegularCellFactory.hpp"
+#include "UterineRegularCellFactory.hpp"
 #include "Exception.hpp"
 
-UterineSMC2dRegularCellFactory::UterineSMC2dRegularCellFactory() : 
-	UterineSMC2dCellFactory(), 
+UterineRegularCellFactory::UterineRegularCellFactory() : 
+	AbstractUterineCellFactory(), 
 	mpStimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0))
 {
 	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
-AbstractCardiacCell* UterineSMC2dRegularCellFactory::CreateCardiacCellForTissueNode(
+AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 	Node<2>* pNode)
 {
 	double x = pNode->rGetLocation()[0];
@@ -38,14 +38,14 @@ AbstractCardiacCell* UterineSMC2dRegularCellFactory::CreateCardiacCellForTissueN
 	else
 	{
 		/* The other cells have zero stimuli. */
-		return UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(pNode);
+		return AbstractUterineCellFactory::CreateCardiacCellForTissueNode(pNode);
 	}
 }
 
 
-void UterineSMC2dRegularCellFactory::ReadConfigParams(std::string config_path)
+void UterineRegularCellFactory::ReadConfigParams(std::string config_path)
 {
-	UterineSMC2dCellFactory::ReadConfigParams(config_path);
+	AbstractUterineCellFactory::ReadConfigParams(config_path);
 	const auto params = toml::parse(config_path);
 	
 	// The cell type serves as a table name in the config file
@@ -65,9 +65,9 @@ void UterineSMC2dRegularCellFactory::ReadConfigParams(std::string config_path)
 } 
 
 
-void UterineSMC2dRegularCellFactory::PrintParams()
+void UterineRegularCellFactory::PrintParams()
 {
-	UterineSMC2dCellFactory::PrintParams();
+	AbstractUterineCellFactory::PrintParams();
 	std::cout << "mpX_stim_start = " << mpX_stim_start << "\n";
 	std::cout << "mpX_stim_end = " << mpX_stim_end << "\n";
 	std::cout << "mpY_stim_start = " << mpY_stim_start << "\n";

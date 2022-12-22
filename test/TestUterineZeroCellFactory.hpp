@@ -1,14 +1,14 @@
-#ifndef TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_
-#define TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_
+#ifndef TESTUTERINEZEROCELLFACTORY_HPP_
+#define TESTUTERINEZEROCELLFACTORY_HPP_
 
 #include <cxxtest/TestSuite.h>
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineSMC2dSimpleCellFactory.hpp"
+#include "UterineZeroCellFactory.hpp"
 
-class TestUterineSMC2dSimpleCellFactory : public CxxTest::TestSuite
+class TestUterineZeroCellFactory : public CxxTest::TestSuite
 {
 public:
-    void TestUterineSMC2dSimpleCellFactoryClass()
+    void TestUterineZeroCellFactoryClass()
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
         HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
@@ -16,10 +16,10 @@ public:
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineSMC2dSimpleCellFactory factory;
+		UterineZeroCellFactory factory;
 		std::string cell_type = factory.GetCellType();
 
-		std::string save_dir = "MonodomainTest/" + cell_type + "/simple";
+		std::string save_dir = "MonodomainTest/" + cell_type + "/zero";
 		HeartConfig::Instance()->SetOutputDirectory(save_dir);
 
 		factory.PrintParams();
@@ -43,5 +43,6 @@ public:
     }
 };
 
-#endif /*TESTUTERINESMC2DSIMPLECELLFACTORY_HPP_*/
+#endif /*TESTUTERINEZEROCELLFACTORY_HPP_*/
+
 

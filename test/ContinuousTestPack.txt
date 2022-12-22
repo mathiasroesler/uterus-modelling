@@ -2,8 +2,8 @@ TestRead0dParamConfig.hpp
 TestRead2dParamConfig.hpp
 TestFHNOdeSystemConstructor.hpp
 TestFHNOdeSystem.hpp
-TestUterineSMC2dSimpleCellFactory.hpp
-TestUterineSMC2dRegularCellFactory.hpp
-TestUterineSMC2dZeroCellFactory.hpp
+TestUterineSimpleCellFactory.hpp
+TestUterineRegularCellFactory.hpp
+TestUterineZeroCellFactory.hpp
 TestChayKeizer1983CellSimulation.hpp
 TestMeans2022CellSimulation.hpp

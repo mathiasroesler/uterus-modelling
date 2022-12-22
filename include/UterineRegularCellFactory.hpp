@@ -1,12 +1,12 @@
-#ifndef UTERINESMC2DREGULARCELLFACTORY_HPP
-#define UTERINESMC2DREGULARCELLFACTORY_HPP
+#ifndef UTERINEREGULARCELLFACTORY_HPP
+#define UTERINEREGULARCELLFACTORY_HPP
 
 #include <toml.hpp>
-#include "UterineSMC2dCellFactory.hpp"
+#include "AbstractUterineCellFactory.hpp"
 #include "MonodomainProblem.hpp"
 #include "RegularStimulus.hpp"
 
-class UterineSMC2dRegularCellFactory : public UterineSMC2dCellFactory
+class UterineRegularCellFactory : public AbstractUterineCellFactory
 {
 private:
 	double mpX_stim_start;
@@ -16,11 +16,11 @@ private:
     boost::shared_ptr<RegularStimulus> mpStimulus;
 
 public:
-	UterineSMC2dRegularCellFactory();
+	UterineRegularCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	void ReadConfigParams(std::string config_path);
 	void PrintParams();
 };
 
-#endif // UTERINESMC2DREGULARCELLFACTORY_HPP
+#endif // UTERINEREGULARCELLFACTORY_HPP
 

@@ -1,14 +1,14 @@
-#include "UterineSMC2dCellFactory.hpp"
+#include "AbstractUterineCellFactory.hpp"
 #include "Exception.hpp"
 
-UterineSMC2dCellFactory::UterineSMC2dCellFactory() : 
+AbstractUterineCellFactory::AbstractUterineCellFactory() : 
 	AbstractCardiacCellFactory<2>()
 {
 	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
-AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
+AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 	Node<2>* pNode)
 {
 	switch (mpCell_id)
@@ -30,7 +30,7 @@ AbstractCardiacCell* UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(
 }
 
 
-void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
+void AbstractUterineCellFactory::ReadConfigParams(std::string config_path)
 {
 	const auto params = toml::parse(config_path);
 	
@@ -44,14 +44,14 @@ void UterineSMC2dCellFactory::ReadConfigParams(std::string config_path)
 }
 
 
-void UterineSMC2dCellFactory::PrintParams()
+void AbstractUterineCellFactory::PrintParams()
 {
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
 }
 
 
-std::string UterineSMC2dCellFactory::GetCellType()
+std::string AbstractUterineCellFactory::GetCellType()
 {
 	return mpCell_type;
 }
