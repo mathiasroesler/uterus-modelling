@@ -6,7 +6,7 @@
  * and closing it at the end.  (If you never run come in parallel then it is safe to replace PetscSetupAndFinalize.hpp with FakePetscSetup.hpp)
  */
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineSMC2dCellFactory.hpp"
+#include "AbstractUterineCellFactory.hpp"
 
 /**
  * @file
@@ -30,7 +30,7 @@ class TestRead2dParamConfig : public CxxTest::TestSuite
 public:
     void TestRead2dParamConfigClass()
     {
-        UterineSMC2dCellFactory uSMC_factory; // Create a uSMC cell factory
+        AbstractUterineCellFactory uSMC_factory; // Create a uSMC cell factory
 
 		uSMC_factory.ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
 
