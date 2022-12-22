@@ -1,5 +1,5 @@
-#ifndef UTERINESMC2DCELLFACTORY_HPP
-#define UTERINESMC2DCELLFACTORY_HPP
+#ifndef ABSTRACTUTERINECELLFACTORY_HPP
+#define ABSTRACTUTERINECELLFACTORY_HPP
 
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
@@ -14,7 +14,7 @@ namespace USMC_2D_SYSTEM_CONSTANTS
 		"/usr/local/config/2d_params.toml";
 }
 
-class UterineSMC2dCellFactory : public AbstractCardiacCellFactory<2>
+class AbstractUterineCellFactory : public AbstractCardiacCellFactory<2>
 {
 protected:
 	std::string mpCell_type;
@@ -22,7 +22,7 @@ protected:
 
 
 public:
-	UterineSMC2dCellFactory();
+	AbstractUterineCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	std::string GetCellType();
 	virtual void ReadConfigParams(std::string config_path);
@@ -30,4 +30,4 @@ public:
 
 };
 
-#endif // UTERINESMC2DCELLFACTORY_HPP
+#endif // ABSTRACTUTERINECELLFACTORY_HPP
