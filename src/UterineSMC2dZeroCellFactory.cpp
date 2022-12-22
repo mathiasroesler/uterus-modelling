@@ -1,29 +1,29 @@
-#include "UterineSMC2dZeroCellFactory.hpp"
+#include "UterineZeroCellFactory.hpp"
 #include "Exception.hpp"
 
-UterineSMC2dZeroCellFactory::UterineSMC2dZeroCellFactory() : 
-	UterineSMC2dCellFactory(), 
+UterineZeroCellFactory::UterineZeroCellFactory() : 
+	AbstractUterineCellFactory(), 
 	mpStimulus(new ZeroStimulus())
 {
 }
 
 
-AbstractCardiacCell* UterineSMC2dZeroCellFactory::CreateCardiacCellForTissueNode(
+AbstractCardiacCell* UterineZeroCellFactory::CreateCardiacCellForTissueNode(
 	Node<2>* pNode)
 {
-	return UterineSMC2dCellFactory::CreateCardiacCellForTissueNode(pNode);
+	return AbstractUterineCellFactory::CreateCardiacCellForTissueNode(pNode);
 }
 
 
-void UterineSMC2dZeroCellFactory::ReadConfigParams(std::string config_path)
+void UterineZeroCellFactory::ReadConfigParams(std::string config_path)
 {
-	UterineSMC2dCellFactory::ReadConfigParams(config_path);
+	AbstractUterineCellFactory::ReadConfigParams(config_path);
 }
 
 
-void UterineSMC2dZeroCellFactory::PrintParams()
+void UterineZeroCellFactory::PrintParams()
 {
-	UterineSMC2dCellFactory::PrintParams();
+	AbstractUterineCellFactory::PrintParams();
 }
 
 
