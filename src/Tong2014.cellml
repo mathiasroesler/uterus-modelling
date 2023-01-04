@@ -532,12 +532,14 @@
             <apply>
                 <eq/>
                 <ci>gb</ci>
-                <cn cellml:units="nS_per_pF">0.0</cn>
+                <!-- cn cellml:units="nS_per_pF">0.004</cn -->
+                <cn cellml:units="nS_per_pF">0.004</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>gk1</ci>
-                <cn cellml:units="nS_per_pF">0.24</cn>
+                <!-- cn cellml:units="nS_per_pF">0.24</cn -->
+                <cn cellml:units="nS_per_pF">0.52</cn>
             </apply>
             <apply>
                 <eq/>
@@ -562,22 +564,26 @@
             <apply>
                 <eq/>
                 <ci>gkq1</ci>
-                <cn cellml:units="nS_per_pF">0.0032</cn>
+                <!-- cn cellml:units="nS_per_pF">0.0032</cn -->
+                <cn cellml:units="nS_per_pF">0.00</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>gkq4</ci>
-                <cn cellml:units="nS_per_pF">0.024</cn>
+                <!-- cn cellml:units="nS_per_pF">0.024</cni -->
+                <cn cellml:units="nS_per_pF">0.0</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>gkq5</ci>
-                <cn cellml:units="nS_per_pF">0.016</cn>
+                <!-- cn cellml:units="nS_per_pF">0.016</cn -->
+                <cn cellml:units="nS_per_pF">0.0</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>gherg</ci>
-                <cn cellml:units="nS_per_pF">0.08</cn>
+                <!-- cn cellml:units="nS_per_pF">0.08</cn -->
+                <cn cellml:units="nS_per_pF">0.0</cn>
             </apply>
             <apply>
                 <eq/>
