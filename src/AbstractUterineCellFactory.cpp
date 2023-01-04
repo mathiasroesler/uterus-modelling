@@ -22,6 +22,9 @@ AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 
 		case 2:
 			return new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+		
+		case 3:
+			return new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
 
 		default:
 			return new CellHodgkinHuxley1952FromCellML(mpSolver,
