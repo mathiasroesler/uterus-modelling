@@ -124,7 +124,7 @@
     </connection>
     <!-- Model - Time variable-->
     <component name="environment">
-        <variable initial_value="0" name="time" public_interface="out" units="msec"/>
+        <variable name="time" public_interface="out" units="msec"/>
     </component>
     <!-- Model - V variable-->
     <component name="membrane_potential">
