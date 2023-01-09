@@ -15,8 +15,8 @@ AbstractCardiacCell* UterineSimpleCellFactory::CreateCardiacCellForTissueNode(
 	double x = pNode->rGetLocation()[0];
 	double y = pNode->rGetLocation()[1];
 
-	if (x > mpX_stim_start && x < mpX_stim_end && 
-			y > mpY_stim_start && y < mpY_stim_end)
+	if (x >= mpX_stim_start && x <= mpX_stim_end && 
+			y >= mpY_stim_start && y <= mpY_stim_end)
 	{
 		switch (mpCell_id)
 		{
