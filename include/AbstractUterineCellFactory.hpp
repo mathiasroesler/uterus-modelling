@@ -28,6 +28,7 @@ public:
 	std::string GetCellType();
 	virtual void ReadConfigParams(std::string config_path);
 	virtual void PrintParams();
+	virtual void WriteLogInfo(std::string log_file);
 
 };
 
