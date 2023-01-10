@@ -58,6 +58,11 @@ void simulation_2d()
 	std::string default_ionic_model = cell_type + "I";
 	std::string save_path = save_dir + "/" + cell_type + "/" + stimulus_type;
 
+	// Log file location
+	std::string log_dir = save_dir + "/" + cell_type + "/log";
+	OutputFileHandler output_file_handler(log_dir);
+	std::string log_path = output_file_handler.GetOutputDirectoryFullPath() + "log.log";
+
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
 	HeartConfig::Instance()->SetMeshFileName(mesh_path);
 	HeartConfig::Instance()->SetOutputDirectory(save_path);
@@ -119,5 +124,8 @@ void simulation_2d()
 
 	HeartEventHandler::Headings();
 	HeartEventHandler::Report();
+
+	factory->WriteLogInfo(log_path);
 }
+
 
