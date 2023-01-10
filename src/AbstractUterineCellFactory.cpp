@@ -22,11 +22,20 @@ AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 
 		case 2:
 			return new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+		
+		case 3:
+			return new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
 
 		default:
 			return new CellHodgkinHuxley1952FromCellML(mpSolver,
 				mpZeroStimulus);
 	}	
+}
+
+
+std::string AbstractUterineCellFactory::GetCellType()
+{
+	return mpCell_type;
 }
 
 
@@ -51,7 +60,12 @@ void AbstractUterineCellFactory::PrintParams()
 }
 
 
-std::string AbstractUterineCellFactory::GetCellType()
+void AbstractUterineCellFactory::WriteLogInfo(std::string log_file)
 {
-	return mpCell_type;
+	std::ofstream log_stream;
+	log_stream.open(log_file, ios::app); // Open log file in append mode
+
+	log_stream << "Cell type: " << mpCell_type << std::endl;
+
+	log_stream.close();
 }

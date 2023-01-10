@@ -7,6 +7,7 @@
 #include "HodgkinHuxley1952.hpp"
 #include "ChayKeizer1983.hpp"
 #include "Means2022.hpp"
+#include "Tong2014.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
@@ -18,7 +19,7 @@ class AbstractUterineCellFactory : public AbstractCardiacCellFactory<2>
 {
 protected:
 	std::string mpCell_type;
-	unsigned short int mpCell_id; // 0 for HH, 1 for CK
+	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong
 
 
 public:
@@ -27,6 +28,7 @@ public:
 	std::string GetCellType();
 	virtual void ReadConfigParams(std::string config_path);
 	virtual void PrintParams();
+	virtual void WriteLogInfo(std::string log_file);
 
 };
 

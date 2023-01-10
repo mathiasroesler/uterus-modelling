@@ -39,8 +39,10 @@ void simulation_2d()
 	const double print_timestep = toml::find<double>(sys_params, 
 		"print_timestep");
 
-	const std::string mesh_path = toml::find<std::string>(sys_params, 
-		"mesh_path");
+	const std::string mesh_dir = toml::find<std::string>(sys_params, 
+		"mesh_dir");
+	const std::string mesh_name = toml::find<std::string>(sys_params,
+		"mesh_name");
 	const std::string cell_type = toml::find<std::string>(sys_params, 
 		"cell_type");
 	const std::string save_dir = toml::find<std::string>(sys_params,
@@ -58,8 +60,13 @@ void simulation_2d()
 	std::string default_ionic_model = cell_type + "I";
 	std::string save_path = save_dir + "/" + cell_type + "/" + stimulus_type;
 
+	// Log file location
+	std::string log_dir = save_dir + "/" + cell_type + "/log";
+	OutputFileHandler output_file_handler(log_dir, false);
+	std::string log_path = output_file_handler.GetOutputDirectoryFullPath() + "log.log";
+
 	HeartConfig::Instance()->SetSimulationDuration(sim_duration); //ms
-	HeartConfig::Instance()->SetMeshFileName(mesh_path);
+	HeartConfig::Instance()->SetMeshFileName(mesh_dir + mesh_name);
 	HeartConfig::Instance()->SetOutputDirectory(save_path);
 	HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
@@ -119,5 +126,25 @@ void simulation_2d()
 
 	HeartEventHandler::Headings();
 	HeartEventHandler::Report();
-}
 
+	// Write to log file
+	std::ofstream log_stream;
+	log_stream.open(log_path, ios::app);
+
+	log_stream << "System information" << std::endl;
+	log_stream << "  cell type: " <<  cell_type << std::endl;
+	log_stream << "  mesh: " << mesh_name << std::endl;
+	log_stream << "  capacitance: " << capacitance << " uF/cm2" << std::endl;
+	log_stream << "  conductivity x axis: " << conductivities[0] << std::endl;
+	log_stream << "  conductivity y axis: " << conductivities[1] << std::endl;
+
+	log_stream << "Simulation parameters" << std::endl;
+	log_stream << "  duration: " << sim_duration << " ms" << std::endl;
+	log_stream << "  ode timestep: " << ode_timestep << " ms" << std::endl;
+	log_stream << "  pde timestep: " << pde_timestep << " ms" << std::endl;
+	log_stream << "  print timestep: " << print_timestep << " ms" << std::endl;
+
+	log_stream.close();
+
+	factory->WriteLogInfo(log_path);
+}

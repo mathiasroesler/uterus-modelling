@@ -20,6 +20,7 @@ public:
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	void ReadConfigParams(std::string config_path);
 	void PrintParams();
+	void WriteLogInfo(std::string log_file);
 };
 
 #endif // UTERINESIMPLECELLFACTORY_HPP

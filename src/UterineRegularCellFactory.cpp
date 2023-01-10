@@ -15,8 +15,8 @@ AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 	double x = pNode->rGetLocation()[0];
 	double y = pNode->rGetLocation()[1];
 
-	if (x > mpX_stim_start && x < mpX_stim_end && 
-			y > mpY_stim_start && y < mpY_stim_end)
+	if (x >= mpX_stim_start && x <= mpX_stim_end && 
+			y >= mpY_stim_start && y <= mpY_stim_end)
 	{
 		switch (mpCell_id)
 		{
@@ -29,6 +29,9 @@ AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 
 			case 2:
 				return new CellMeans2022FromCellML(mpSolver, mpStimulus);
+
+			case 3:
+				return new CellTong2014FromCellML(mpSolver, mpStimulus);
 		
 			default:
 				return new CellHodgkinHuxley1952FromCellML(mpSolver,
@@ -78,3 +81,21 @@ void UterineRegularCellFactory::PrintParams()
 	std::cout << "mpStimulus start time = " << mpStimulus->GetStartTime() << std::endl;
 }
 
+
+void UterineRegularCellFactory::WriteLogInfo(std::string log_file)
+{
+	std::ofstream log_stream;
+	log_stream.open(log_file, ios::app); // Open log file in append mode
+
+	log_stream << "Stimulus parameters" << std::endl;
+	log_stream << "  type: regular" << std::endl;
+	log_stream << "  start time: " << mpStimulus->GetStartTime() << " ms" << std::endl; 
+	log_stream << "  duration: " << mpStimulus->GetDuration() << " ms" << std::endl;
+	log_stream << "  magnitude: " << mpStimulus->GetMagnitude() << " uA/cm2" << std::endl;
+	log_stream << "  period: " << mpStimulus->GetPeriod() << " ms" << std::endl;
+	log_stream << "  stimulated region: " << mpX_stim_start << " <= x <= ";
+	log_stream << mpX_stim_end << "   " << mpY_stim_start << " <= y <= ";
+	log_stream << mpY_stim_end << std::endl;
+
+	log_stream.close();
+}

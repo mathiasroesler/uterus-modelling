@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Exception.hpp"
 #include "PetscException.hpp"
+#include "OutputFileHandler.hpp"
 #include "FHNOdeSystem.hpp"
 #include "UterineSimpleCellFactory.hpp"
 #include "UterineRegularCellFactory.hpp"
