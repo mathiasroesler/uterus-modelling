@@ -15,7 +15,12 @@ cd ~/chaste_build/projects/chaste_modelling
 CONFIG=~/Chaste/projects/chaste_modelling/config/2d_params.toml
 CELL_TYPE=$(grep "cell_type =" $CONFIG | cut -d '"' -f 2)
 SAVE_DIR=$(grep "save_dir =" $CONFIG | cut -d '"' -f 2)
+STIMULUS=$(grep "stimulus_type =" $CONFIG | cut -d '"' -f 2)
 
 cd /tmp/$USER/testoutput/$SAVE_DIR/$CELL_TYPE/log
 NB_FILES=$(printf "%0.3d" $(ls | wc -l))
-mv log.log "simulation_$NB_FILES.log"
+mv log.log "simulation_${NB_FILES}.log"
+
+cd ../$STIMULUS
+SIM_RES_NAME="simulation_${NB_FILES}_res.vtu"
+annotate vtk_output/results.vtu ../results/$SIM_RES_NAME
