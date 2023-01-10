@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# usage: chaste-simulation <dim>
+# Runs the chaste simulation, renames the log file and annotates data
+
+if [[ $@ -ne 2 ]]; then
+	echo "Error: missing simulation dimension"
+	echo "usage: chaste-simulation <dim>"
+	exit
+fi
+
+cd ~/chaste_build/projects/chaste_modelling
+./apps/main $1
+
+CONFIG=~/Chaste/projects/chaste_modelling/config/2d_params.toml
+CELL_TYPE=$(grep "cell_type =" $CONFIG | cut -d '"' -f 2)
+SAVE_DIR=$(grep "save_dir =" $CONFIG | cut -d '"' -f 2)
+
+cd /tmp/$USER/testoutput/$SAVE_DIR/$CELL_TYPE/log
+NB_FILES=$(printf "%0.3d" $(ls | wc -l))
+mv log.log "simulation_$NB_FILES.log"
