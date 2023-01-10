@@ -1,16 +1,16 @@
 save_dir = "Monodomain_2d"
-mesh_name = "2D_0_1mm_200_elements"
+mesh_name = "2D_0_to_1mm_200_elements"
 mesh_dir = "/home/mathias/Chaste/mesh/test/data/"
-stimulus_type = "regular"
+stimulus_type = "zero"
 
 # Time paramters in millisec
-sim_duration = 600.0
+sim_duration = 7000.0
 ode_timestep = 0.01
 pde_timestep = 0.01
 print_timestep = 1.0
 
 # Cell parameters
-cell_type = "HodgkinHuxley"
+cell_type = "ChayKeizer"
 
 [HodgkinHuxley]
 	# Stimulus parameters
@@ -21,7 +21,7 @@ cell_type = "HodgkinHuxley"
 
 	# Cell properties
 	capacitance = 1.0 # uF/cm2
-	conductivities = [0.05, 0.05] #x, y
+	conductivities = [0.01, 0.09] #x, y
 
 	# Stimulus
 	magnitude = -2e5 # uA/cm2
