@@ -28,7 +28,7 @@ public:
 	AbstractUterineCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	std::string GetCellType();
-	virtual void ReadParams(std::string general_param_file);
+	void ReadParams(std::string general_param_file);
 	virtual void ReadCellParams(std::string cell_param_file);
 	virtual void PrintParams();
 	virtual void WriteLogInfo(std::string log_file);
