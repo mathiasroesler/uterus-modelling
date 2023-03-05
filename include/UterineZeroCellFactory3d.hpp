@@ -9,7 +9,7 @@
 class UterineZeroCellFactory3d : public AbstractUterineCellFactory3d
 {
 private:
-    boost::shared_ptr<ZeroStimulus> mpStimulus;
+	boost::shared_ptr<ZeroStimulus> mpStimulus;
 
 public:
 	UterineZeroCellFactory3d();

@@ -15,7 +15,7 @@ private:
 	double mpY_stim_end;
 	double mpZ_stim_start;
 	double mpZ_stim_end;
-    boost::shared_ptr<RegularStimulus> mpStimulus;
+	boost::shared_ptr<RegularStimulus> mpStimulus;
 
 public:
 	UterineRegularCellFactory3d();
