@@ -15,7 +15,7 @@ namespace USMC_3D_SYSTEM_CONSTANTS
 		"/usr/local/config/3d_params.toml";
 }
 
-class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory3d<3>
+class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory<3>
 {
 protected:
 	std::string mpCell_type;
