@@ -19,7 +19,7 @@ public:
 		UterineRegularCellFactory factory;
 		std::string cell_type = factory.GetCellType();
 
-		std::string save_dir = "MonodomainTest/" + cell_type + "/regular";
+		std::string save_dir = "MonodomainTest/" + cell_type + "/regular_2d";
         HeartConfig::Instance()->SetOutputDirectory(save_dir);
 
 		factory.PrintParams();
@@ -27,7 +27,6 @@ public:
         MonodomainProblem<2> monodomain_problem( &factory );
 
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
-        HeartConfig::Instance()->SetExtracellularConductivities(Create_c_vector(6.2, 2.4));
 
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
