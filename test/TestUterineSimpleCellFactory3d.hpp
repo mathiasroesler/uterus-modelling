@@ -24,7 +24,7 @@ public:
 
 		factory.PrintParams();
 
-        MonodomainProblem<2> monodomain_problem( &factory );
+        MonodomainProblem<3> monodomain_problem( &factory );
 
         HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
 			1.75, 0.19, 0.19));
