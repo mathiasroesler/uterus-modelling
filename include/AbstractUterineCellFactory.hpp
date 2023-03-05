@@ -11,8 +11,10 @@
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
-	const std::string CONFIG_PATH = 
-		"/usr/local/config/2d_params.toml";
+	const std::string CONFIG_DIR = 
+		"/usr/local/config/";
+	const std::string GENERAL_PARAM_FILE = 
+		"2d_params.toml";
 }
 
 class AbstractUterineCellFactory : public AbstractCardiacCellFactory<2>
@@ -26,7 +28,8 @@ public:
 	AbstractUterineCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	std::string GetCellType();
-	virtual void ReadConfigParams(std::string config_path);
+	virtual void ReadParams(std::string general_param_file);
+	virtual void ReadCellParams(std::string cell_param_file);
 	virtual void PrintParams();
 	virtual void WriteLogInfo(std::string log_file);
 

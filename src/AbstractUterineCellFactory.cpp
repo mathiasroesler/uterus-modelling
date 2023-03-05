@@ -4,7 +4,7 @@
 AbstractUterineCellFactory::AbstractUterineCellFactory() : 
 	AbstractCardiacCellFactory<2>()
 {
-	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+	ReadParams(USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 }
 
 
@@ -39,21 +39,31 @@ std::string AbstractUterineCellFactory::GetCellType()
 }
 
 
-void AbstractUterineCellFactory::ReadConfigParams(std::string config_path)
+void AbstractUterineCellFactory::ReadParams(std::string general_param_file)
 {
-	const auto params = toml::parse(config_path);
+	std::string general_param_path = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		general_param_file;
+	const auto params = toml::parse(general_param_path);
 	
 	mpCell_type = toml::find<std::string>(params, "cell_type");
 
-	// The cell type serves as a table name in the config file
-	const auto& cell_params = toml::find(params, mpCell_type);
+	// Get the parameters for the cell used
+	std::string cell_param_file = mpCell_type + ".toml";
+	ReadCellParams(cell_param_file)
+}
+
+
+void AbstractUterineCellFactory::ReadCellParams(std::string cell_param_file)
+{
+	std::string cell_param_path = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		cell_param_file;
+	const auto cell_params = toml::parse(cell_param_path);
 	
-	// Cell id
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }
 
 
-void AbstractUterineCellFactory::PrintParams()
+vvoid AbstractUterineCellFactory::PrintParams()
 {
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
