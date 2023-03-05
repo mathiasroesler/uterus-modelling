@@ -5,7 +5,7 @@ UterineRegularCellFactory3d::UterineRegularCellFactory3d() :
 	AbstractUterineCellFactory3d(), 
 	mpStimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0))
 {
-	ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+	ReadConfigParams(USMC_3D_SYSTEM_CONSTANTS::CONFIG_PATH);
 }
 
 
