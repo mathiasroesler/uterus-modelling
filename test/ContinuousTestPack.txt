@@ -9,3 +9,4 @@ TestUterineZeroCellFactory.hpp
 TestChayKeizer1983CellSimulation.hpp
 TestMeans2022CellSimulation.hpp
 TestTong2014CellSimulation.hpp
+TestUterineZeroCellFactory3d.hpp
