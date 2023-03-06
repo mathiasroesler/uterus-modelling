@@ -29,8 +29,9 @@ void simulation_0d()
 void simulation_2d()
 {
 	// Get parameters from config file
-	const auto sys_params = toml::parse(
-		USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	std::string param_file = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR + 
+		USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE;
+	const auto sys_params = toml::parse(param_file);
 
 	// Time constants
 	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
@@ -50,7 +51,9 @@ void simulation_2d()
 	const std::string stimulus_type = toml::find<std::string>(sys_params,
 		"stimulus_type"); // Regular, simple or zero stimulus
 
-	const auto& cell_params = toml::find(sys_params, cell_type);
+	std::string cell_param_file = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR + 
+		cell_type + ".toml";
+	const auto cell_params = toml::parse(cell_param_file);
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
@@ -153,8 +156,10 @@ void simulation_2d()
 void simulation_3d()
 {
 	// Get parameters from config file
-	const auto sys_params = toml::parse(
-		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	std::string param_file = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR + 
+		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE;
+		
+	const auto sys_params = toml::parse(param_file);
 
 	// Time constants
 	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
@@ -174,7 +179,9 @@ void simulation_3d()
 	const std::string stimulus_type = toml::find<std::string>(sys_params,
 		"stimulus_type"); // Regular, simple or zero stimulus
 
-	const auto& cell_params = toml::find(sys_params, cell_type);
+	std::string cell_param_file = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR + 
+		cell_type + ".toml";
+	const auto cell_params = toml::parse(cell_param_file);
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
