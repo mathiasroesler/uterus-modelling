@@ -32,7 +32,7 @@ public:
     {
         AbstractUterineCellFactory uSMC_factory; // Create a uSMC cell factory
 
-		uSMC_factory.ReadConfigParams(USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+		uSMC_factory.ReadParams(USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 
 		uSMC_factory.PrintParams();
     }
