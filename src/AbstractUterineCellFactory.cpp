@@ -47,7 +47,7 @@ void AbstractUterineCellFactory::ReadParams(std::string general_param_file)
 	
 	mpCell_type = toml::find<std::string>(params, "cell_type");
 
-	// Get the parameters for the cell used
+	// Get the cell id
 	std::string cell_param_file = mpCell_type + ".toml";
 	ReadCellParams(cell_param_file);
 }
