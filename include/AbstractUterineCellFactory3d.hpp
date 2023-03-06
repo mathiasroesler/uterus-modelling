@@ -11,8 +11,10 @@
 
 namespace USMC_3D_SYSTEM_CONSTANTS
 {
-	const std::string CONFIG_PATH = 
-		"/usr/local/config/3d_params.toml";
+	const std::string CONFIG_DIR = 
+		"/usr/local/config/";
+	const std::string GENERAL_PARAM_FILE = 
+		"3d_params.toml";
 }
 
 class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory<3>
@@ -24,9 +26,10 @@ protected:
 
 public:
 	AbstractUterineCellFactory3d();
-    AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
+	AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
 	std::string GetCellType();
-	virtual void ReadConfigParams(std::string config_path);
+	void ReadParams(std::string general_param_file)
+	virtual void ReadCellParams(std::string cell_param_file);
 	virtual void PrintParams();
 	virtual void WriteLogInfo(std::string log_file);
 

@@ -4,7 +4,8 @@
 AbstractUterineCellFactory3d::AbstractUterineCellFactory3d() : 
 	AbstractCardiacCellFactory<3>()
 {
-	ReadConfigParams(USMC_3D_SYSTEM_CONSTANTS::CONFIG_PATH);
+	ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	
 }
 
 
@@ -39,17 +40,17 @@ std::string AbstractUterineCellFactory3d::GetCellType()
 }
 
 
-void AbstractUterineCellFactory3d::ReadConfigParams(std::string config_path)
+void AbstractUterineCellFactory3d::ReadConfigParams(std::string cell_param_file)
 {
-	const auto params = toml::parse(config_path);
+	std::string general_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		general_param_file;
+	const auto params = toml::parse(general_param_path);
 	
 	mpCell_type = toml::find<std::string>(params, "cell_type");
 
-	// The cell type serves as a table name in the config file
-	const auto& cell_params = toml::find(params, mpCell_type);
-	
-	// Cell id
-	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
+	// Get the cell id
+	std::string cell_param_file = mpCell_type + ".toml";
+	ReadCellParams(cell_param_file);
 }
 
 
