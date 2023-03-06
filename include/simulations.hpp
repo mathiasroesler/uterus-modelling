@@ -9,9 +9,13 @@
 #include "UterineSimpleCellFactory.hpp"
 #include "UterineRegularCellFactory.hpp"
 #include "UterineZeroCellFactory.hpp"
+#include "UterineSimpleCellFactory3d.hpp"
+#include "UterineRegularCellFactory3d.hpp"
+#include "UterineZeroCellFactory3d.hpp"
 
 void simulation_0d();
 void simulation_2d();
+void simulation_3d();
 
 #endif // SIMULATIONS_HPP
 

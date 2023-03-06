@@ -1,15 +1,16 @@
-#include "AbstractUterineCellFactory.hpp"
+#include "AbstractUterineCellFactory3d.hpp"
 #include "Exception.hpp"
 
-AbstractUterineCellFactory::AbstractUterineCellFactory() : 
-	AbstractCardiacCellFactory<2>()
+AbstractUterineCellFactory3d::AbstractUterineCellFactory3d() : 
+	AbstractCardiacCellFactory<3>()
 {
-	ReadParams(USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	
 }
 
 
-AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
-	Node<2>* pNode)
+AbstractCardiacCell* AbstractUterineCellFactory3d::CreateCardiacCellForTissueNode(
+	Node<3>* pNode)
 {
 	switch (mpCell_id)
 	{
@@ -33,15 +34,15 @@ AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 }
 
 
-std::string AbstractUterineCellFactory::GetCellType()
+std::string AbstractUterineCellFactory3d::GetCellType()
 {
 	return mpCell_type;
 }
 
 
-void AbstractUterineCellFactory::ReadParams(std::string general_param_file)
+void AbstractUterineCellFactory3d::ReadParams(std::string general_param_file)
 {
-	std::string general_param_path = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR +
+	std::string general_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
 		general_param_file;
 	const auto params = toml::parse(general_param_path);
 	
@@ -53,24 +54,24 @@ void AbstractUterineCellFactory::ReadParams(std::string general_param_file)
 }
 
 
-void AbstractUterineCellFactory::ReadCellParams(std::string cell_param_file)
+void AbstractUterineCellFactory3d::ReadCellParams(std::string cell_param_file)
 {
-	std::string cell_param_path = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR +
+	std::string cell_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
 		cell_param_file;
 	const auto cell_params = toml::parse(cell_param_path);
-	
+
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }
 
 
-void AbstractUterineCellFactory::PrintParams()
+void AbstractUterineCellFactory3d::PrintParams()
 {
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
 }
 
 
-void AbstractUterineCellFactory::WriteLogInfo(std::string log_file)
+void AbstractUterineCellFactory3d::WriteLogInfo(std::string log_file)
 {
 	std::ofstream log_stream;
 	log_stream.open(log_file, ios::app); // Open log file in append mode
@@ -79,3 +80,4 @@ void AbstractUterineCellFactory::WriteLogInfo(std::string log_file)
 
 	log_stream.close();
 }
+

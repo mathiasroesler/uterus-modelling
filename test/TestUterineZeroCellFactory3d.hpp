@@ -1,32 +1,33 @@
-#ifndef TESTUTERINEREGULARCELLFACTORY_HPP_
-#define TESTUTERINEREGULARCELLFACTORY_HPP_
+#ifndef TESTUTERINEZEROCELLFACTORY3D_HPP_
+#define TESTUTERINEZEROCELLFACTORY3D_HPP_
 
 #include <cxxtest/TestSuite.h>
 #include "PetscSetupAndFinalize.hpp"
-#include "UterineRegularCellFactory.hpp"
+#include "UterineZeroCellFactory3d.hpp"
 
-class TestUterineRegularCellFactory : public CxxTest::TestSuite
+class TestUterineZeroCellFactory3d : public CxxTest::TestSuite
 {
 public:
-    void TestUterineRegularCellFactoryClass()
+    void TestUterineZeroCellFactory3dClass()
     {
 		HeartConfig::Instance()->SetSimulationDuration(5.0); //ms
-        HeartConfig::Instance()->SetMeshFileName("mesh/test/data/2D_0_to_1mm_800_elements");
+        HeartConfig::Instance()->SetMeshFileName("mesh/test/data/3D_0_to_1mm_6000_elements");
         HeartConfig::Instance()->SetOutputFilenamePrefix("results");
 
         HeartConfig::Instance()->SetVisualizeWithVtk(true);
 
-		UterineRegularCellFactory factory;
+		UterineZeroCellFactory3d factory;
 		std::string cell_type = factory.GetCellType();
 
-		std::string save_dir = "MonodomainTest/" + cell_type + "/regular_2d";
-        HeartConfig::Instance()->SetOutputDirectory(save_dir);
+		std::string save_dir = "MonodomainTest/" + cell_type + "/zero_3d";
+		HeartConfig::Instance()->SetOutputDirectory(save_dir);
 
 		factory.PrintParams();
 
-        MonodomainProblem<2> monodomain_problem( &factory );
+        MonodomainProblem<3> monodomain_problem( &factory );
 
-        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(1.75, 0.19));
+        HeartConfig::Instance()->SetIntracellularConductivities(Create_c_vector(
+			1.75, 0.19, 0.19));
 
         HeartConfig::Instance()->SetSurfaceAreaToVolumeRatio(1400); // 1/cm
         HeartConfig::Instance()->SetCapacitance(1.0); // uF/cm^2
@@ -42,6 +43,7 @@ public:
     }
 };
 
-#endif /*TESTUTERINEREGULARCELLFACTORY_HPP_*/
+#endif /*TESTUTERINEZEROCELLFACTORY3D_HPP_*/
+
 
 

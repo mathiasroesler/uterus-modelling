@@ -1,5 +1,5 @@
-#ifndef ABSTRACTUTERINECELLFACTORY_HPP
-#define ABSTRACTUTERINECELLFACTORY_HPP
+#ifndef ABSTRACTUTERINECELLFACTORY3d_HPP
+#define ABSTRACTUTERINECELLFACTORY3d_HPP
 
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
@@ -9,15 +9,15 @@
 #include "Means2022.hpp"
 #include "Tong2014.hpp"
 
-namespace USMC_2D_SYSTEM_CONSTANTS
+namespace USMC_3D_SYSTEM_CONSTANTS
 {
 	const std::string CONFIG_DIR = 
 		"/usr/local/config/";
 	const std::string GENERAL_PARAM_FILE = 
-		"2d_params.toml";
+		"3d_params.toml";
 }
 
-class AbstractUterineCellFactory : public AbstractCardiacCellFactory<2>
+class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory<3>
 {
 protected:
 	std::string mpCell_type;
@@ -25,8 +25,8 @@ protected:
 
 
 public:
-	AbstractUterineCellFactory();
-    AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
+	AbstractUterineCellFactory3d();
+	AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
 	std::string GetCellType();
 	void ReadParams(std::string general_param_file);
 	virtual void ReadCellParams(std::string cell_param_file);
@@ -35,4 +35,5 @@ public:
 
 };
 
-#endif // ABSTRACTUTERINECELLFACTORY_HPP
+#endif // ABSTRACTUTERINECELLFACTORY3d_HPP
+

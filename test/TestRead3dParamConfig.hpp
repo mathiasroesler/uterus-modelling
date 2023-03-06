@@ -1,12 +1,12 @@
-#ifndef TESTREAD2DPARAMCONFIG_HPP_
-#define TESTREAD2DPARAMCONFIG_HPP_
+#ifndef TESTREAD3DPARAMCONFIG_HPP_
+#define TESTREAD3DPARAMCONFIG_HPP_
 
 #include <cxxtest/TestSuite.h>
 /* Most Chaste come uses PETSc to solve linear algebra problems.  This involves starting PETSc at the beginning of a test-suite
  * and closing it at the end.  (If you never run come in parallel then it is safe to replace PetscSetupAndFinalize.hpp with FakePetscSetup.hpp)
  */
 #include "PetscSetupAndFinalize.hpp"
-#include "AbstractUterineCellFactory.hpp"
+#include "AbstractUterineCellFactory3d.hpp"
 
 /**
  * @file
@@ -25,17 +25,18 @@
  * components of Chaste.
  */
 
-class TestRead2dParamConfig : public CxxTest::TestSuite
+class TestRead3dParamConfig : public CxxTest::TestSuite
 {
 public:
-    void TestRead2dParamConfigClass()
+    void TestRead3dParamConfigClass()
     {
-        AbstractUterineCellFactory uSMC_factory; // Create a uSMC cell factory
+        AbstractUterineCellFactory3d uSMC_factory; // Create a uSMC cell factory
 
-		uSMC_factory.ReadParams(USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+		uSMC_factory.ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 
 		uSMC_factory.PrintParams();
     }
 };
 
-#endif /*TESTREAD2DPARAMCONFIG_HPP_*/
+#endif /*TESTREAD3DPARAMCONFIG_HPP_*/
+

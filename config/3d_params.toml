@@ -1,5 +1,5 @@
-save_dir = "Monodomain_2d"
-mesh_name = "2D_0_to_1mm_200_elements"
+save_dir = "Monodomain_3d"
+mesh_name = "3D_0_to_1mm_6000_elements"
 mesh_dir = "/home/mathias/Chaste/mesh/test/data/"
 stimulus_type = "simple"
 
@@ -10,4 +10,4 @@ pde_timestep = 0.01
 print_timestep = 1.0
 
 # Cell parameters
-cell_type = "Tong"
+cell_type = "HodgkinHuxley"

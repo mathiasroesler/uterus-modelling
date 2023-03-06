@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 			{
 				const std::string err_msg = "Input is not an integer";
 				const std::string err_filename = "main.cpp";
-				unsigned line_number = 78;
+				unsigned line_number = 83;
 
 				throw Exception(err_msg, err_filename, line_number);
 			}
@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 			{
 				const std::string err_msg = "Trailing characters after input";
 				const std::string err_filename = "main.cpp";
-				unsigned line_number = 87;
+				unsigned line_number = 93;
 
 				throw Exception(err_msg, err_filename, line_number);
 			}
@@ -104,11 +104,15 @@ int main(int argc, char *argv[])
 				case 2:
 					simulation_2d();
 					break;	
+
+				case 3:
+					simulation_3d();
+					break;
 				
 				default:
 					const std::string err_msg = "Invalid dimension";
 					const std::string err_filename = "main.cpp";
-					unsigned line_number = 106;
+					unsigned line_number = 115;
 
 					throw Exception(err_msg, err_filename, line_number);
 					break;
