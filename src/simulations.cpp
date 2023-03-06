@@ -30,7 +30,7 @@ void simulation_2d()
 {
 	// Get parameters from config file
 	const auto sys_params = toml::parse(
-		USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+		USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 
 	// Time constants
 	const double sim_duration = toml::find<double>(sys_params, "sim_duration");
