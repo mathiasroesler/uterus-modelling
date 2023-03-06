@@ -20,7 +20,7 @@ AbstractCardiacCell* UterineZeroCellFactory3d::CreateCardiacCellForTissueNode(
 
 void UterineZeroCellFactory3d::ReadCellParams(std::string cell_param_file)
 {
-	AbstractUterineCellFactory3d::ReadParams(cell_param_file);
+	AbstractUterineCellFactory3d::ReadCellParams(cell_param_file);
 }
 
 
