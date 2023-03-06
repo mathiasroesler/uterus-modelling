@@ -49,7 +49,7 @@ void AbstractUterineCellFactory::ReadParams(std::string general_param_file)
 
 	// Get the parameters for the cell used
 	std::string cell_param_file = mpCell_type + ".toml";
-	ReadCellParams(cell_param_file)
+	ReadCellParams(cell_param_file);
 }
 
 
@@ -63,7 +63,7 @@ void AbstractUterineCellFactory::ReadCellParams(std::string cell_param_file)
 }
 
 
-vvoid AbstractUterineCellFactory::PrintParams()
+void AbstractUterineCellFactory::PrintParams()
 {
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
