@@ -40,7 +40,7 @@ std::string AbstractUterineCellFactory3d::GetCellType()
 }
 
 
-void AbstractUterineCellFactory3d::ReadConfigParams(std::string cell_param_file)
+void AbstractUterineCellFactory3d::ReadParams(std::string general_param_file)
 {
 	std::string general_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
 		general_param_file;
@@ -51,6 +51,16 @@ void AbstractUterineCellFactory3d::ReadConfigParams(std::string cell_param_file)
 	// Get the cell id
 	std::string cell_param_file = mpCell_type + ".toml";
 	ReadCellParams(cell_param_file);
+}
+
+
+void AbstractUterineCellFactory3d::ReadCellParams(std::string cell_param_file)
+{
+	std::string cell_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		cell_param_file;
+	const auto cell_params = toml::parse(cell_param_path);
+
+	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
 }
 
 
