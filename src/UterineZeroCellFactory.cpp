@@ -5,6 +5,9 @@ UterineZeroCellFactory::UterineZeroCellFactory() :
 	AbstractUterineCellFactory(), 
 	mpStimulus(new ZeroStimulus())
 {
+	AbstractUterineCellFactory::ReadParams(
+		USMC_2D_SYSTEM_CONSTANTS::CONFIG_PATH);
+	ReadCellParams(mpCell_type + ".toml");
 }
 
 
@@ -15,9 +18,9 @@ AbstractCardiacCell* UterineZeroCellFactory::CreateCardiacCellForTissueNode(
 }
 
 
-void UterineZeroCellFactory::ReadConfigParams(std::string config_path)
+void UterineZeroCellFactory::ReadCellParams(std::string cell_param_file)
 {
-	AbstractUterineCellFactory::ReadConfigParams(config_path);
+	AbstractUterineCellFactory::ReadCellParams(cell_param_file);
 }
 
 
