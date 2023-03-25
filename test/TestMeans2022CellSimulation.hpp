@@ -37,7 +37,7 @@ public:
         bool clean_dir = false;
         unsigned precision = 6u;
         bool include_derived_quantities = true;
-        solution.WriteToFile("TestSingleCellSimulation", "Means2022Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
+        solution.WriteToFile("SingleCellSimulationTest", "Means2022Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
 
 #else
         std::cout << "Cvode is not enabled.\n";
