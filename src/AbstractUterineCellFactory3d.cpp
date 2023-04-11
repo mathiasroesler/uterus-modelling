@@ -12,25 +12,33 @@ AbstractUterineCellFactory3d::AbstractUterineCellFactory3d() :
 AbstractCardiacCell* AbstractUterineCellFactory3d::CreateCardiacCellForTissueNode(
 	Node<3>* pNode)
 {
+	AbstractCardiacCell* cell;
+
 	switch (mpCell_id)
 	{
 		case 0:
-			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+			cell = new CellHodgkinHuxley1952FromCellML(mpSolver,
 				mpZeroStimulus);
+			break;
 
 		case 1:
-			return new CellChayKeizer1983FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellChayKeizer1983FromCellML(mpSolver, mpZeroStimulus);
+			break;
 
 		case 2:
-			return new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+			break;
 		
 		case 3:
-			return new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+			break;
 
 		default:
-			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+			cell = new CellHodgkinHuxley1952FromCellML(mpSolver,
 				mpZeroStimulus);
 	}	
+
+	return cell;
 }
 
 
