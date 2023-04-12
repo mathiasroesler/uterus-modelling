@@ -30,6 +30,11 @@ AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 		
 		case 3:
 			cell = new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
 			break;
 
 		default:
@@ -68,6 +73,12 @@ void AbstractUterineCellFactory::ReadCellParams(std::string cell_param_file)
 	const auto cell_params = toml::parse(cell_param_path);
 	
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
+
+	if (cell_params.contains("parameters"))
+	{
+		mpCell_parameters = toml::find<std::unordered_map<std::string, float>>(cell_params, 
+			"parameters");
+	}
 }
 
 
@@ -75,6 +86,12 @@ void AbstractUterineCellFactory::PrintParams()
 {
 	std::cout << "mpCell_type = " << mpCell_type << "\n";
 	std::cout << "mpCell_id = " << mpCell_id << "\n";
+	std::cout << "mpCell_parameters\n";
+	
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		std::cout << "  " << it->first << " = " << it->second << std::endl;
+	}
 }
 
 
@@ -84,6 +101,12 @@ void AbstractUterineCellFactory::WriteLogInfo(std::string log_file)
 	log_stream.open(log_file, ios::app); // Open log file in append mode
 
 	log_stream << "Cell type: " << mpCell_type << std::endl;
+	log_stream << "Cell parameters: \n";
+
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		log_stream << "  " << it->first << ": " << it->second << std::endl;
+	}
 
 	log_stream.close();
 }
