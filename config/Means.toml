@@ -17,3 +17,7 @@ duration = 2000.0 # ms
 start_time = 1000.0 # ms
 
 cell_id = 2
+
+# Cell parameters
+[parameters]
+   gna = 0.1
