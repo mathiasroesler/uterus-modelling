@@ -337,7 +337,12 @@ below without NCX current inaca; note jnaca still computed...-->
         	</rdf:RDF>
 		</variable>
 			
-        <variable name="gna" public_interface="out" units="nS_per_pF"/>
+		<variable units="nS_per_pF" name="gna" cmeta:id="gna" public_interface="out">
+		  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+				<rdf:Description rdf:about="#gna">
+						<modifiable-parameter xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">yes</modifiable-parameter>
+			</rdf:Description>
+		  </rdf:RDF>
         <variable name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
         <variable name="kmca" public_interface="out" units="mM"/>

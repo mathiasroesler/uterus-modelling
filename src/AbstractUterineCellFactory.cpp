@@ -26,6 +26,11 @@ AbstractCardiacCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 
 		case 2:
 			cell = new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
 			break;
 		
 		case 3:
