@@ -21,6 +21,7 @@ class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory<3>
 {
 protected:
 	std::string mpCell_type;
+	std::unordered_map<std::string, float> mpCell_parameters;
 	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong
 
 

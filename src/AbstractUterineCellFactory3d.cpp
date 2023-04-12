@@ -31,6 +31,7 @@ AbstractCardiacCell* AbstractUterineCellFactory3d::CreateCardiacCellForTissueNod
 		
 		case 3:
 			cell = new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+			cell->SetParameter("gna", 0.1);
 			break;
 
 		default:
@@ -69,6 +70,12 @@ void AbstractUterineCellFactory3d::ReadCellParams(std::string cell_param_file)
 	const auto cell_params = toml::parse(cell_param_path);
 
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
+
+	if (cell_params.contains("parameters"))
+	{
+		mpCell_parameters = toml::find<std::unordered_map<std::string, float>>(cell_params, 
+			"parameters");
+	}
 }
 
 
