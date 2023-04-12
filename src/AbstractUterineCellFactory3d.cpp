@@ -31,7 +31,11 @@ AbstractCardiacCell* AbstractUterineCellFactory3d::CreateCardiacCellForTissueNod
 		
 		case 3:
 			cell = new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
-			cell->SetParameter("gna", 0.1);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
 			break;
 
 		default:
