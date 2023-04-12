@@ -81,8 +81,14 @@ void AbstractUterineCellFactory3d::ReadCellParams(std::string cell_param_file)
 
 void AbstractUterineCellFactory3d::PrintParams()
 {
-	std::cout << "mpCell_type = " << mpCell_type << "\n";
-	std::cout << "mpCell_id = " << mpCell_id << "\n";
+	std::cout << "mpCell_type = " << mpCell_type << std::endl;
+	std::cout << "mpCell_id = " << mpCell_id << std::endl;
+	std::cout << "mpCell_parameters\n";
+	
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		std::cout << "  " << it->first << " = " << it->second << std::endl;
+	}
 }
 
 
