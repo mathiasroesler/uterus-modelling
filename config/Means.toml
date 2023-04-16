@@ -21,3 +21,5 @@ cell_id = 2
 # Cell parameters
 [parameters]
    gna = 0.1
+   beta = 0.015
+   gk1 = 0.75
