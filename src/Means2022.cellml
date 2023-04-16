@@ -343,6 +343,7 @@ below without NCX current inaca; note jnaca still computed...-->
 						<modifiable-parameter xmlns="https://chaste.comlab.ox.ac.uk/cellml/ns/pycml#">yes</modifiable-parameter>
 			</rdf:Description>
 		  </rdf:RDF>
+		</variable>
         <variable name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
         <variable name="kmca" public_interface="out" units="mM"/>
