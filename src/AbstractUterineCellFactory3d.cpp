@@ -106,8 +106,7 @@ void AbstractUterineCellFactory3d::WriteLogInfo(std::string log_file)
 	std::ofstream log_stream;
 	log_stream.open(log_file, ios::app); // Open log file in append mode
 
-	log_stream << "Cell type: " << mpCell_type << std::endl;
-	log_stream << "Cell parameters: \n";
+	log_stream << "Cell parameters \n";
 
 	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
 	{
