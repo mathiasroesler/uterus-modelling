@@ -69,12 +69,6 @@ void UterineSimpleCellFactory::ReadCellParams(std::string cell_param_file)
 		cell_param_file;
 	const auto cell_params = toml::parse(cell_param_path);
 	
-	// Stimulus location parameters
-	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
-	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
-	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
-	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
-	
 	// Stimulus parameters
 	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
 	mpStimulus->SetDuration(toml::find<double>(cell_params, "duration"));
