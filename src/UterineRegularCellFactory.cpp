@@ -46,6 +46,7 @@ AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 	}
 }
 
+
 void UterineRegularCellFactory::ReadParams(std::string general_param_file)
 {
 	AbstractUterineCellFactory::ReadParams(general_param_file);
