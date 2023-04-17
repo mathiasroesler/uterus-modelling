@@ -5,8 +5,7 @@ UterineSimpleCellFactory::UterineSimpleCellFactory() :
 	AbstractUterineCellFactory(), 
 	mpStimulus(new SimpleStimulus(0.0, 0.0))
 {
-	AbstractUterineCellFactory::ReadParams(
-		USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	ReadParams(USMC_2D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 	ReadCellParams(mpCell_type + ".toml");
 }
 
@@ -45,6 +44,22 @@ AbstractCardiacCell* UterineSimpleCellFactory::CreateCardiacCellForTissueNode(
 		/* The other cells have zero stimuli. */
 		return AbstractUterineCellFactory::CreateCardiacCellForTissueNode(pNode);
 	}
+}
+
+
+void UterineSimpleCellFactory::ReadParams(std::string general_param_file)
+{
+	AbstractUterineCellFactory::ReadParams(std::string general_param_file);
+
+	std::string general_param_path = USMC_2D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		general_param_file;
+	const auto params = toml::parse(general_param_path);
+
+	// Stimulus location parameters
+	mpX_stim_start = toml::find<double>(params, "x_stim_start");
+	mpX_stim_end = toml::find<double>(params, "x_stim_end");
+	mpY_stim_start = toml::find<double>(params, "y_stim_start");
+	mpY_stim_end = toml::find<double>(params, "y_stim_end");
 }
 
 
