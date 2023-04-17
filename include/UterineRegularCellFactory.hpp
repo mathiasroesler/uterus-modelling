@@ -18,6 +18,7 @@ private:
 public:
 	UterineRegularCellFactory();
     AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
+	void ReadParams(std::string general_param_file);
 	void ReadCellParams(std::string cell_param_file);
 	void PrintParams();
 	void WriteLogInfo(std::string log_file);

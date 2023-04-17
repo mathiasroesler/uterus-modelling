@@ -5,8 +5,7 @@ UterineZeroCellFactory3d::UterineZeroCellFactory3d() :
 	AbstractUterineCellFactory3d(), 
 	mpStimulus(new ZeroStimulus())
 {
-	AbstractUterineCellFactory3d::ReadParams(
-		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 	ReadCellParams(mpCell_type + ".toml");
 }
 
@@ -15,6 +14,12 @@ AbstractCardiacCell* UterineZeroCellFactory3d::CreateCardiacCellForTissueNode(
 	Node<3>* pNode)
 {
 	return AbstractUterineCellFactory3d::CreateCardiacCellForTissueNode(pNode);
+}
+
+
+void UterineZeroCellFactory3d::ReadParams(std::string general_param_file)
+{
+	AbstractUterineCellFactory3d::ReadParams(general_param_file);
 }
 
 
