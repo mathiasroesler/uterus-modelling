@@ -5,8 +5,7 @@ UterineRegularCellFactory3d::UterineRegularCellFactory3d() :
 	AbstractUterineCellFactory3d(), 
 	mpStimulus(new RegularStimulus(0.0, 0.0, 0.1, 0.0))
 {
-	AbstractUterineCellFactory3d::ReadParams(
-		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
 	ReadCellParams(mpCell_type + ".toml");
 }
 
@@ -50,19 +49,29 @@ AbstractCardiacCell* UterineRegularCellFactory3d::CreateCardiacCellForTissueNode
 }
 
 
+void UterineRegularCellFactory3d::ReadParams(std::string general_param_file)
+{
+	AbstractUterineCellFactory3d::ReadParams(
+		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+
+	std::string general_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
+		general_param_file;
+	const auto params = toml::parse(general_param_path);
+	
+	// Stimulus location parameters
+	mpX_stim_start = toml::find<double>(params, "x_stim_start");
+	mpX_stim_end = toml::find<double>(params, "x_stim_end");
+	mpY_stim_start = toml::find<double>(params, "y_stim_start");
+	mpY_stim_end = toml::find<double>(params, "y_stim_end");
+	mpZ_stim_start = toml::find<double>(params, "z_stim_start");
+	mpZ_stim_end = toml::find<double>(params, "z_stim_end");
+}
+
 void UterineRegularCellFactory3d::ReadCellParams(std::string cell_param_file)
 {
 	std::string cell_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
 		cell_param_file;
 	const auto cell_params = toml::parse(cell_param_path);
-
-	// Stimulus location parameters
-	mpX_stim_start = toml::find<double>(cell_params, "x_stim_start");
-	mpX_stim_end = toml::find<double>(cell_params, "x_stim_end");
-	mpY_stim_start = toml::find<double>(cell_params, "y_stim_start");
-	mpY_stim_end = toml::find<double>(cell_params, "y_stim_end");
-	mpZ_stim_start = toml::find<double>(cell_params, "z_stim_start");
-	mpZ_stim_end = toml::find<double>(cell_params, "z_stim_end");
 	
 	// Stimulus parameters
 	mpStimulus->SetMagnitude(toml::find<double>(cell_params, "magnitude"));
