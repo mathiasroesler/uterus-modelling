@@ -5,7 +5,6 @@ AbstractUterineCellFactory3d::AbstractUterineCellFactory3d() :
 	AbstractCardiacCellFactory<3>()
 {
 	ReadParams(USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
-	
 }
 
 
