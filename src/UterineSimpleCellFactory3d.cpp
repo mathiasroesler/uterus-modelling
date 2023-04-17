@@ -51,8 +51,7 @@ AbstractCardiacCell* UterineSimpleCellFactory3d::CreateCardiacCellForTissueNode(
 
 void UterineSimpleCellFactory3d::ReadParams(std::string general_param_file)
 {
-	AbstractUterineCellFactory3d::ReadParams(
-		USMC_3D_SYSTEM_CONSTANTS::GENERAL_PARAM_FILE);
+	AbstractUterineCellFactory3d::ReadParams(general_param_file);
 
 	std::string general_param_path = USMC_3D_SYSTEM_CONSTANTS::CONFIG_DIR +
 		general_param_file;
