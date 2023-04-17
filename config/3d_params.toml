@@ -1,7 +1,16 @@
+# General parameters
 save_dir = "Monodomain_3d"
 mesh_name = "3D_0_to_1mm_6000_elements"
 mesh_dir = "/home/mathias/Chaste/mesh/test/data/"
 stimulus_type = "simple"
+
+# Stimulus parameters
+x_stim_start = 0.00
+x_stim_end = 0.06
+y_stim_start = 0.00
+y_stim_end = 0.06
+z_stim_start = 0.0
+z_stim_end = 0.04
 
 # Time paramters in millisec
 sim_duration = 7000.0
