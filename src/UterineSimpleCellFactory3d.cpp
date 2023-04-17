@@ -88,6 +88,8 @@ void UterineSimpleCellFactory3d::PrintParams()
 
 void UterineSimpleCellFactory3d::WriteLogInfo(std::string log_file)
 {
+	AbstractUterineCellFactory3d::WriteLogInfo(log_file);
+
 	std::ofstream log_stream;
 	log_stream.open(log_file, ios::app); // Open log file in append mode
 

@@ -12,25 +12,43 @@ AbstractUterineCellFactory3d::AbstractUterineCellFactory3d() :
 AbstractCardiacCell* AbstractUterineCellFactory3d::CreateCardiacCellForTissueNode(
 	Node<3>* pNode)
 {
+	AbstractCardiacCell* cell;
+
 	switch (mpCell_id)
 	{
 		case 0:
-			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+			cell = new CellHodgkinHuxley1952FromCellML(mpSolver,
 				mpZeroStimulus);
+			break;
 
 		case 1:
-			return new CellChayKeizer1983FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellChayKeizer1983FromCellML(mpSolver, mpZeroStimulus);
+			break;
 
 		case 2:
-			return new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellMeans2022FromCellML(mpSolver, mpZeroStimulus);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
+			break;
 		
 		case 3:
-			return new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+			cell = new CellTong2014FromCellML(mpSolver, mpZeroStimulus);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
+			break;
 
 		default:
-			return new CellHodgkinHuxley1952FromCellML(mpSolver,
+			cell = new CellHodgkinHuxley1952FromCellML(mpSolver,
 				mpZeroStimulus);
 	}	
+
+	return cell;
 }
 
 
@@ -61,13 +79,25 @@ void AbstractUterineCellFactory3d::ReadCellParams(std::string cell_param_file)
 	const auto cell_params = toml::parse(cell_param_path);
 
 	mpCell_id = toml::find<unsigned short int>(cell_params, "cell_id");
+
+	if (cell_params.contains("parameters"))
+	{
+		mpCell_parameters = toml::find<std::unordered_map<std::string, float>>(cell_params, 
+			"parameters");
+	}
 }
 
 
 void AbstractUterineCellFactory3d::PrintParams()
 {
-	std::cout << "mpCell_type = " << mpCell_type << "\n";
-	std::cout << "mpCell_id = " << mpCell_id << "\n";
+	std::cout << "mpCell_type = " << mpCell_type << std::endl;
+	std::cout << "mpCell_id = " << mpCell_id << std::endl;
+	std::cout << "mpCell_parameters\n";
+	
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		std::cout << "  " << it->first << " = " << it->second << std::endl;
+	}
 }
 
 
@@ -76,7 +106,12 @@ void AbstractUterineCellFactory3d::WriteLogInfo(std::string log_file)
 	std::ofstream log_stream;
 	log_stream.open(log_file, ios::app); // Open log file in append mode
 
-	log_stream << "Cell type: " << mpCell_type << std::endl;
+	log_stream << "Cell parameters \n";
+
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		log_stream << "  " << it->first << ": " << it->second << std::endl;
+	}
 
 	log_stream.close();
 }

@@ -17,3 +17,13 @@ duration = 2000.0 # ms
 start_time = 1000.0 # ms
 
 cell_id = 3
+
+# Cell parameters
+[parameters]
+   gna = 0.1
+   gherg = 0.1
+   gkq1 = 0.03
+   gkq4 = 0.02
+   gkq5 = 0.02
+   beta = 0.015
+   gk1 = 0.75

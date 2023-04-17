@@ -84,6 +84,8 @@ void UterineRegularCellFactory::PrintParams()
 
 void UterineRegularCellFactory::WriteLogInfo(std::string log_file)
 {
+	AbstractUterineCellFactory::WriteLogInfo(log_file);
+
 	std::ofstream log_stream;
 	log_stream.open(log_file, ios::app); // Open log file in append mode
 
