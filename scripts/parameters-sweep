@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# usage: parameter-sweep <dim> <param> <start-val> <end-val> <step>
+# Runs a parameter sweep for the given parameter
+
+if [[ $# -ne 5 ]]; then
+	echo "Error: invalid number of arguments"
+	echo "usage: parameter-sweep <dim> <param> <start-val> <end-val> <step>"
+	exit
+fi
+
+DIM=$1
+PARAM=$2
+VALUE=$3
+END=$4
+STEP=$5
+CONFIG_DIR="/usr/local/config"
+
+CELL_TYPE=$(cat ${CONFIG_DIR}/${DIM}d_params.toml | grep cell_type | cut -d '"' -f2)
+CONFIG_FILE=${CONFIG_DIR}/${CELL_TYPE}.toml 
+
+while :; do
+	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
+	
+	if [[ "${PARAM}" == "conductivities" ]]; then
+		sed -i "s/${PARAM} = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
+		
+	else
+		sed -i "s/${LINE}/   ${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
+
+	fi
+
+	chaste-simulation ${DIM}
+	echo 
+	VALUE=$(echo ${VALUE} + ${STEP} | awk {'print $1 + $3'})
+	CONDITION=$(echo "${VALUE} > ${END}" | bc)
+
+	if [[ ${CONDITION} -eq 1 ]]; then
+		break
+	fi
+done
