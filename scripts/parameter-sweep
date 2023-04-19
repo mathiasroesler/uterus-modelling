@@ -32,7 +32,7 @@ while :; do
 
 	chaste-simulation ${DIM}
 	echo 
-	VALUE=$(echo ${VALUE} + ${STEP} | awk {'print $1 + $3'})
+	VALUE=$(echo ${VALUE} + ${STEP} | bc)
 	CONDITION=$(echo "${VALUE} > ${END}" | bc)
 
 	if [[ ${CONDITION} -eq 1 ]]; then
