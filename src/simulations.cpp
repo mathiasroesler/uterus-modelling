@@ -119,8 +119,8 @@ void simulation_2d()
 	std::cout << "\nStimulus type: " << stimulus_type << std::endl;
 	std::cout << "\nuSMC cell factory parameters:\n" << std::endl;
 	factory->PrintParams();
-	std::cout << "x axis conductance = " << conductivities[0] << std::endl;
-	std::cout << "y axis conductance = " << conductivities[1] << std::endl;
+	std::cout << "x axis conductivity = " << conductivities[0] << std::endl;
+	std::cout << "y axis conductivity = " << conductivities[1] << std::endl;
 
 	std::cout << std::endl;
 
@@ -247,9 +247,9 @@ void simulation_3d()
 	std::cout << "\nStimulus type: " << stimulus_type << std::endl;
 	std::cout << "\nuSMC cell factory parameters:\n" << std::endl;
 	factory->PrintParams();
-	std::cout << "x axis conductance = " << conductivities[0] << std::endl;
-	std::cout << "y axis conductance = " << conductivities[1] << std::endl;
-	std::cout << "z axis conductance = " << conductivities[2] << std::endl;
+	std::cout << "x axis conductivity = " << conductivities[0] << std::endl;
+	std::cout << "y axis conductivity = " << conductivities[1] << std::endl;
+	std::cout << "z axis conductivity = " << conductivities[2] << std::endl;
 
 	std::cout << std::endl;
 
