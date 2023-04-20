@@ -39,7 +39,7 @@ while :; do
 
 	chaste-simulation ${DIM}
 	echo 
-	VALUE=$(echo ${VALUE} + ${STEP} | bc)
+	VALUE=0$(echo ${VALUE} + ${STEP} | bc)
 	CONDITION=$(echo "${VALUE} > ${END}" | bc)
 
 	if [[ ${CONDITION} -eq 1 ]]; then
