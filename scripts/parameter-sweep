@@ -37,15 +37,20 @@ while :; do
 	
 	if [[ "${PARAM}" == "conductivities" ]]; then
 		sed -i "s/${PARAM} = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
-		VALUE=$(echo ${VALUE} + ${STEP} | bc)
 	
 	elif [[ "${PARAM}" == "magnitude" ]]; then
 		sed -i "s/${LINE}/${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
-		VALUE=$(echo ${VALUE} + ${STEP} | bc)
 		
 	else
 		sed -i "s/${LINE}/   ${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
+	fi
+
+	CONDITION=$(echo "${VALUE} < 1" | bc)
+
+	if [[ ${CONDITION} -eq 1 ]]; then
 		VALUE=0$(echo ${VALUE} + ${STEP} | bc)
+	else
+		VALUE=$(echo ${VALUE} + ${STEP} | bc)
 	fi
 
 	# Run the chaste simulation
