@@ -27,12 +27,6 @@ CELL_TYPE=$(cat ${CONFIG_DIR}/${DIM}d_params.toml | grep cell_type | cut -d '"' 
 CONFIG_FILE=${CONFIG_DIR}/${CELL_TYPE}.toml 
 
 while :; do
-	CONDITION=$(echo "${VALUE} > ${END}" | bc)
-
-	if [[ ${CONDITION} -eq 1 ]]; then
-		break
-	fi
-
 	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
 	
 	if [[ "${PARAM}" == "conductivities" ]]; then
@@ -55,5 +49,12 @@ while :; do
 
 	# Run the chaste simulation
 	chaste-simulation ${DIM}
-	echo 
+	echo
+
+	CONDITION=$(echo "${VALUE} > ${END}" | bc)
+
+	if [[ ${CONDITION} -eq 1 ]]; then
+		break
+	fi
+ 
 done
