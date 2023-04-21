@@ -27,28 +27,35 @@ CELL_TYPE=$(cat ${CONFIG_DIR}/${DIM}d_params.toml | grep cell_type | cut -d '"' 
 CONFIG_FILE=${CONFIG_DIR}/${CELL_TYPE}.toml 
 
 while :; do
+	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
+	
+	if [[ "${PARAM}" == "conductivities" ]]; then
+		sed -i "s/${PARAM} = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
+	
+	elif [[ "${PARAM}" == "magnitude" ]]; then
+		sed -i "s/${LINE}/${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
+		
+	else
+		sed -i "s/${LINE}/   ${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
+	fi
+
+	CONDITION=$(echo "${VALUE} < 1" | bc)
+
+	if [[ ${CONDITION} -eq 1 ]]; then
+		VALUE=0$(echo ${VALUE} + ${STEP} | bc)
+	else
+		VALUE=$(echo ${VALUE} + ${STEP} | bc)
+
+	fi
+
+	# Run the chaste simulation
+	chaste-simulation ${DIM}
+
+	echo
+
 	CONDITION=$(echo "${VALUE} > ${END}" | bc)
 
 	if [[ ${CONDITION} -eq 1 ]]; then
 		break
 	fi
-
-	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
-	
-	if [[ "${PARAM}" == "conductivities" ]]; then
-		sed -i "s/${PARAM} = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
-		VALUE=$(echo ${VALUE} + ${STEP} | bc)
-	
-	elif [[ "${PARAM}" == "magnitude" ]]; then
-		sed -i "s/${LINE}/${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
-		VALUE=$(echo ${VALUE} + ${STEP} | bc)
-		
-	else
-		sed -i "s/${LINE}/   ${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
-		VALUE=0$(echo ${VALUE} + ${STEP} | bc)
-	fi
-
-	# Run the chaste simulation
-	chaste-simulation ${DIM}
-	echo 
 done
