@@ -45,10 +45,12 @@ while :; do
 		VALUE=0$(echo ${VALUE} + ${STEP} | bc)
 	else
 		VALUE=$(echo ${VALUE} + ${STEP} | bc)
+
 	fi
 
 	# Run the chaste simulation
 	chaste-simulation ${DIM}
+
 	echo
 
 	CONDITION=$(echo "${VALUE} > ${END}" | bc)
@@ -56,5 +58,4 @@ while :; do
 	if [[ ${CONDITION} -eq 1 ]]; then
 		break
 	fi
- 
 done
