@@ -13,10 +13,10 @@ cd ~/chaste_build/projects/chaste_modelling
 ./apps/main $1
 
 if [[ $1 -eq 2 ]]; then
-	CONFIG=/usr/local/config/2d_params.toml
+	CONFIG=${CHASTE_MODELLING_CONFIG_DIR}2d_params.toml
 
 elif [[ $1 -eq 3 ]]; then
-	CONFIG=/usr/local/config/3d_params.toml
+	CONFIG=${CHASTE_MODELLING_CONFIG_DIR}3d_params.toml
 fi
 	
 CELL_TYPE=$(grep "cell_type =" $CONFIG | cut -d '"' -f 2)
