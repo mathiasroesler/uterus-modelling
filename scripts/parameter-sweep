@@ -39,18 +39,16 @@ while :; do
 		sed -i "s/${LINE}/   ${PARAM} = ${VALUE} /g" ${CONFIG_FILE}
 	fi
 
-	CONDITION=$(echo "${VALUE} < 1" | bc)
+	CONDITION=$(echo "${VALUE} < 1.0 && ${VALUE} > 0.0" | bc)
 
 	if [[ ${CONDITION} -eq 1 ]]; then
 		VALUE=0$(echo ${VALUE} + ${STEP} | bc)
 	else
 		VALUE=$(echo ${VALUE} + ${STEP} | bc)
-
 	fi
 
 	# Run the chaste simulation
 	chaste-simulation ${DIM}
-
 	echo
 
 	CONDITION=$(echo "${VALUE} > ${END}" | bc)
@@ -58,4 +56,5 @@ while :; do
 	if [[ ${CONDITION} -eq 1 ]]; then
 		break
 	fi
+ 
 done
