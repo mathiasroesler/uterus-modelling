@@ -57,7 +57,7 @@ void simulation_2d()
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
-		cell_params, "conductivities");	
+		cell_params, "conductivities_2d");	
 	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
@@ -185,7 +185,7 @@ void simulation_3d()
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
-		cell_params, "conductivities");	
+		cell_params, "conductivities_3d");	
 	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
