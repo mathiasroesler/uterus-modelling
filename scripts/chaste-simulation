@@ -9,7 +9,7 @@ if [[ $# -ne 1 ]]; then
 	exit
 fi
 
-cd ~/chaste_build/projects/chaste_modelling
+cd ${CHASTE_BUILD_DIR}/projects/chaste_modelling
 ./apps/main $1
 
 if [[ $1 -eq 2 ]]; then
