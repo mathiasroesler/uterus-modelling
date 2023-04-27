@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ${CHASTE_BUILD_DIR}/projects/chaste_modelling
+cmake --build . && ctest 
