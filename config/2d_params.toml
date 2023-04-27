@@ -1,7 +1,7 @@
 # General parameters
 save_dir = "Monodomain_2d"
 mesh_name = "2D_0_to_1mm_200_elements"
-mesh_dir = "/home/mathias/Chaste/mesh/test/data/"
+mesh_dir = "/mesh/test/data/"
 stimulus_type = "simple"
 
 # Stimulus parameters
