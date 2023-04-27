@@ -29,4 +29,4 @@ mv log.log "simulation_${NB_FILES}.log"
 
 cd ../$STIMULUS
 SIM_RES_NAME="simulation_${NB_FILES}_res.vtu"
-annotate vtk_output/results.vtu ../results/$SIM_RES_NAME
+python3 ${CHASTE_SOURCE_DIR}/python/utils/AddVtuTimeAnnotations.py vtk_output/results.vtu ../results/$SIM_RES_NAME
