@@ -1,5 +1,5 @@
 # General parameters
-save_dir = "Monodomain_2d"
+save_dir = "monodomain_2d"
 mesh_name = "2D_0_to_1mm_200_elements"
 mesh_dir = "/mesh/test/data/"
 stimulus_type = "simple"
@@ -12,8 +12,8 @@ y_stim_end = 0.06
 
 # Time paramters in millisec
 sim_duration = 10000.0
-ode_timestep = 0.01
-pde_timestep = 0.01
+ode_timestep = 0.1
+pde_timestep = 0.1
 print_timestep = 1.0
 
 # Cell parameters

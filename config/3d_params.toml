@@ -1,5 +1,5 @@
 # General parameters
-save_dir = "Monodomain_3d"
+save_dir = "monodomain_3d"
 mesh_name = "rat_uterus_idealised_10mm_4704_elem"
 mesh_dir = "/mesh/custom/"
 stimulus_type = "simple"
@@ -14,8 +14,8 @@ z_stim_end = 0.04
 
 # Time paramters in millisec
 sim_duration = 10000.0
-ode_timestep = 0.01
-pde_timestep = 0.01
+ode_timestep = 0.1
+pde_timestep = 0.1
 print_timestep = 1.0
 
 # Cell parameters
