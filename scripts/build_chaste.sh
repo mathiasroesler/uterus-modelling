@@ -26,9 +26,6 @@ if [ $VERSION != '.' ]; then
     git clone --recursive -b $VERSION $GIT_REMOTE $CHASTE_SOURCE_DIR
 fi
 
-cp ~/Documents/shared/Simple* ~/Chaste/src/heart/src/stimulus
-cp ~/Documents/shared/*.py ~/Chaste/src/python/utils
-
 echo "Building Chaste $VERSION in $CHASTE_BUILD_DIR with $NCORES cores..."
 if [ $VERSION = 'master' ] || [ $VERSION = 'release' ]; then
     cmake -DCMAKE_BUILD_TYPE:STRING=Release \

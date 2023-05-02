@@ -50,5 +50,6 @@ else
     echo "Skipping cmake. If the project fails to build, try rerunning with:"
     echo "`basename "$0"` $PROJECT c"
 fi
-make --no-print-directory -j$NCORES -C $CHASTE_BUILD_DIR $PROJECT # -f $CHASTE_BUILD_DIR/Makefile
-( cd $CHASTE_BUILD_DIR/projects/$PROJECT && ctest -V -R $PROJECT ) # -j$NCORES
+
+cd $CHASTE_BUILD_DIR/projects/$PROJECT
+cmake --build . && ctest 
