@@ -30,7 +30,11 @@ while :; do
 	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
 	
 	if [[ "${PARAM}" == "conductivities" ]]; then
-		sed -i "s/${PARAM} = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
+		if [[ "${DIM}" == 2 ]]; then
+			sed -i "s/${PARAM}_2d = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
+		else
+			sed -i "s/${PARAM}_3d = \[[^]]*\]/${PARAM} = [${VALUE}, ${VALUE}, ${VALUE}] /g" ${CONFIG_FILE}
+		fi
 	
 	elif [[ "${PARAM}" == "magnitude" ]]; then
 		sed -i "s/${LINE}/${PARAM} = ${VALUE} /g" ${CONFIG_FILE}

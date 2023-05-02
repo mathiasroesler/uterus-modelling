@@ -40,8 +40,8 @@ void simulation_2d()
 	const double print_timestep = toml::find<double>(sys_params, 
 		"print_timestep");
 
-	const std::string mesh_dir = toml::find<std::string>(sys_params, 
-		"mesh_dir");
+	const std::string mesh_dir = getenv("CHASTE_SOURCE_DIR") + 
+		toml::find<std::string>(sys_params, "mesh_dir");
 	const std::string mesh_name = toml::find<std::string>(sys_params,
 		"mesh_name");
 	const std::string cell_type = toml::find<std::string>(sys_params, 
@@ -57,7 +57,7 @@ void simulation_2d()
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
-		cell_params, "conductivities");	
+		cell_params, "conductivities_2d");	
 	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";
@@ -168,8 +168,8 @@ void simulation_3d()
 	const double print_timestep = toml::find<double>(sys_params, 
 		"print_timestep");
 
-	const std::string mesh_dir = toml::find<std::string>(sys_params, 
-		"mesh_dir");
+	const std::string mesh_dir = getenv("CHASTE_SOURCE_DIR") + 
+		toml::find<std::string>(sys_params, "mesh_dir");
 	const std::string mesh_name = toml::find<std::string>(sys_params,
 		"mesh_name");
 	const std::string cell_type = toml::find<std::string>(sys_params, 
@@ -185,7 +185,7 @@ void simulation_3d()
 
 	// Cell parameters
 	auto conductivities = toml::find<std::vector<double>>(
-		cell_params, "conductivities");	
+		cell_params, "conductivities_3d");	
 	const double capacitance = toml::find<double>(cell_params, "capacitance");
 	
 	std::string default_ionic_model = cell_type + "I";

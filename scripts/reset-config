@@ -1,3 +1,0 @@
-sudo rm /usr/local/config/*.toml
-sudo ln ~/Chaste/projects/chaste_modelling/config/0d_params.toml /usr/local/config/0d_params.toml
-sudo ln ~/Chaste/projects/chaste_modelling/config/2d_params.toml /usr/local/config/2d_params.toml

@@ -9,24 +9,24 @@ if [[ $# -ne 1 ]]; then
 	exit
 fi
 
-cd ~/chaste_build/projects/chaste_modelling
+cd ${CHASTE_BUILD_DIR}/projects/uterus-modelling
 ./apps/main $1
 
 if [[ $1 -eq 2 ]]; then
-	CONFIG=/usr/local/config/2d_params.toml
+	CONFIG=${CHASTE_MODELLING_CONFIG_DIR}2d_params.toml
 
 elif [[ $1 -eq 3 ]]; then
-	CONFIG=/usr/local/config/3d_params.toml
+	CONFIG=${CHASTE_MODELLING_CONFIG_DIR}3d_params.toml
 fi
 	
 CELL_TYPE=$(grep "cell_type =" $CONFIG | cut -d '"' -f 2)
 SAVE_DIR=$(grep "save_dir =" $CONFIG | cut -d '"' -f 2)
 STIMULUS=$(grep "stimulus_type =" $CONFIG | cut -d '"' -f 2)
 
-cd /tmp/$USER/testoutput/$SAVE_DIR/$CELL_TYPE/log
+cd ${CHASTE_TEST_OUTPUT}/${SAVE_DIR}/${CELL_TYPE}/log
 NB_FILES=$(printf "%0.3d" $(ls | wc -l))
 mv log.log "simulation_${NB_FILES}.log"
 
 cd ../$STIMULUS
 SIM_RES_NAME="simulation_${NB_FILES}_res.vtu"
-annotate vtk_output/results.vtu ../results/$SIM_RES_NAME
+python3 ${CHASTE_SOURCE_DIR}/python/utils/AddVtuTimeAnnotations.py vtk_output/results.vtu ../results/$SIM_RES_NAME

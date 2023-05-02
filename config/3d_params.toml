@@ -1,7 +1,7 @@
 # General parameters
-save_dir = "Monodomain_3d"
-mesh_name = "3D_0_to_1mm_6000_elements"
-mesh_dir = "/home/mathias/Chaste/mesh/test/data/"
+save_dir = "monodomain_3d"
+mesh_name = "rat_uterus_idealised_10mm_4704_elem"
+mesh_dir = "/mesh/custom/"
 stimulus_type = "simple"
 
 # Stimulus parameters
@@ -13,10 +13,10 @@ z_stim_start = 0.0
 z_stim_end = 0.04
 
 # Time paramters in millisec
-sim_duration = 7000.0
-ode_timestep = 0.01
-pde_timestep = 0.01
+sim_duration = 10000.0
+ode_timestep = 0.1
+pde_timestep = 0.1
 print_timestep = 1.0
 
 # Cell parameters
-cell_type = "HodgkinHuxley"
+cell_type = "Means"

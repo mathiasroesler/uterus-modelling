@@ -1,6 +1,7 @@
 # Cell properties
 capacitance = 1.0 # uF/cm2
-conductivities = [0.01, 0.09, 0.01] #x, y, z
+conductivities_2d = [0.01, 0.09] #x, y
+conductivities_3d = [0.01, 0.09, 0.01] #x, y, z
 
 # Stimulus
 magnitude = -2e5 # uA/cm2

@@ -1,11 +1,12 @@
 # Cell properties
 capacitance = 1.0 # uF/cm2
-conductivities = [0.013, 0.013, 0.013]       # x, y, z
+conductivities_2d = [0.013, 0.013] # x, y
+conductivities_3d = [250.0, 250.0, 250.0] # x, y, z
 
 # Stimulus
 magnitude = -1.1e3 # uA/cm2
 period = 0.1 # ms
-duration = 5000.0 # ms
+duration = 2000.0 # ms
 start_time = 1000.0 # ms
 
 cell_id = 3

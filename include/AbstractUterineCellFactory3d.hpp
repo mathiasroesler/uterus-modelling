@@ -12,7 +12,7 @@
 namespace USMC_3D_SYSTEM_CONSTANTS
 {
 	const std::string CONFIG_DIR = 
-		"/usr/local/config/";
+		getenv("CHASTE_MODELLING_CONFIG_DIR");
 	const std::string GENERAL_PARAM_FILE = 
 		"3d_params.toml";
 }
