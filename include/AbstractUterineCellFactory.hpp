@@ -4,10 +4,10 @@
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
 #include "ZeroStimulus.hpp"
-#include "HodgkinHuxley1952.hpp"
-#include "ChayKeizer1983.hpp"
-#include "Means2022.hpp"
-#include "Tong2014.hpp"
+#include "HodgkinHuxley1952Cvode.hpp"
+#include "ChayKeizer1983Cvode.hpp"
+#include "Means2022Cvode.hpp"
+#include "Tong2014Cvode.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
@@ -27,7 +27,7 @@ protected:
 
 public:
 	AbstractUterineCellFactory();
-    AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
+    AbstractCvodeCell* CreateCardiacCellForTissueNode(Node<2>* pNode);
 	std::string GetCellType();
 	virtual void ReadParams(std::string general_param_file);
 	virtual void ReadCellParams(std::string cell_param_file);

@@ -10,7 +10,7 @@ UterineRegularCellFactory::UterineRegularCellFactory() :
 }
 
 
-AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
+AbstractCvodeCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 	Node<2>* pNode)
 {
 	double x = pNode->rGetLocation()[0];
@@ -22,20 +22,20 @@ AbstractCardiacCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 		switch (mpCell_id)
 		{
 			case 0:
-				return new CellHodgkinHuxley1952FromCellML(mpSolver,
+				return new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
 					mpStimulus);
 
 			case 1:
-				return new CellChayKeizer1983FromCellML(mpSolver, mpStimulus);
+				return new CellChayKeizer1983FromCellMLCvode(mpSolver, mpStimulus);
 
 			case 2:
-				return new CellMeans2022FromCellML(mpSolver, mpStimulus);
+				return new CellMeans2022FromCellMLCvode(mpSolver, mpStimulus);
 
 			case 3:
-				return new CellTong2014FromCellML(mpSolver, mpStimulus);
+				return new CellTong2014FromCellMLCvode(mpSolver, mpStimulus);
 		
 			default:
-				return new CellHodgkinHuxley1952FromCellML(mpSolver,
+				return new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
 					mpStimulus);
 		}
 	}
