@@ -18,7 +18,7 @@ while [[ $I -ne $NB_RUNS ]];
 do
 	# Run simulation
 	echo "Running simulation $I" >&2
-	~/scripts/chaste-simulation ${DIM} > tmp.log
+	${CHASTE_DIR}/scripts/chaste-simulation ${DIM} > tmp.log
 
 	# Save simulation times
 	$(echo Simulation $I >> times.log)
