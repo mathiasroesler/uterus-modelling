@@ -11,7 +11,7 @@ I=0
 NAME=$(uname -n)
 
 if [[ $NAME == "hpc"? ]]; then
-	source ~/scripts/chaste-env
+	source ~/Chaste/scripts/chaste-env
 fi
 
 while [[ $I -ne $NB_RUNS ]];
