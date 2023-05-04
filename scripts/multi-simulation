@@ -18,12 +18,12 @@ while [[ $I -ne $NB_RUNS ]];
 do
 	# Run simulation
 	echo "Running simulation $I" >&2
-	${CHASTE_DIR}/scripts/chaste-simulation ${DIM} > tmp.log
+	${CHASTE_DIR}/scripts/chaste-simulation ${DIM} > ${CHASTE_DIR}/tmp.log
 
 	# Save simulation times
-	$(echo Simulation $I >> times.log)
-	$(cat tmp.log | grep Total >> times.log)
-	$(cat tmp.log | grep seconds >> times.log)
+	$(echo Simulation $I >> ${CHASTE_DIR}/times.log)
+	$(cat tmp.log | grep Total >> ${CHASTE_DIR}/times.log)
+	$(cat tmp.log | grep seconds >> ${CHASTE_DIR}/times.log)
 
 	# Increase counter
 	I=$((${I} + 1))
