@@ -1010,6 +1010,7 @@ var m: dimensionless {init: 0.1253518889572223, pub: none};-->
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ena" public_interface="in" units="mV"/>
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
+        <variable name="P4" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1099,6 +1100,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 <ci>ina</ci>
                 <apply>
                     <times/>
+                    <ci>P4</ci>
                     <ci>gna</ci>
                     <ci>mss</ci>
                     <ci>mss</ci>
@@ -1148,6 +1150,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_components component_1="I_Na" component_2="parameters"/>
         <map_variables variable_1="ena" variable_2="ena"/>
         <map_variables variable_1="gna" variable_2="gna"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
     </connection>
     <!-- Model - currents -->
     <component name="Ca_currents">
@@ -1162,14 +1165,19 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="kmca" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ecat" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
+        <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <ci>I_Ca_tot</ci>
                 <apply>
-                    <plus/>
-                    <ci>ical</ci>
-                    <ci>icat</ci>
+                    <divide/>
+                    <apply>
+                        <plus/>
+                        <ci>ical</ci>
+                        <ci>icat</ci>
+                    </apply>
+                    <ci>P4</ci>
                 </apply>
             </apply>
         </math>
@@ -1194,6 +1202,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="kmca" variable_2="kmca"/>
         <map_variables variable_1="ecat" variable_2="ecat"/>
         <map_variables variable_1="gcat" variable_2="gcat"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_CaL">
@@ -1544,15 +1553,20 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gk1" private_interface="out" public_interface="in" units="nS_per_pF"/>
+        <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <ci>I_K_tot</ci>
                 <apply>
-                    <plus/>
-                    <ci>iBKab</ci>
-                    <ci>iBKa</ci>
-                    <ci>ik1</ci>
+                    <times/>
+                    <ci>P4</ci>
+                    <apply>
+                        <plus/>
+                        <ci>iBKab</ci>
+                        <ci>iBKa</ci>
+                        <ci>ik1</ci>
+                    </apply>
                 </apply>
             </apply>
         </math>
@@ -1580,6 +1594,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="R" variable_2="R"/>
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_K1">
