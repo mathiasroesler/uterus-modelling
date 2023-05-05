@@ -1011,6 +1011,7 @@ var m: dimensionless {init: 0.1253518889572223, pub: none};-->
         <variable name="ena" public_interface="in" units="mV"/>
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" public_interface="in" units="dimensionless"/>
+        <variable name="E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1099,18 +1100,22 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 <eq/>
                 <ci>ina</ci>
                 <apply>
-                    <times/>
-                    <ci>P4</ci>
-                    <ci>gna</ci>
-                    <ci>mss</ci>
-                    <ci>mss</ci>
-                    <ci>mss</ci>
-                    <ci>h</ci>
+                    <divide/>
                     <apply>
-                        <minus/>
-                        <ci>v</ci>
-                        <ci>ena</ci>
+                        <times/>
+                        <ci>P4</ci>
+                        <ci>gna</ci>
+                        <ci>mss</ci>
+                        <ci>mss</ci>
+                        <ci>mss</ci>
+                        <ci>h</ci>
+                        <apply>
+                            <minus/>
+                            <ci>v</ci>
+                            <ci>ena</ci>
+                        </apply>
                     </apply>
+                    <ci>E2</ci>
                 </apply>
             </apply>
             <!--below with both m and h ss-->
@@ -1151,6 +1156,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="ena" variable_2="ena"/>
         <map_variables variable_1="gna" variable_2="gna"/>
         <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <!-- Model - currents -->
     <component name="Ca_currents">
@@ -1166,6 +1172,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="ecat" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="E2" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1173,9 +1180,13 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 <apply>
                     <divide/>
                     <apply>
-                        <plus/>
-                        <ci>ical</ci>
-                        <ci>icat</ci>
+                        <times/>
+                        <ci>E2</ci>
+                        <apply>
+                            <plus/>
+                            <ci>ical</ci>
+                            <ci>icat</ci>
+                        </apply>
                     </apply>
                     <ci>P4</ci>
                 </apply>
@@ -1203,6 +1214,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="ecat" variable_2="ecat"/>
         <map_variables variable_1="gcat" variable_2="gcat"/>
         <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_CaL">
@@ -1554,19 +1566,24 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gk1" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="E2" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <ci>I_K_tot</ci>
                 <apply>
-                    <times/>
-                    <ci>P4</ci>
+                    <divide/>
                     <apply>
-                        <plus/>
-                        <ci>iBKab</ci>
-                        <ci>iBKa</ci>
-                        <ci>ik1</ci>
+                        <times/>
+                        <ci>P4</ci>
+                        <apply>
+                            <plus/>
+                            <ci>iBKab</ci>
+                            <ci>iBKa</ci>
+                            <ci>ik1</ci>
+                        </apply>
                     </apply>
+                    <ci>E2</ci>
                 </apply>
             </apply>
         </math>
@@ -1595,6 +1612,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
         <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_K1">
