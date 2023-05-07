@@ -13,6 +13,10 @@
         <unit prefix="milli" units="mole"/>
         <unit exponent="-1" units="liter"/>
     </units>
+    <units name="nM_per_L">
+        <unit prefix="nano" units="mole"/>
+        <unit exponent="-1" units="liter"/>
+    </units>
     <units name="mM4">
         <unit exponent="4" units="mM"/>
     </units>
