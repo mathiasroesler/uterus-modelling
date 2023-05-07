@@ -77,7 +77,7 @@
         <variable initial_value="0" name="I_hold" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="-0.5" name="I_test" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="1000" name="test_start" public_interface="none" units="msec"/>
-        <variable initial_value="3000" name="test_end" public_interface="none" units="msec"/>
+        <variable initial_value="10000" name="test_end" public_interface="none" units="msec"/>
         <variable cmeta:id="membrane_stimulus_current" name="I_stim" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="I_tot" units="pA_per_pF"/>
@@ -88,27 +88,7 @@
         <variable name="Cm" public_interface="in" units="uF_per_cm2"/>
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
-        <!--below without ik2
-var ik2: pA_per_pF {pub: in};
-below without ika
-var ika: pA_per_pF {pub: in};-->
-        <!--var ih: pA_per_pF {pub: in};-->
         <variable name="icl" public_interface="in" units="pA_per_pF"/>
-        <!--below without inak
-var inak: pA_per_pF {pub: in};
-below without ncx current
-var inaca: pA_per_pF {pub: in};-->
-        <!--below original total with all currents
-I_tot = ina+ih+inaca+inak+ical+icat+icl+ik1+ik2+ika+iBKa+iBKab+insna+insk+insca+ib;
-below without 'hyperpol' current ih
-I_tot = ina+inaca+inak+ical+icat+icl+ik1+ik2+ika+iBKa+iBKab+insna+insk+insca+ib;
-below without K2 current ik2
-I_tot = ina+inaca+inak+ical+icat+icl+ik1+ika+iBKa+iBKab+insna+insk+insca+ib;
-below without Ka current ika
-I_tot = ina+inaca+inak+ical+icat+icl+ik1+iBKa+iBKab+insna+insk+insca+ib;
-below without N/K current inak
-I_tot = ina+inaca+ical+icat+icl+ik1+iBKa+iBKab+insna+insk+insca+ib;
-below without NCX current inaca; note jnaca still computed...-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -192,6 +172,10 @@ below without NCX current inaca; note jnaca still computed...-->
         <variable name="zca" public_interface="in" units="dimensionless"/>
         <variable name="frdy" public_interface="in" units="coulomb_per_mole"/>
         <variable name="Cm" public_interface="in" units="uF_per_cm2"/>
+        <variable name="jcamem_plot" units="M_per_msec"/>
+        <variable name="jpmca_plot" units="M_per_msec"/>
+        <variable name="jnaca_plot" units="M_per_msec"/>
+        <variable initial_value="1000" name="conversion" public_interface="none" units="mM_to_M"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -219,12 +203,6 @@ below without NCX current inaca; note jnaca still computed...-->
                     </apply>
                 </apply>
             </apply>
-        </math>
-        <variable name="jcamem_plot" units="M_per_msec"/>
-        <variable name="jpmca_plot" units="M_per_msec"/>
-        <variable name="jnaca_plot" units="M_per_msec"/>
-        <variable initial_value="1000" name="conversion" public_interface="none" units="mM_to_M"/>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <ci>jcamem_plot</ci>
@@ -329,15 +307,9 @@ below without NCX current inaca; note jnaca still computed...-->
         <variable cmeta:id="gk1" name="gk1" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="P4" name="P4" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="E2" name="E2" public_interface="out" units="dimensionless"/>
-        <!--below removed for ik2
-var gk2: nS_per_pF {pub: out};-->
         <variable name="gbka" public_interface="out" units="dimensionless"/>
         <variable name="gbkab" public_interface="out" units="dimensionless"/>
-        <!--below removed for ika
-var gka: nS_per_pF {pub: out};-->
         <variable name="gcl" public_interface="out" units="nS_per_pF"/>
-        <!--below removed for ih
-var gh: nS_per_pF {pub: out};-->
         <variable name="gns" public_interface="out" units="nS_per_pF"/>
         <variable name="PnsK" public_interface="out" units="dimensionless"/>
         <variable name="PnsNa" public_interface="out" units="dimensionless"/>
@@ -347,7 +319,6 @@ var gh: nS_per_pF {pub: out};-->
         <variable name="gnsNa" public_interface="out" units="dimensionless"/>
         <variable name="gnsK" public_interface="out" units="dimensionless"/>
         <variable name="gnsCs" public_interface="out" units="dimensionless"/>
-        <!--below removed for inak-->
         <variable name="PK" public_interface="out" units="dimensionless"/>
         <variable name="PNa" public_interface="out" units="dimensionless"/>
         <variable name="Jpmca" public_interface="out" units="mM_per_msec"/>
@@ -365,6 +336,13 @@ var gh: nS_per_pF {pub: out};-->
         <variable name="Fmax" public_interface="out" units="uN"/>
         <variable name="FKm" public_interface="out" units="nM"/>
         <variable name="Fn" public_interface="out" units="dimensionless"/>
+        <variable name="vFRT" public_interface="out" units="dimensionless"/>
+        <variable name="ena" public_interface="out" units="mV"/>
+        <variable name="ek" public_interface="out" units="mV"/>
+        <variable name="ecl" public_interface="out" units="mV"/>
+        <variable name="enscc" public_interface="out" units="mV"/>
+        <variable name="v" public_interface="in" units="mV"/>
+        <variable name="cai" public_interface="in" units="mM"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -406,15 +384,6 @@ var gh: nS_per_pF {pub: out};-->
                 <ci>mgo</ci>
                 <cn cellml:units="mM">0.5</cn>
             </apply>
-            <!--below base value from cellml
-buff = 0.015{dimensionless};-->
-            <!--below value from spreadsheet test
-'Final parms gK 0.7 gNa 1.4x gCaL 1.0x with buff scaling 1.05x beta'
-buff = 0.0158{dimensionless};-->
-            <!--above 1.05x not enough Ca cyt
-below try 1.1x beta
-buff = 0.0165{dimensionless};-->
-            <!--even higher to 1.125x beta-->
             <apply>
                 <eq/>
                 <ci>buff</ci>
@@ -455,27 +424,16 @@ buff = 0.0165{dimensionless};-->
                 <ci>temp</ci>
                 <cn cellml:units="kelvin">308.0</cn>
             </apply>
-            <!--below commented out; base value given in cellml
-gna = 0{nS_per_pF};-->
-            <!--below from spreadsheet test
-'Final parms gK 0.7 gNa 1.4x gCaL 1.0x with buff scaling 1.05x beta'
-here, gNa used from usmc_model_v3p9 , g_na = mean([0.0028 0.125]) = 0.0639
-=> 1.4x0.0639 = 0.0895-->
             <apply>
                 <eq/>
                 <ci>gna</ci>
                 <cn cellml:units="nS_per_pF">0.0895</cn>
             </apply>
-            <!--below for test comparison with Tong, 2014 Fig 11
-gna = 0.125{nS_per_pF};-->
-            <!--below base value given in cellml-->
             <apply>
                 <eq/>
                 <ci>gcal</ci>
                 <cn cellml:units="nS_per_pF">0.6</cn>
             </apply>
-            <!--below for test comparison with Tong, 2014 Fig 11
-gcal = 1.5{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>ecal</ci>
@@ -506,26 +464,11 @@ gcal = 1.5{nS_per_pF};-->
                 <ci>gb</ci>
                 <cn cellml:units="nS_per_pF">0.004</cn>
             </apply>
-            <!--below default opencor val
-gk1 = 0.52{nS_per_pF};
-below from usmc_model_v3p9 
-'comparison with full tong reproduce their fig 12'-->
-            <!--gk1 = 0.6315{nS_per_pF};-->
-            <!--below from spreadsheet test
-'Final parms gK 0.7 gNa 1.4x gCaL 1.0x with buff scaling 1.05x beta'-->
-            <!--gk1 = 0.7{nS_per_pF};-->
-            <!--below for test comparison with Tong, 2014 Fig 8-->
-            <!--gk1 = 0.75{nS_per_pF};-->
-            <!--below for test comparison with Tong, 2014 Fig 11
-note overall maximum K current is about 0.8...-->
             <apply>
                 <eq/>
                 <ci>gk1</ci>
                 <cn cellml:units="nS_per_pF">0.7</cn>
             </apply>
-            <!--gk1 = 0.85{nS_per_pF};-->
-            <!--below removed for ik2
-gk2 = 0.032{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>gbka</ci>
@@ -536,15 +479,11 @@ gk2 = 0.032{nS_per_pF};-->
                 <ci>gbkab</ci>
                 <cn cellml:units="dimensionless">0.1</cn>
             </apply>
-            <!--below removed for ika
-gka = 0.16{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>gcl</ci>
                 <cn cellml:units="nS_per_pF">0.1875</cn>
             </apply>
-            <!--below removed for ih
-gh = 0.0542{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>gns</ci>
@@ -590,7 +529,6 @@ gh = 0.0542{nS_per_pF};-->
                 <ci>gnsCs</ci>
                 <cn cellml:units="dimensionless">1.6</cn>
             </apply>
-            <!--below without inak-->
             <apply>
                 <eq/>
                 <ci>PK</ci>
@@ -679,24 +617,13 @@ gh = 0.0542{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>P4</ci>
-                <cn cellml:units="dimensionless">1</cn>
+                <cn cellml:units="dimensionless">1.1</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>E2</ci>
-                <cn cellml:units="dimensionless">1</cn>
+                <cn cellml:units="dimensionless">1.1</cn>
             </apply>
-        </math>
-        <variable name="vFRT" public_interface="out" units="dimensionless"/>
-        <variable name="ena" public_interface="out" units="mV"/>
-        <variable name="ek" public_interface="out" units="mV"/>
-        <!--below removed for ih 
-var eh: mV {pub: out};-->
-        <variable name="ecl" public_interface="out" units="mV"/>
-        <variable name="enscc" public_interface="out" units="mV"/>
-        <variable name="v" public_interface="in" units="mV"/>
-        <variable name="cai" public_interface="in" units="mM"/>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
                 <ci>vFRT</ci>
@@ -762,8 +689,6 @@ var eh: mV {pub: out};-->
                     </apply>
                 </apply>
             </apply>
-            <!--below removed for ih
-eh = R*temp/frdy*ln((ko+PNa/PK*nao)/(ki+PNa/PK*nai));-->
             <apply>
                 <eq/>
                 <ci>ecl</ci>
@@ -999,11 +924,7 @@ eh = R*temp/frdy*ln((ko+PNa/PK*nao)/(ki+PNa/PK*nai));-->
     <component name="I_Na">
         <variable name="mss" units="dimensionless"/>
         <variable name="hss" units="dimensionless"/>
-        <!--below commented out for ss-approximation
-var mtc: msec;-->
         <variable name="htc" units="msec"/>
-        <!--below commented out for ss-approximation
-var m: dimensionless {init: 0.1253518889572223, pub: none};-->
         <variable initial_value="0.404599170710196" name="h" public_interface="none" units="dimensionless"/>
         <variable name="ina" public_interface="out" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
@@ -1064,8 +985,6 @@ var m: dimensionless {init: 0.1253518889572223, pub: none};-->
                     </apply>
                 </apply>
             </apply>
-            <!--below commented out for ss-approximation
-mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
             <apply>
                 <eq/>
                 <ci>htc</ci>
@@ -1095,7 +1014,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below for ss-approximation calc-->
             <apply>
                 <eq/>
                 <ci>ina</ci>
@@ -1118,9 +1036,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     <ci>E2</ci>
                 </apply>
             </apply>
-            <!--below with both m and h ss-->
-            <!--ina = gna*mss*mss*mss*hss*(v-ena);-->
-            <!--below commented out for ss-approximation-->
             <apply>
                 <eq/>
                 <apply>
@@ -1221,9 +1136,7 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="dss" units="dimensionless"/>
         <variable name="fss" units="dimensionless"/>
         <variable name="fca" units="dimensionless"/>
-        <!--below commented out for ss approximation-->
         <variable name="f2tc" units="msec"/>
-        <!--below commented out for ss approximation-->
         <variable initial_value="0.9065967263076083" name="f2" public_interface="none" units="dimensionless"/>
         <variable name="ical" public_interface="out" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
@@ -1305,7 +1218,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below commented out for ss approximation-->
             <apply>
                 <eq/>
                 <ci>f2tc</ci>
@@ -1360,7 +1272,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below for ss-calculation-->
             <apply>
                 <eq/>
                 <ci>ical</ci>
@@ -1390,7 +1301,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below commented out for ss approximation-->
             <apply>
                 <eq/>
                 <apply>
@@ -1426,7 +1336,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
     <component name="I_CaT">
         <variable name="bss" units="dimensionless"/>
         <variable name="gss" units="dimensionless"/>
-        <!--below commented out for ss approximation-->
         <variable name="icat" public_interface="out" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="v" public_interface="in" units="mV"/>
@@ -1488,7 +1397,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below ss-approximation-->
             <apply>
                 <eq/>
                 <ci>icat</ci>
@@ -1506,7 +1414,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 </apply>
             </apply>
         </math>
-        <!--below commented out for ss approximation-->
     </component>
     <connection>
         <map_components component_1="I_CaT" component_2="Ca_currents"/>
@@ -1855,14 +1762,11 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="gk1" variable_2="gk1"/>
     </connection>
     <!-- Model - currents-->
-    <!-- Model - currents-->
-    <!-- Model - currents-->
     <component name="I_BKa">
         <variable name="xass_z" units="dimensionless"/>
         <variable name="xass_vh" units="mV"/>
         <variable initial_value="1000.0" name="conversion" public_interface="none" units="mM_to_M"/>
         <variable name="xass" units="dimensionless"/>
-        <!--below commented out for ss approximation-->
         <variable name="iBKa" public_interface="out" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="v" public_interface="in" units="mV"/>
@@ -2003,7 +1907,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below for ss computation-->
             <apply>
                 <eq/>
                 <ci>iBKa</ci>
@@ -2020,7 +1923,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 </apply>
             </apply>
         </math>
-        <!--below commented out for ss approximation-->
     </component>
     <connection>
         <map_components component_1="I_BKa" component_2="K_currents"/>
@@ -2041,7 +1943,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <variable name="xabss_vh" units="mV"/>
         <variable initial_value="1000.0" name="conversion" public_interface="none" units="mM_to_M"/>
         <variable name="xabss" units="dimensionless"/>
-        <!--below commented out for ss approximation-->
         <variable name="iBKab" public_interface="out" units="pA_per_pF"/>
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="cai" public_interface="in" units="mM"/>
@@ -2181,7 +2082,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                     </apply>
                 </apply>
             </apply>
-            <!--below for ss computation-->
             <apply>
                 <eq/>
                 <ci>iBKab</ci>
@@ -2198,7 +2098,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
                 </apply>
             </apply>
         </math>
-        <!--below commented out for ss approximation-->
     </component>
     <connection>
         <map_components component_1="I_BKab" component_2="K_currents"/>
@@ -2696,8 +2595,6 @@ mtc = 0.25{msec}+7.0{msec}/(1.0{dimensionless}+exp((v+38.0{mV})/10.0{mV}));-->
         <map_variables variable_1="gnsCa" variable_2="gnsCa"/>
         <map_variables variable_1="cao" variable_2="cao"/>
     </connection>
-    <!-- Model - currents-->
-    <!-- Model - currents-->
     <!-- Model - flux-->
     <component name="J_NaCa">
         <variable name="f1naca" units="dimensionless"/>
