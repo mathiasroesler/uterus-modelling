@@ -309,8 +309,8 @@
         <variable name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable name="gb" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gk1" name="gk1" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="P4" name="P4" public_interface="out" units="dimensionless"/>
-        <variable cmeta:id="E2" name="E2" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="P4" name="P4" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="E2" name="E2" public_interface="out" units="nM_per_L"/>
         <variable name="gbka" public_interface="out" units="dimensionless"/>
         <variable name="gbkab" public_interface="out" units="dimensionless"/>
         <variable name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -621,12 +621,12 @@
             <apply>
                 <eq/>
                 <ci>P4</ci>
-                <cn cellml:units="dimensionless">1.1</cn>
+                <cn cellml:units="nM_per_L">1</cn>
             </apply>
             <apply>
                 <eq/>
                 <ci>E2</ci>
-                <cn cellml:units="dimensionless">1.1</cn>
+                <cn cellml:units="nM_per_L">1</cn>
             </apply>
             <apply>
                 <eq/>
@@ -935,8 +935,8 @@
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ena" public_interface="in" units="mV"/>
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4" public_interface="in" units="dimensionless"/>
-        <variable name="E2" public_interface="in" units="dimensionless"/>
+        <variable name="P4" public_interface="in" units="nM_per_L"/>
+        <variable name="E2" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1090,8 +1090,8 @@
         <variable name="kmca" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ecat" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="P4" private_interface="out" public_interface="in" units="nM_per_L"/>
+        <variable name="E2" private_interface="out" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1476,8 +1476,8 @@
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gk1" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="P4" private_interface="out" public_interface="in" units="nM_per_L"/>
+        <variable name="E2" private_interface="out" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
