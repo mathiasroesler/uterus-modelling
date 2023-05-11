@@ -81,7 +81,7 @@
         <variable initial_value="0" name="I_hold" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="-0.5" name="I_test" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="1000" name="test_start" public_interface="none" units="msec"/>
-        <variable initial_value="10000" name="test_end" public_interface="none" units="msec"/>
+        <variable initial_value="20000" name="test_end" public_interface="none" units="msec"/>
         <variable cmeta:id="membrane_stimulus_current" name="I_stim" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="I_tot" units="pA_per_pF"/>
@@ -93,6 +93,8 @@
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
         <variable name="icl" public_interface="in" units="pA_per_pF"/>
+        <variable cmeta:id="P4" initial_value="1" name="P4" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="E2" initial_value="1" name="E2" public_interface="out" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -309,8 +311,8 @@
         <variable name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable name="gb" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gk1" name="gk1" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="P4" name="P4" public_interface="out" units="nM_per_L"/>
-        <variable cmeta:id="E2" name="E2" public_interface="out" units="nM_per_L"/>
+        <!--var{P4} P4: nM_per_L {init: 1, pub: out};
+var{E2} E2: nM_per_L {init: 1, pub: out};-->
         <variable name="gbka" public_interface="out" units="dimensionless"/>
         <variable name="gbkab" public_interface="out" units="dimensionless"/>
         <variable name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -618,16 +620,8 @@
                 <ci>Fn</ci>
                 <cn cellml:units="dimensionless">3.60205</cn>
             </apply>
-            <apply>
-                <eq/>
-                <ci>P4</ci>
-                <cn cellml:units="nM_per_L">1</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>E2</ci>
-                <cn cellml:units="nM_per_L">1</cn>
-            </apply>
+            <!--P4 = 1.3{nM_per_L};
+E2 = 0.7{nM_per_L};-->
             <apply>
                 <eq/>
                 <ci>vFRT</ci>
@@ -1069,13 +1063,15 @@
         <map_components component_1="I_Na" component_2="membrane"/>
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="ina" variable_2="ina"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <connection>
         <map_components component_1="I_Na" component_2="parameters"/>
         <map_variables variable_1="ena" variable_2="ena"/>
         <map_variables variable_1="gna" variable_2="gna"/>
-        <map_variables variable_1="P4" variable_2="P4"/>
-        <map_variables variable_1="E2" variable_2="E2"/>
+        <!--vars P4 and P4;
+vars E2 and E2;-->
     </connection>
     <!-- Model - currents -->
     <component name="Ca_currents">
@@ -1116,6 +1112,8 @@
         <map_components component_1="Ca_currents" component_2="membrane"/>
         <map_variables variable_1="I_Ca_tot" variable_2="I_Ca_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <connection>
         <map_components component_1="Ca_currents" component_2="environment"/>
@@ -1132,8 +1130,8 @@
         <map_variables variable_1="kmca" variable_2="kmca"/>
         <map_variables variable_1="ecat" variable_2="ecat"/>
         <map_variables variable_1="gcat" variable_2="gcat"/>
-        <map_variables variable_1="P4" variable_2="P4"/>
-        <map_variables variable_1="E2" variable_2="E2"/>
+        <!--vars P4 and P4;
+vars E2 and E2;-->
     </connection>
     <!-- Model - currents-->
     <component name="I_CaL">
@@ -1507,6 +1505,8 @@
         <map_components component_1="K_currents" component_2="membrane"/>
         <map_variables variable_1="I_K_tot" variable_2="I_K_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
+        <map_variables variable_1="P4" variable_2="P4"/>
+        <map_variables variable_1="E2" variable_2="E2"/>
     </connection>
     <connection>
         <map_components component_1="K_currents" component_2="Ca_Concentrations"/>
@@ -1522,8 +1522,8 @@
         <map_variables variable_1="R" variable_2="R"/>
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
-        <map_variables variable_1="P4" variable_2="P4"/>
-        <map_variables variable_1="E2" variable_2="E2"/>
+        <!--vars P4 and P4;
+vars E2 and E2;-->
     </connection>
     <!-- Model - currents-->
     <component name="I_K1">
