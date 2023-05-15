@@ -93,8 +93,10 @@
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
         <variable name="icl" public_interface="in" units="pA_per_pF"/>
-        <variable cmeta:id="P4" initial_value="1" name="P4" public_interface="out" units="nM_per_L"/>
-        <variable cmeta:id="E2" initial_value="1" name="E2" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="P4" initial_value="19" name="P4" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="E2" initial_value="60" name="E2" public_interface="out" units="nM_per_L"/>
+        <variable initial_value="53" name="P4_max" public_interface="out" units="nM_per_L"/>
+        <variable initial_value="140" name="E2_max" public_interface="out" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -931,6 +933,8 @@ E2 = 0.7{nM_per_L};-->
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" public_interface="in" units="nM_per_L"/>
         <variable name="E2" public_interface="in" units="nM_per_L"/>
+        <variable name="P4_max" public_interface="in" units="nM_per_L"/>
+        <variable name="E2_max" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1019,7 +1023,11 @@ E2 = 0.7{nM_per_L};-->
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>P4</ci>
+                        <apply>
+                            <divide/>
+                            <ci>E2</ci>
+                            <ci>E2_max</ci>
+                        </apply>
                         <ci>gna</ci>
                         <ci>mss</ci>
                         <ci>mss</ci>
@@ -1031,7 +1039,11 @@ E2 = 0.7{nM_per_L};-->
                             <ci>ena</ci>
                         </apply>
                     </apply>
-                    <ci>E2</ci>
+                    <apply>
+                        <divide/>
+                        <ci>P4</ci>
+                        <ci>P4_max</ci>
+                    </apply>
                 </apply>
             </apply>
             <apply>
@@ -1065,6 +1077,8 @@ E2 = 0.7{nM_per_L};-->
         <map_variables variable_1="ina" variable_2="ina"/>
         <map_variables variable_1="P4" variable_2="P4"/>
         <map_variables variable_1="E2" variable_2="E2"/>
+        <map_variables variable_1="P4_max" variable_2="P4_max"/>
+        <map_variables variable_1="E2_max" variable_2="E2_max"/>
     </connection>
     <connection>
         <map_components component_1="I_Na" component_2="parameters"/>
@@ -1088,6 +1102,8 @@ vars E2 and E2;-->
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" private_interface="out" public_interface="in" units="nM_per_L"/>
         <variable name="E2" private_interface="out" public_interface="in" units="nM_per_L"/>
+        <variable name="P4_max" public_interface="in" units="nM_per_L"/>
+        <variable name="E2_max" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1096,14 +1112,22 @@ vars E2 and E2;-->
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>E2</ci>
+                        <apply>
+                            <divide/>
+                            <ci>P4</ci>
+                            <ci>P4_max</ci>
+                        </apply>
                         <apply>
                             <plus/>
                             <ci>ical</ci>
                             <ci>icat</ci>
                         </apply>
                     </apply>
-                    <ci>P4</ci>
+                    <apply>
+                        <divide/>
+                        <ci>E2</ci>
+                        <ci>E2_max</ci>
+                    </apply>
                 </apply>
             </apply>
         </math>
@@ -1114,6 +1138,8 @@ vars E2 and E2;-->
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="P4" variable_2="P4"/>
         <map_variables variable_1="E2" variable_2="E2"/>
+        <map_variables variable_1="P4_max" variable_2="P4_max"/>
+        <map_variables variable_1="E2_max" variable_2="E2_max"/>
     </connection>
     <connection>
         <map_components component_1="Ca_currents" component_2="environment"/>
@@ -1476,6 +1502,8 @@ vars E2 and E2;-->
         <variable name="gk1" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" private_interface="out" public_interface="in" units="nM_per_L"/>
         <variable name="E2" private_interface="out" public_interface="in" units="nM_per_L"/>
+        <variable name="P4_max" public_interface="in" units="nM_per_L"/>
+        <variable name="E2_max" public_interface="in" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1484,7 +1512,11 @@ vars E2 and E2;-->
                     <divide/>
                     <apply>
                         <times/>
-                        <ci>P4</ci>
+                        <apply>
+                            <divide/>
+                            <ci>E2</ci>
+                            <ci>E2_max</ci>
+                        </apply>
                         <apply>
                             <plus/>
                             <ci>iBKab</ci>
@@ -1492,7 +1524,11 @@ vars E2 and E2;-->
                             <ci>ik1</ci>
                         </apply>
                     </apply>
-                    <ci>E2</ci>
+                    <apply>
+                        <divide/>
+                        <ci>P4</ci>
+                        <ci>P4_max</ci>
+                    </apply>
                 </apply>
             </apply>
         </math>
@@ -1507,6 +1543,8 @@ vars E2 and E2;-->
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="P4" variable_2="P4"/>
         <map_variables variable_1="E2" variable_2="E2"/>
+        <map_variables variable_1="P4_max" variable_2="P4_max"/>
+        <map_variables variable_1="E2_max" variable_2="E2_max"/>
     </connection>
     <connection>
         <map_components component_1="K_currents" component_2="Ca_Concentrations"/>
