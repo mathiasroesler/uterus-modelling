@@ -79,9 +79,9 @@
     <!-- Model - membrane-->
     <component name="membrane">
         <variable initial_value="0" name="I_hold" public_interface="none" units="pA_per_pF"/>
-        <variable initial_value="-0.5" name="I_test" public_interface="none" units="pA_per_pF"/>
+        <variable initial_value="-0.25" name="I_test" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="1000" name="test_start" public_interface="none" units="msec"/>
-        <variable initial_value="20000" name="test_end" public_interface="none" units="msec"/>
+        <variable initial_value="11000" name="test_end" public_interface="none" units="msec"/>
         <variable cmeta:id="membrane_stimulus_current" name="I_stim" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="I_tot" units="pA_per_pF"/>
@@ -93,8 +93,8 @@
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
         <variable name="icl" public_interface="in" units="pA_per_pF"/>
-        <variable cmeta:id="P4" initial_value="19" name="P4" public_interface="out" units="nM_per_L"/>
-        <variable cmeta:id="E2" initial_value="60" name="E2" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="P4" initial_value="20.5" name="P4" public_interface="out" units="nM_per_L"/>
+        <variable cmeta:id="E2" initial_value="50" name="E2" public_interface="out" units="nM_per_L"/>
         <variable initial_value="53" name="P4_max" public_interface="out" units="nM_per_L"/>
         <variable initial_value="140" name="E2_max" public_interface="out" units="nM_per_L"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
