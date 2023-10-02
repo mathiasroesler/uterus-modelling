@@ -88,7 +88,7 @@
         <variable name="Cm" public_interface="in" units="uF_per_cm2"/>
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
-        <variable name="G_p" public_interface="in" units="pA_per_pF"/>
+        <variable name="I_p" public_interface="in" units="pA_per_pF"/>
         <!--below without ik2
 var ik2: pA_per_pF {pub: in};
 below without ika
@@ -163,7 +163,7 @@ below without NCX current inaca; note jnaca still computed...-->
                     <apply>
                         <minus/>
                         <ci>I_tot</ci>
-                        <ci>I_stim</ci>
+                        <ci>I_p</ci>
                     </apply>
                 </apply>
             </apply>
@@ -179,14 +179,14 @@ below without NCX current inaca; note jnaca still computed...-->
         <map_variables variable_1="v" variable_2="v"/>
     </connection>
     <component name="passive">
-        <variable initial_value="0" name="u" units="mV"/>
-        <variable name="G_p" public_interface="out" units="pA_per_pF"/>
+        <variable initial_value="-55" name="u" units="mV"/>
+        <variable name="I_p" public_interface="out" units="pA_per_pF"/>
         <variable initial_value="1" name="g_pi" units="per_msec"/>
         <!-- Scaling factor for du/dt-->
-        <variable initial_value="3" name="v_pr" units="mV"/>
+        <variable initial_value="-55" name="v_pr" units="mV"/>
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="time" public_interface="in" units="msec"/>
-        <variable initial_value="20" name="g_p" units="nS_per_pF"/>
+        <variable initial_value="1e-3" name="g_p" units="nS_per_pF"/>
         <!-- Passive cell conductance-->
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
@@ -209,12 +209,12 @@ below without NCX current inaca; note jnaca still computed...-->
                             <ci>u</ci>
                         </apply>
                     </apply>
-                    <ci>G_p</ci>
+                    <ci>I_p</ci>
                 </apply>
             </apply>
             <apply>
                 <eq/>
-                <ci>G_p</ci>
+                <ci>I_p</ci>
                 <apply>
                     <times/>
                     <ci>g_p</ci>
@@ -234,7 +234,7 @@ below without NCX current inaca; note jnaca still computed...-->
     <connection>
         <map_components component_1="passive" component_2="membrane"/>
         <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="G_p" variable_2="G_p"/>
+        <map_variables variable_1="I_p" variable_2="I_p"/>
     </connection>
     <!-- Model - Cai variable-->
     <component name="Ca_Concentrations">
@@ -376,7 +376,7 @@ below without NCX current inaca; note jnaca still computed...-->
         <variable name="R" public_interface="out" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="out" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="out" units="kelvin"/>
-        <variable cmeta:id="membrane_capacitance" initial_value="1.0" name="Cm" units="uF_per_cm2"/>
+        <variable cmeta:id="membrane_capacitance" initial_value="0.011" name="Cm" units="uF_per_cm2"/>
         <variable cmeta:id="gna" name="gna" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gcal" name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
@@ -475,7 +475,7 @@ buff = 0.0165{dimensionless};-->
             <apply>
                 <eq/>
                 <ci>buff</ci>
-                <cn cellml:units="dimensionless">0.0169</cn>
+                <cn cellml:units="dimensionless">0.0158</cn>
             </apply>
             <apply>
                 <eq/>
@@ -521,7 +521,7 @@ here, gNa used from usmc_model_v3p9 , g_na = mean([0.0028 0.125]) = 0.0639
             <apply>
                 <eq/>
                 <ci>gna</ci>
-                <cn cellml:units="nS_per_pF">0.0895</cn>
+                <cn cellml:units="nS_per_pF">0.125</cn>
             </apply>
             <!--below for test comparison with Tong, 2014 Fig 11
 gna = 0.125{nS_per_pF};-->
@@ -578,7 +578,7 @@ note overall maximum K current is about 0.8...-->
             <apply>
                 <eq/>
                 <ci>gk1</ci>
-                <cn cellml:units="nS_per_pF">0.7</cn>
+                <cn cellml:units="nS_per_pF">0.52</cn>
             </apply>
             <!--gk1 = 0.85{nS_per_pF};-->
             <!--below removed for ik2
