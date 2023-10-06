@@ -317,8 +317,6 @@
         <variable name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable name="gb" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gk1" name="gk1" public_interface="out" units="nS_per_pF"/>
-        <!--var{P4} P4: nM_per_L {init: 1, pub: out};
-var{E2} E2: nM_per_L {init: 1, pub: out};-->
         <variable name="gbka" public_interface="out" units="dimensionless"/>
         <variable name="gbkab" public_interface="out" units="dimensionless"/>
         <variable name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -626,8 +624,6 @@ var{E2} E2: nM_per_L {init: 1, pub: out};-->
                 <ci>Fn</ci>
                 <cn cellml:units="dimensionless">3.60205</cn>
             </apply>
-            <!--P4 = 1.3{nM_per_L};
-E2 = 0.7{nM_per_L};-->
             <apply>
                 <eq/>
                 <ci>vFRT</ci>
