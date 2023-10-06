@@ -1509,25 +1509,17 @@ vars E2 and E2;-->
                 <eq/>
                 <ci>I_K_tot</ci>
                 <apply>
-                    <divide/>
-                    <apply>
-                        <times/>
-                        <apply>
-                            <divide/>
-                            <ci>E2</ci>
-                            <ci>E2_max</ci>
-                        </apply>
-                        <apply>
-                            <plus/>
-                            <ci>iBKab</ci>
-                            <ci>iBKa</ci>
-                            <ci>ikv43</ci>
-                        </apply>
-                    </apply>
+                    <times/>
                     <apply>
                         <divide/>
-                        <ci>P4</ci>
-                        <ci>P4_max</ci>
+                        <ci>E2</ci>
+                        <ci>E2_max</ci>
+                    </apply>
+                    <apply>
+                        <plus/>
+                        <ci>iBKab</ci>
+                        <ci>iBKa</ci>
+                        <ci>ikv43</ci>
                     </apply>
                 </apply>
             </apply>
