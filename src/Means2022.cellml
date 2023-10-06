@@ -1109,7 +1109,7 @@ vars E2 and E2;-->
                 <eq/>
                 <ci>I_Ca_tot</ci>
                 <apply>
-                    <divide/>
+                    <plus/>
                     <apply>
                         <times/>
                         <apply>
@@ -1118,16 +1118,16 @@ vars E2 and E2;-->
                             <ci>P4_max</ci>
                         </apply>
                         <apply>
-                            <plus/>
+                            <divide/>
                             <ci>ical</ci>
-                            <ci>icat</ci>
+                            <apply>
+                                <divide/>
+                                <ci>E2</ci>
+                                <ci>E2_max</ci>
+                            </apply>
                         </apply>
                     </apply>
-                    <apply>
-                        <divide/>
-                        <ci>E2</ci>
-                        <ci>E2_max</ci>
-                    </apply>
+                    <ci>icat</ci>
                 </apply>
             </apply>
         </math>
