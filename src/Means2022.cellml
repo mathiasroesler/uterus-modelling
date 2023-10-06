@@ -316,7 +316,7 @@
         <variable name="ecat" public_interface="out" units="mV"/>
         <variable name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable name="gb" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gk1" name="gk1" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkv43" name="gkv43" public_interface="out" units="nS_per_pF"/>
         <variable name="gbka" public_interface="out" units="dimensionless"/>
         <variable name="gbkab" public_interface="out" units="dimensionless"/>
         <variable name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -476,7 +476,7 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>gk1</ci>
+                <ci>gkv43</ci>
                 <cn cellml:units="nS_per_pF">0.7</cn>
             </apply>
             <apply>
@@ -1490,7 +1490,7 @@ vars E2 and E2;-->
         <variable name="time" private_interface="out" public_interface="in" units="msec"/>
         <variable name="iBKab" private_interface="in" units="pA_per_pF"/>
         <variable name="iBKa" private_interface="in" units="pA_per_pF"/>
-        <variable name="ik1" private_interface="in" units="pA_per_pF"/>
+        <variable name="ikv43" private_interface="in" units="pA_per_pF"/>
         <variable name="cai" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ek" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gkca" private_interface="out" public_interface="in" units="nS_per_pF"/>
@@ -1499,7 +1499,7 @@ vars E2 and E2;-->
         <variable name="frdy" private_interface="out" public_interface="in" units="coulomb_per_mole"/>
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="gk1" private_interface="out" public_interface="in" units="nS_per_pF"/>
+        <variable name="gkv43" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4" private_interface="out" public_interface="in" units="nM_per_L"/>
         <variable name="E2" private_interface="out" public_interface="in" units="nM_per_L"/>
         <variable name="P4_max" public_interface="in" units="nM_per_L"/>
@@ -1521,7 +1521,7 @@ vars E2 and E2;-->
                             <plus/>
                             <ci>iBKab</ci>
                             <ci>iBKa</ci>
-                            <ci>ik1</ci>
+                            <ci>ikv43</ci>
                         </apply>
                     </apply>
                     <apply>
@@ -1556,7 +1556,7 @@ vars E2 and E2;-->
         <map_variables variable_1="gkca" variable_2="gkca"/>
         <map_variables variable_1="gbkab" variable_2="gbkab"/>
         <map_variables variable_1="gbka" variable_2="gbka"/>
-        <map_variables variable_1="gk1" variable_2="gk1"/>
+        <map_variables variable_1="gkv43" variable_2="gkv43"/>
         <map_variables variable_1="R" variable_2="R"/>
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
@@ -1564,7 +1564,7 @@ vars E2 and E2;-->
 vars E2 and E2;-->
     </connection>
     <!-- Model - currents-->
-    <component name="I_K1">
+    <component name="I_Kv43">
         <variable name="qss" units="dimensionless"/>
         <variable name="rss" units="dimensionless"/>
         <variable name="qtc" units="msec"/>
@@ -1573,11 +1573,11 @@ vars E2 and E2;-->
         <variable initial_value="0.2060363247740295" name="q" public_interface="none" units="dimensionless"/>
         <variable initial_value="0.1922244113609531" name="r1" public_interface="none" units="dimensionless"/>
         <variable initial_value="0.1932803618375963" name="r2" public_interface="none" units="dimensionless"/>
-        <variable name="ik1" public_interface="out" units="pA_per_pF"/>
+        <variable name="ikv43" public_interface="out" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ek" public_interface="in" units="mV"/>
-        <variable name="gk1" public_interface="in" units="nS_per_pF"/>
+        <variable name="gkv43" public_interface="in" units="nS_per_pF"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1710,10 +1710,10 @@ vars E2 and E2;-->
             </apply>
             <apply>
                 <eq/>
-                <ci>ik1</ci>
+                <ci>ikv43</ci>
                 <apply>
                     <times/>
-                    <ci>gk1</ci>
+                    <ci>gkv43</ci>
                     <ci>q</ci>
                     <ci>q</ci>
                     <apply>
@@ -1796,12 +1796,12 @@ vars E2 and E2;-->
         </math>
     </component>
     <connection>
-        <map_components component_1="I_K1" component_2="K_currents"/>
-        <map_variables variable_1="ik1" variable_2="ik1"/>
+        <map_components component_1="I_Kv43" component_2="K_currents"/>
+        <map_variables variable_1="ikv43" variable_2="ikv43"/>
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="ek" variable_2="ek"/>
-        <map_variables variable_1="gk1" variable_2="gk1"/>
+        <map_variables variable_1="gkv43" variable_2="gkv43"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_BKa">
@@ -2954,7 +2954,7 @@ vars E2 and E2;-->
             <component_ref component="K_currents">
                 <component_ref component="I_BKa"/>
                 <component_ref component="I_BKab"/>
-                <component_ref component="I_K1"/>
+                <component_ref component="I_Kv43"/>
             </component_ref>
         </component_ref>
     </group>
@@ -2970,7 +2970,7 @@ vars E2 and E2;-->
             <component_ref component="I_NSNa"/>
         </component_ref>
         <component_ref component="K_currents">
-            <component_ref component="I_K1"/>
+            <component_ref component="I_Kv43"/>
             <component_ref component="I_BKa"/>
             <component_ref component="I_BKab"/>
         </component_ref>
