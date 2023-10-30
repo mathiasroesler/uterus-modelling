@@ -1647,13 +1647,9 @@ vars E2 and E2;-->
                 <apply>
                     <times/>
                     <apply>
-                        <divide/>
-                        <apply>
-                            <times/>
-                            <ci>E2_ratio</ci>
-                            <ci>gkv43</ci>
-                        </apply>
-                        <ci>P4_ratio</ci>
+                        <times/>
+                        <ci>E2_ratio</ci>
+                        <ci>gkv43</ci>
                     </apply>
                     <ci>q</ci>
                     <ci>q</ci>
@@ -1900,13 +1896,9 @@ vars E2 and E2;-->
                 <apply>
                     <times/>
                     <apply>
-                        <divide/>
-                        <apply>
-                            <times/>
-                            <ci>E2_ratio</ci>
-                            <ci>gkca</ci>
-                        </apply>
-                        <ci>P4_ratio</ci>
+                        <times/>
+                        <ci>E2_ratio</ci>
+                        <ci>gkca</ci>
                     </apply>
                     <ci>gbka</ci>
                     <ci>xass</ci>
@@ -2087,13 +2079,9 @@ vars E2 and E2;-->
                 <apply>
                     <times/>
                     <apply>
-                        <divide/>
-                        <apply>
-                            <times/>
-                            <ci>E2_ratio</ci>
-                            <ci>gkca</ci>
-                        </apply>
-                        <ci>P4_ratio</ci>
+                        <times/>
+                        <ci>E2_ratio</ci>
+                        <ci>gkca</ci>
                     </apply>
                     <ci>gbkab</ci>
                     <ci>xabss</ci>
