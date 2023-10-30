@@ -308,19 +308,19 @@
         <variable name="frdy" public_interface="out" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="out" units="kelvin"/>
         <variable cmeta:id="membrane_capacitance" initial_value="1.0" name="Cm" units="uF_per_cm2"/>
-        <variable cmeta:id="gna" initial_value="0.0895" name="gna" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gcal" initial_value="0.6" name="gcal" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gna" initial_value="0.008" name="gna" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gcal" initial_value="0.17" name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
         <variable name="kmca" public_interface="out" units="mM"/>
         <variable cmeta:id="gcat" initial_value="0.058" name="gcat" public_interface="out" units="nS_per_pF"/>
         <variable name="ecat" public_interface="out" units="mV"/>
-        <variable name="gkca" public_interface="out" units="nS_per_pF"/>
-        <variable name="gb" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gkv43" initial_value="0.7" name="gkv43" public_interface="out" units="nS_per_pF"/>
-        <variable name="gbka" public_interface="out" units="dimensionless"/>
-        <variable name="gbkab" public_interface="out" units="dimensionless"/>
-        <variable name="gcl" public_interface="out" units="nS_per_pF"/>
-        <variable name="gns" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkca" initial_value="0.268" name="gkca" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gb" initial_value="0.004" name="gb" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkv43" initial_value="0.098" name="gkv43" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gbka" initial_value="0.2" name="gbka" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="gbkab" initial_value="0.1" name="gbkab" public_interface="out" units="dimensionless"/>
+        <variable cmeta:id="gcl" initial_value="0.1875" name="gcl" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gns" initial_value="0.0123" name="gns" public_interface="out" units="nS_per_pF"/>
         <variable name="PnsK" public_interface="out" units="dimensionless"/>
         <variable name="PnsNa" public_interface="out" units="dimensionless"/>
         <variable name="PnsCa" public_interface="out" units="dimensionless"/>
@@ -434,8 +434,6 @@
                 <ci>temp</ci>
                 <cn cellml:units="kelvin">308.0</cn>
             </apply>
-            <!--gna = 0.0895{nS_per_pF};
-gcal = 0.6{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>ecal</ci>
@@ -446,42 +444,10 @@ gcal = 0.6{nS_per_pF};-->
                 <ci>kmca</ci>
                 <cn cellml:units="mM">0.001</cn>
             </apply>
-            <!--gcat = 0.058{nS_per_pF};-->
             <apply>
                 <eq/>
                 <ci>ecat</ci>
                 <cn cellml:units="mV">42.0</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>gkca</ci>
-                <cn cellml:units="nS_per_pF">0.8</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>gb</ci>
-                <cn cellml:units="nS_per_pF">0.004</cn>
-            </apply>
-            <!--gkv43 = 0.7{nS_per_pF};-->
-            <apply>
-                <eq/>
-                <ci>gbka</ci>
-                <cn cellml:units="dimensionless">0.2</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>gbkab</ci>
-                <cn cellml:units="dimensionless">0.1</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>gcl</ci>
-                <cn cellml:units="nS_per_pF">0.1875</cn>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>gns</ci>
-                <cn cellml:units="nS_per_pF">0.0123</cn>
             </apply>
             <apply>
                 <eq/>
