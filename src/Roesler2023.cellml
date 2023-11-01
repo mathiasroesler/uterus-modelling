@@ -76,15 +76,43 @@
     <component name="environment">
         <variable name="time" public_interface="out" units="msec"/>
     </component>
+    <component cmeta:id="stimulus_protocol" name="stimulus_protocol">
+        <variable name="I_stim" public_interface="out" units="pA_per_pF"/>
+        <variable name="time" public_interface="in" units="msec"/>
+        <variable initial_value="500" name="stim_period" units="msec"/>
+        <variable initial_value="250" name="stim_duration" units="msec"/>
+        <variable initial_value="-0.25" name="stim_current" units="pA_per_pF"/>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply id="stimulus_calculation">
+                <eq/>
+                <ci>I_stim</ci>
+                <piecewise>
+                    <piece>
+                        <cn cellml:units="pA_per_pF">0.0</cn>
+                        <apply>
+                            <lt/>
+                            <apply>
+                                <rem/>
+                                <ci>time</ci>
+                                <ci>stim_period</ci>
+                            </apply>
+                            <ci>stim_duration</ci>
+                        </apply>
+                    </piece>
+                    <otherwise>
+                        <ci>stim_current</ci>
+                    </otherwise>
+                </piecewise>
+            </apply>
+        </math>
+    </component>
+    <connection>
+        <map_components component_1="stimulus_protocol" component_2="environment"/>
+        <map_variables variable_1="time" variable_2="time"/>
+    </connection>
     <!-- Model - membrane-->
     <component name="membrane">
-        <variable initial_value="0" name="I_hold" public_interface="none" units="pA_per_pF"/>
-        <variable initial_value="-0.25" name="I_test" public_interface="none" units="pA_per_pF"/>
-        <!-- DE -0.5; ME, PRO, E -0.2;-->
-        <variable initial_value="1000" name="test_start" public_interface="none" units="msec"/>
-        <variable initial_value="11000" name="test_end" public_interface="none" units="msec"/>
-        <!-- ME 11000; DE 6000; PRO 4000; E 4000;-->
-        <variable cmeta:id="membrane_stimulus_current" name="I_stim" units="pA_per_pF"/>
+        <variable cmeta:id="membrane_stimulus_current" name="I_stim" public_interface="in" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="I_tot" units="pA_per_pF"/>
         <variable name="I_Ca_tot" public_interface="in" units="pA_per_pF"/>
@@ -121,31 +149,6 @@
                     <ci>P4</ci>
                     <ci>P4_max</ci>
                 </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>I_stim</ci>
-                <piecewise>
-                    <piece>
-                        <ci>I_test</ci>
-                        <apply>
-                            <and/>
-                            <apply>
-                                <gt/>
-                                <ci>time</ci>
-                                <ci>test_start</ci>
-                            </apply>
-                            <apply>
-                                <lt/>
-                                <ci>time</ci>
-                                <ci>test_end</ci>
-                            </apply>
-                        </apply>
-                    </piece>
-                    <otherwise>
-                        <ci>I_hold</ci>
-                    </otherwise>
-                </piecewise>
             </apply>
             <apply>
                 <eq/>
@@ -188,6 +191,10 @@
         <map_components component_1="membrane" component_2="parameters"/>
         <map_variables variable_1="Cm" variable_2="Cm"/>
         <map_variables variable_1="v" variable_2="v"/>
+    </connection>
+    <connection>
+        <map_components component_1="membrane" component_2="stimulus_protocol"/>
+        <map_variables variable_1="I_stim" variable_2="I_stim"/>
     </connection>
     <!-- Model - Cai variable-->
     <component name="Ca_Concentrations">
