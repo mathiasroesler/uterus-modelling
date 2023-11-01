@@ -336,8 +336,7 @@
         <variable name="ecat" public_interface="out" units="mV"/>
         <variable cmeta:id="gkca" initial_value="0.268" name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gb" initial_value="0.004" name="gb" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gkv43" initial_value="0.1" name="gkv43" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gkv42" initial_value="0.024" name="gkv42" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkv43" initial_value="2" name="gkv43" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gbka" initial_value="0.2" name="gbka" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="gbkab" initial_value="0.1" name="gbkab" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="gcl" initial_value="0.1875" name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -1441,7 +1440,6 @@
         <variable name="iBKab" private_interface="in" units="pA_per_pF"/>
         <variable name="iBKa" private_interface="in" units="pA_per_pF"/>
         <variable name="ikv43" private_interface="in" units="pA_per_pF"/>
-        <variable name="ikv42" private_interface="in" units="pA_per_pF"/>
         <variable name="cai" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ek" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gkca" private_interface="out" public_interface="in" units="nS_per_pF"/>
@@ -1451,7 +1449,6 @@
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gkv43" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="gkv42" private_interface="out" public_interface="in" units="nS_per_pF"/>
         <variable name="P4_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="E2_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -1463,7 +1460,6 @@
                     <ci>iBKab</ci>
                     <ci>iBKa</ci>
                     <ci>ikv43</ci>
-                    <ci>ikv42</ci>
                 </apply>
             </apply>
         </math>
@@ -1490,7 +1486,6 @@
         <map_variables variable_1="gbkab" variable_2="gbkab"/>
         <map_variables variable_1="gbka" variable_2="gbka"/>
         <map_variables variable_1="gkv43" variable_2="gkv43"/>
-        <map_variables variable_1="gkv42" variable_2="gkv42"/>
         <map_variables variable_1="R" variable_2="R"/>
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
@@ -1737,306 +1732,6 @@
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="ek" variable_2="ek"/>
         <map_variables variable_1="gkv43" variable_2="gkv43"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
-    </connection>
-    <!-- Model - currents-->
-    <component name="I_Kv42">
-        <variable name="pss" public_interface="none" units="dimensionless"/>
-        <variable name="kss" public_interface="none" units="dimensionless"/>
-        <variable name="ptc" public_interface="none" units="msec"/>
-        <variable name="k1tc" public_interface="none" units="msec"/>
-        <variable name="k2tc" public_interface="none" units="msec"/>
-        <variable initial_value="0.1174074734567931" name="p" public_interface="none" units="dimensionless"/>
-        <variable initial_value="0.9968385770271651" name="k1" public_interface="none" units="dimensionless"/>
-        <variable initial_value="0.9968408069904307" name="k2" public_interface="none" units="dimensionless"/>
-        <variable name="ikv42" public_interface="out" units="pA_per_pF"/>
-        <variable name="time" public_interface="in" units="msec"/>
-        <variable name="v" public_interface="in" units="mV"/>
-        <variable name="ek" public_interface="in" units="mV"/>
-        <variable name="gkv42" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
-        <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-                <eq/>
-                <ci>pss</ci>
-                <apply>
-                    <divide/>
-                    <cn cellml:units="dimensionless">0.948</cn>
-                    <apply>
-                        <plus/>
-                        <cn cellml:units="dimensionless">1.0</cn>
-                        <apply>
-                            <exp/>
-                            <apply>
-                                <divide/>
-                                <apply>
-                                    <minus/>
-                                    <apply>
-                                        <plus/>
-                                        <ci>v</ci>
-                                        <cn cellml:units="mV">17.91</cn>
-                                    </apply>
-                                </apply>
-                                <cn cellml:units="mV">18.4</cn>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>kss</ci>
-                <apply>
-                    <divide/>
-                    <cn cellml:units="dimensionless">1.0</cn>
-                    <apply>
-                        <plus/>
-                        <cn cellml:units="dimensionless">1.0</cn>
-                        <apply>
-                            <exp/>
-                            <apply>
-                                <divide/>
-                                <apply>
-                                    <plus/>
-                                    <ci>v</ci>
-                                    <cn cellml:units="mV">21.2</cn>
-                                </apply>
-                                <cn cellml:units="mV">5.7</cn>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>ptc</ci>
-                <apply>
-                    <divide/>
-                    <cn cellml:units="msec">100.0</cn>
-                    <apply>
-                        <plus/>
-                        <cn cellml:units="dimensionless">1.0</cn>
-                        <apply>
-                            <power/>
-                            <apply>
-                                <divide/>
-                                <apply>
-                                    <plus/>
-                                    <ci>v</ci>
-                                    <cn cellml:units="mV">64.1</cn>
-                                </apply>
-                                <cn cellml:units="mV">28.67</cn>
-                            </apply>
-                            <cn cellml:units="dimensionless">2</cn>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>k1tc</ci>
-                <apply>
-                    <times/>
-                    <cn cellml:units="msec">1000000.0</cn>
-                    <apply>
-                        <minus/>
-                        <cn cellml:units="dimensionless">1.0</cn>
-                        <apply>
-                            <divide/>
-                            <cn cellml:units="dimensionless">1.0</cn>
-                            <apply>
-                                <times/>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1.0</cn>
-                                    <apply>
-                                        <exp/>
-                                        <apply>
-                                            <divide/>
-                                            <apply>
-                                                <minus/>
-                                                <ci>v</ci>
-                                                <cn cellml:units="mV">315.0</cn>
-                                            </apply>
-                                            <cn cellml:units="mV">50.0</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1.0</cn>
-                                    <apply>
-                                        <exp/>
-                                        <apply>
-                                            <divide/>
-                                            <apply>
-                                                <minus/>
-                                                <apply>
-                                                    <plus/>
-                                                    <ci>v</ci>
-                                                    <cn cellml:units="mV">74.9</cn>
-                                                </apply>
-                                            </apply>
-                                            <cn cellml:units="mV">8.0</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>k2tc</ci>
-                <apply>
-                    <times/>
-                    <cn cellml:units="msec">2500000.0</cn>
-                    <apply>
-                        <minus/>
-                        <cn cellml:units="dimensionless">1.0</cn>
-                        <apply>
-                            <divide/>
-                            <cn cellml:units="dimensionless">1.0</cn>
-                            <apply>
-                                <times/>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1.0</cn>
-                                    <apply>
-                                        <exp/>
-                                        <apply>
-                                            <divide/>
-                                            <apply>
-                                                <minus/>
-                                                <ci>v</ci>
-                                                <cn cellml:units="mV">132.868</cn>
-                                            </apply>
-                                            <cn cellml:units="mV">25.3992</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                                <apply>
-                                    <plus/>
-                                    <cn cellml:units="dimensionless">1.0</cn>
-                                    <apply>
-                                        <exp/>
-                                        <apply>
-                                            <divide/>
-                                            <apply>
-                                                <minus/>
-                                                <apply>
-                                                    <plus/>
-                                                    <ci>v</ci>
-                                                    <cn cellml:units="mV">24.9203</cn>
-                                                </apply>
-                                            </apply>
-                                            <cn cellml:units="mV">2.67915</cn>
-                                        </apply>
-                                    </apply>
-                                </apply>
-                            </apply>
-                        </apply>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>ikv42</ci>
-                <apply>
-                    <times/>
-                    <ci>E2_ratio</ci>
-                    <ci>gkv42</ci>
-                    <ci>p</ci>
-                    <ci>p</ci>
-                    <apply>
-                        <plus/>
-                        <apply>
-                            <times/>
-                            <cn cellml:units="dimensionless">0.75</cn>
-                            <ci>k1</ci>
-                        </apply>
-                        <apply>
-                            <times/>
-                            <cn cellml:units="dimensionless">0.25</cn>
-                            <ci>k2</ci>
-                        </apply>
-                    </apply>
-                    <apply>
-                        <minus/>
-                        <ci>v</ci>
-                        <ci>ek</ci>
-                    </apply>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <apply>
-                    <diff/>
-                    <bvar>
-                        <ci>time</ci>
-                    </bvar>
-                    <ci>p</ci>
-                </apply>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <minus/>
-                        <ci>pss</ci>
-                        <ci>p</ci>
-                    </apply>
-                    <ci>ptc</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <apply>
-                    <diff/>
-                    <bvar>
-                        <ci>time</ci>
-                    </bvar>
-                    <ci>k1</ci>
-                </apply>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <minus/>
-                        <ci>kss</ci>
-                        <ci>k1</ci>
-                    </apply>
-                    <ci>k1tc</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <apply>
-                    <diff/>
-                    <bvar>
-                        <ci>time</ci>
-                    </bvar>
-                    <ci>k2</ci>
-                </apply>
-                <apply>
-                    <divide/>
-                    <apply>
-                        <minus/>
-                        <ci>kss</ci>
-                        <ci>k2</ci>
-                    </apply>
-                    <ci>k2tc</ci>
-                </apply>
-            </apply>
-        </math>
-    </component>
-    <connection>
-        <map_components component_1="I_Kv42" component_2="K_currents"/>
-        <map_variables variable_1="time" variable_2="time"/>
-        <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="ikv42" variable_2="ikv42"/>
-        <map_variables variable_1="ek" variable_2="ek"/>
-        <map_variables variable_1="gkv42" variable_2="gkv42"/>
         <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
         <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
@@ -3202,7 +2897,6 @@
                 <component_ref component="I_BKa"/>
                 <component_ref component="I_BKab"/>
                 <component_ref component="I_Kv43"/>
-                <component_ref component="I_Kv42"/>
             </component_ref>
         </component_ref>
     </group>
@@ -3221,7 +2915,6 @@
             <component_ref component="I_Kv43"/>
             <component_ref component="I_BKa"/>
             <component_ref component="I_BKab"/>
-            <component_ref component="I_Kv42"/>
         </component_ref>
     </group>
 </model>
