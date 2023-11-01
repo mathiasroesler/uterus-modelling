@@ -462,7 +462,7 @@
             <apply>
                 <eq/>
                 <ci>kmca</ci>
-                <cn cellml:units="mM">0.001</cn>
+                <cn cellml:units="mM">0.005</cn>
             </apply>
             <apply>
                 <eq/>
