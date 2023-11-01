@@ -80,10 +80,8 @@
     <component name="membrane">
         <variable initial_value="0" name="I_hold" public_interface="none" units="pA_per_pF"/>
         <variable initial_value="-0.25" name="I_test" public_interface="none" units="pA_per_pF"/>
-        <!-- DE -0.5; ME, PRO, E -0.2;-->
         <variable initial_value="1000" name="test_start" public_interface="none" units="msec"/>
         <variable initial_value="11000" name="test_end" public_interface="none" units="msec"/>
-        <!-- ME 11000; DE 6000; PRO 4000; E 4000;-->
         <variable cmeta:id="membrane_stimulus_current" name="I_stim" units="pA_per_pF"/>
         <variable name="time" public_interface="in" units="msec"/>
         <variable name="I_tot" units="pA_per_pF"/>
@@ -95,33 +93,7 @@
         <variable name="ina" public_interface="in" units="pA_per_pF"/>
         <variable name="ib" public_interface="in" units="pA_per_pF"/>
         <variable name="icl" public_interface="in" units="pA_per_pF"/>
-        <variable cmeta:id="P4" initial_value="13" name="P4" public_interface="out" units="nM_per_L"/>
-        <!-- ME 20.5; DE 19.7; PRO 48; E 13;-->
-        <variable cmeta:id="E2" initial_value="38" name="E2" public_interface="out" units="nM_per_L"/>
-        <!-- ME 50; DE 76; PRO 100; E 38;-->
-        <variable initial_value="53" name="P4_max" public_interface="out" units="nM_per_L"/>
-        <variable initial_value="140" name="E2_max" public_interface="out" units="nM_per_L"/>
-        <variable name="E2_ratio" public_interface="out" units="dimensionless"/>
-        <variable name="P4_ratio" public_interface="out" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
-            <apply>
-                <eq/>
-                <ci>E2_ratio</ci>
-                <apply>
-                    <divide/>
-                    <ci>E2</ci>
-                    <ci>E2_max</ci>
-                </apply>
-            </apply>
-            <apply>
-                <eq/>
-                <ci>P4_ratio</ci>
-                <apply>
-                    <divide/>
-                    <ci>P4</ci>
-                    <ci>P4_max</ci>
-                </apply>
-            </apply>
             <apply>
                 <eq/>
                 <ci>I_stim</ci>
@@ -328,15 +300,15 @@
         <variable name="frdy" public_interface="out" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="out" units="kelvin"/>
         <variable cmeta:id="membrane_capacitance" initial_value="1.0" name="Cm" units="uF_per_cm2"/>
-        <variable cmeta:id="gna" initial_value="0.008" name="gna" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gcal" initial_value="0.17" name="gcal" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gna" initial_value="0.0895" name="gna" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gcal" initial_value="0.6" name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
         <variable name="kmca" public_interface="out" units="mM"/>
         <variable cmeta:id="gcat" initial_value="0.058" name="gcat" public_interface="out" units="nS_per_pF"/>
         <variable name="ecat" public_interface="out" units="mV"/>
-        <variable cmeta:id="gkca" initial_value="0.268" name="gkca" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkca" initial_value="0.8" name="gkca" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gb" initial_value="0.004" name="gb" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gkv43" initial_value="0.098" name="gkv43" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gkv43" initial_value="0.7" name="gkv43" public_interface="out" units="nS_per_pF"/>
         <variable cmeta:id="gbka" initial_value="0.2" name="gbka" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="gbkab" initial_value="0.1" name="gbkab" public_interface="out" units="dimensionless"/>
         <variable cmeta:id="gcl" initial_value="0.1875" name="gcl" public_interface="out" units="nS_per_pF"/>
@@ -901,8 +873,6 @@
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ena" public_interface="in" units="mV"/>
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -989,15 +959,7 @@
                 <ci>ina</ci>
                 <apply>
                     <times/>
-                    <apply>
-                        <divide/>
-                        <apply>
-                            <times/>
-                            <ci>E2_ratio</ci>
-                            <ci>gna</ci>
-                        </apply>
-                        <ci>P4_ratio</ci>
-                    </apply>
+                    <ci>gna</ci>
                     <ci>mss</ci>
                     <ci>mss</ci>
                     <ci>mss</ci>
@@ -1038,15 +1000,11 @@
         <map_components component_1="I_Na" component_2="membrane"/>
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="ina" variable_2="ina"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <connection>
         <map_components component_1="I_Na" component_2="parameters"/>
         <map_variables variable_1="ena" variable_2="ena"/>
         <map_variables variable_1="gna" variable_2="gna"/>
-        <!--vars P4 and P4;
-vars E2 and E2;-->
     </connection>
     <!-- Model - currents -->
     <component name="Ca_currents">
@@ -1061,8 +1019,6 @@ vars E2 and E2;-->
         <variable name="kmca" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ecat" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1079,8 +1035,6 @@ vars E2 and E2;-->
         <map_components component_1="Ca_currents" component_2="membrane"/>
         <map_variables variable_1="I_Ca_tot" variable_2="I_Ca_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <connection>
         <map_components component_1="Ca_currents" component_2="environment"/>
@@ -1097,8 +1051,6 @@ vars E2 and E2;-->
         <map_variables variable_1="kmca" variable_2="kmca"/>
         <map_variables variable_1="ecat" variable_2="ecat"/>
         <map_variables variable_1="gcat" variable_2="gcat"/>
-        <!--vars P4 and P4;
-vars E2 and E2;-->
     </connection>
     <!-- Model - currents-->
     <component name="I_CaL">
@@ -1114,8 +1066,6 @@ vars E2 and E2;-->
         <variable name="ecal" public_interface="in" units="mV"/>
         <variable name="gcal" public_interface="in" units="nS_per_pF"/>
         <variable name="kmca" public_interface="in" units="mM"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1248,15 +1198,7 @@ vars E2 and E2;-->
                 <ci>ical</ci>
                 <apply>
                     <times/>
-                    <apply>
-                        <divide/>
-                        <apply>
-                            <times/>
-                            <ci>P4_ratio</ci>
-                            <ci>gcal</ci>
-                        </apply>
-                        <ci>E2_ratio</ci>
-                    </apply>
+                    <ci>gcal</ci>
                     <ci>fca</ci>
                     <ci>dss</ci>
                     <ci>dss</ci>
@@ -1310,8 +1252,6 @@ vars E2 and E2;-->
         <map_variables variable_1="gcal" variable_2="gcal"/>
         <map_variables variable_1="kmca" variable_2="kmca"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_CaT">
@@ -1453,8 +1393,6 @@ vars E2 and E2;-->
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gkv43" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1476,8 +1414,6 @@ vars E2 and E2;-->
         <map_components component_1="K_currents" component_2="membrane"/>
         <map_variables variable_1="I_K_tot" variable_2="I_K_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <connection>
         <map_components component_1="K_currents" component_2="Ca_Concentrations"/>
@@ -1509,8 +1445,6 @@ vars E2 and E2;-->
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ek" public_interface="in" units="mV"/>
         <variable name="gkv43" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1646,11 +1580,7 @@ vars E2 and E2;-->
                 <ci>ikv43</ci>
                 <apply>
                     <times/>
-                    <apply>
-                        <times/>
-                        <ci>E2_ratio</ci>
-                        <ci>gkv43</ci>
-                    </apply>
+                    <ci>gkv43</ci>
                     <ci>q</ci>
                     <ci>q</ci>
                     <apply>
@@ -1739,8 +1669,6 @@ vars E2 and E2;-->
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="ek" variable_2="ek"/>
         <map_variables variable_1="gkv43" variable_2="gkv43"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_BKa">
@@ -1758,8 +1686,6 @@ vars E2 and E2;-->
         <variable name="R" public_interface="in" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="in" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="in" units="kelvin"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1895,11 +1821,7 @@ vars E2 and E2;-->
                 <ci>iBKa</ci>
                 <apply>
                     <times/>
-                    <apply>
-                        <times/>
-                        <ci>E2_ratio</ci>
-                        <ci>gkca</ci>
-                    </apply>
+                    <ci>gkca</ci>
                     <ci>gbka</ci>
                     <ci>xass</ci>
                     <apply>
@@ -1923,8 +1845,6 @@ vars E2 and E2;-->
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_BKab">
@@ -1941,8 +1861,6 @@ vars E2 and E2;-->
         <variable name="R" public_interface="in" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="in" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="in" units="kelvin"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -2078,11 +1996,7 @@ vars E2 and E2;-->
                 <ci>iBKab</ci>
                 <apply>
                     <times/>
-                    <apply>
-                        <times/>
-                        <ci>E2_ratio</ci>
-                        <ci>gkca</ci>
-                    </apply>
+                    <ci>gkca</ci>
                     <ci>gbkab</ci>
                     <ci>xabss</ci>
                     <apply>
@@ -2105,8 +2019,6 @@ vars E2 and E2;-->
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_Cl">
