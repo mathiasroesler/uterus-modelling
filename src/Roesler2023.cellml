@@ -344,7 +344,7 @@
         <variable name="temp" public_interface="out" units="kelvin"/>
         <variable cmeta:id="membrane_capacitance" initial_value="1.0" name="Cm" units="uF_per_cm2"/>
         <variable cmeta:id="gna" initial_value="0.0625" name="gna" public_interface="out" units="nS_per_pF"/>
-        <variable cmeta:id="gcal" initial_value="0.25" name="gcal" public_interface="out" units="nS_per_pF"/>
+        <variable cmeta:id="gcal" initial_value="0.3" name="gcal" public_interface="out" units="nS_per_pF"/>
         <variable name="ecal" public_interface="out" units="mV"/>
         <variable name="kmca" public_interface="out" units="mM"/>
         <variable cmeta:id="gcat" initial_value="0.058" name="gcat" public_interface="out" units="nS_per_pF"/>
