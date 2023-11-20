@@ -42,6 +42,15 @@ AbstractCvodeCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 			}
 			break;
 
+		case 4:
+			cell = new CellRoesler2023FromCellMLCvode(mpSolver, mpZeroStimulus);
+
+			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+			{
+				cell->SetParameter(it->first, it->second);
+			}
+			break;
+
 		default:
 			cell = new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
 				mpZeroStimulus);

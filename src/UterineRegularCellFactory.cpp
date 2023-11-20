@@ -33,6 +33,9 @@ AbstractCvodeCell* UterineRegularCellFactory::CreateCardiacCellForTissueNode(
 
 			case 3:
 				return new CellTong2014FromCellMLCvode(mpSolver, mpStimulus);
+
+			case 4:
+				return new CellRoesler2023FromCellMLCvode(mpSolver, mpStimulus);
 		
 			default:
 				return new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
