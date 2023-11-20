@@ -8,6 +8,7 @@
 #include "ChayKeizer1983Cvode.hpp"
 #include "Means2022Cvode.hpp"
 #include "Tong2014Cvode.hpp"
+#include "Roesler2023Cvode.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
@@ -22,7 +23,7 @@ class AbstractUterineCellFactory : public AbstractCardiacCellFactory<2>
 protected:
 	std::string mpCell_type;
 	std::unordered_map<std::string, float> mpCell_parameters;
-	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong
+	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong, 4 = Roesler
 
 
 public:
