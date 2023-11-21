@@ -14,7 +14,7 @@ PARAM=$2
 VALUE=$3
 END=$4
 STEP=$5
-CONFIG_DIR="/usr/local/config"
+CONFIG=${CHASTE_MODELLING_CONFIG_DIR}2d_params.toml
 
 CONDITION=$(echo "${VALUE} > ${END}" | bc)
 
@@ -23,8 +23,8 @@ if [[ $CONDITION -eq 1 ]]; then
 	exit
 fi
 
-CELL_TYPE=$(cat ${CONFIG_DIR}/${DIM}d_params.toml | grep cell_type | cut -d '"' -f2)
-CONFIG_FILE=${CONFIG_DIR}/${CELL_TYPE}.toml 
+CELL_TYPE=$(cat ${CHASTE_MODELLING_CONFIG_DIR}/${DIM}d_params.toml | grep cell_type | cut -d '"' -f2)
+CONFIG_FILE=${CHASTE_MODELLING_CONFIG_DIR}/${CELL_TYPE}.toml 
 
 while :; do
 	LINE=$(cat ${CONFIG_FILE} | cut -d '#' -f1 | grep $PARAM)
