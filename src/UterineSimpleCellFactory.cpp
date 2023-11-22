@@ -16,31 +16,55 @@ AbstractCvodeCell* UterineSimpleCellFactory::CreateCardiacCellForTissueNode(
 	double x = pNode->rGetLocation()[0];
 	double y = pNode->rGetLocation()[1];
 
+	AbstractCvodeCell* cell;
+
 	if (x >= mpX_stim_start && x <= mpX_stim_end && 
 			y >= mpY_stim_start && y <= mpY_stim_end)
 	{
 		switch (mpCell_id)
 		{
 			case 0:
-				return new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
+				cell = new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
 					mpStimulus);
+				break;
 
 			case 1:
-				return new CellChayKeizer1983FromCellMLCvode(mpSolver, mpStimulus);
-		
-			case 2:
-				return new CellMeans2022FromCellMLCvode(mpSolver, mpStimulus);
+				cell = new CellChayKeizer1983FromCellMLCvode(mpSolver, mpStimulus);
+				break;
 
+			case 2:
+				cell = new CellMeans2022FromCellMLCvode(mpSolver, mpStimulus);
+
+				for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+				{
+					cell->SetParameter(it->first, it->second);
+				}
+				break;
+			
 			case 3:
-				return new CellTong2014FromCellMLCvode(mpSolver, mpStimulus);
-		
+				cell = new CellTong2014FromCellMLCvode(mpSolver, mpStimulus);
+
+				for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+				{
+					cell->SetParameter(it->first, it->second);
+				}
+				break;
+
 			case 4:
-				return new CellRoesler2023FromCellMLCvode(mpSolver, mpStimulus);
-		
+				cell = new CellRoesler2023FromCellMLCvode(mpSolver, mpStimulus);
+
+				for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+				{
+					cell->SetParameter(it->first, it->second);
+				}
+				break;
+
 			default:
-				return new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
+				cell = new CellHodgkinHuxley1952FromCellMLCvode(mpSolver,
 					mpStimulus);
-		}
+		}	
+
+		return cell;
 	}
 	else
 	{
