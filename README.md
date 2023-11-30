@@ -94,7 +94,7 @@ The project uses [TOML](https://toml.io/en/) configuration files to edit simulat
 
 The cell configuration files are all structured in the same way:
 1. _Cell properties_ which consists of the capacitance and conductivities for 2D and 3D simulations;
-2. _Stimulus_ contains the settings of the stimulus, the magnitude, period (only used if a regular stimulus is applied), the duration, and the start time;
+2. _Stimulus_ which consists of the settings of the stimulus, the magnitude, period (only used if a regular stimulus is applied), the duration, and the start time;
 3. _cell_id_ is the unique identifier of the cell. There are currently 4 different cells;
 4.  _Cell parameters_ which lists the modifiable parameters in the CellML model. 
 
@@ -104,6 +104,8 @@ The three first categories are required for the cell model to work. The _Cell pa
 
 <a id="0d"></a>
 ### 0D simulations
+
+The **0d_params.toml** configuration file is used for single cell simulations only. The only cell type implemented is the FitzHugh-Nagumo cell. The file defines the initial conditions for the equations, the simulation duration, and the ODE solver time and sampling steps. There are two different modes, the slow-wave mode and the original mode. The latter is select by setting the _slow_
 
 <a id="2d"></a>
 ### 2D simulations
