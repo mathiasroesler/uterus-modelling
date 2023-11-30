@@ -51,5 +51,5 @@ else
     echo "`basename "$0"` $PROJECT c"
 fi
 
-cd $CHASTE_BUILD_DIR/projects/$PROJECT
-cmake --build . && ctest 
+cd $CHASTE_BUILD_DIR
+make -j${NCORES} chaste_project_${PROJECT} 

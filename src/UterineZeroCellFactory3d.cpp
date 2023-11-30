@@ -10,7 +10,7 @@ UterineZeroCellFactory3d::UterineZeroCellFactory3d() :
 }
 
 
-AbstractCardiacCell* UterineZeroCellFactory3d::CreateCardiacCellForTissueNode(
+AbstractCvodeCell* UterineZeroCellFactory3d::CreateCardiacCellForTissueNode(
 	Node<3>* pNode)
 {
 	return AbstractUterineCellFactory3d::CreateCardiacCellForTissueNode(pNode);

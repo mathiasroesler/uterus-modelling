@@ -10,7 +10,7 @@ UterineZeroCellFactory::UterineZeroCellFactory() :
 }
 
 
-AbstractCardiacCell* UterineZeroCellFactory::CreateCardiacCellForTissueNode(
+AbstractCvodeCell* UterineZeroCellFactory::CreateCardiacCellForTissueNode(
 	Node<2>* pNode)
 {
 	return AbstractUterineCellFactory::CreateCardiacCellForTissueNode(pNode);

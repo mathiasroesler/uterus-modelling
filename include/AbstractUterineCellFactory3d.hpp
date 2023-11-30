@@ -4,10 +4,11 @@
 #include <toml.hpp>
 #include "MonodomainProblem.hpp"
 #include "ZeroStimulus.hpp"
-#include "HodgkinHuxley1952.hpp"
-#include "ChayKeizer1983.hpp"
-#include "Means2022.hpp"
-#include "Tong2014.hpp"
+#include "HodgkinHuxley1952Cvode.hpp"
+#include "ChayKeizer1983Cvode.hpp"
+#include "Means2022Cvode.hpp"
+#include "Tong2014Cvode.hpp"
+#include "Roesler2023Cvode.hpp"
 
 namespace USMC_3D_SYSTEM_CONSTANTS
 {
@@ -22,12 +23,12 @@ class AbstractUterineCellFactory3d : public AbstractCardiacCellFactory<3>
 protected:
 	std::string mpCell_type;
 	std::unordered_map<std::string, float> mpCell_parameters;
-	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong
+	unsigned short int mpCell_id; // 0 = HH, 1 = CK, 2 = Means, 3 = Tong, 4 = Roesler
 
 
 public:
 	AbstractUterineCellFactory3d();
-	AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
+	AbstractCvodeCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
 	std::string GetCellType();
 	virtual void ReadParams(std::string general_param_file);
 	virtual void ReadCellParams(std::string cell_param_file);
