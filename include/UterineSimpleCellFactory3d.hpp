@@ -19,7 +19,7 @@ private:
 
 public:
 	UterineSimpleCellFactory3d();
-	AbstractCardiacCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
+	AbstractCvodeCell* CreateCardiacCellForTissueNode(Node<3>* pNode);
 	void ReadParams(std::string general_param_file);
 	void ReadCellParams(std::string cell_param_file);
 	void PrintParams();

@@ -6,6 +6,7 @@ else
 	export CHASTE_DIR="/home/mroe734/Chaste"
 fi
 
+export PATH=$PATH:${CHASTE_DIR}/scripts
 export CHASTE_SOURCE_DIR="${CHASTE_DIR}/src"
 export CHASTE_PROJECTS_DIR="${CHASTE_SOURCE_DIR}/projects"
 export CHASTE_BUILD_DIR="${CHASTE_DIR}/lib"

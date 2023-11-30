@@ -5,10 +5,10 @@ mesh_dir = "/mesh/test/data/"
 stimulus_type = "simple"
 
 # Stimulus parameters
-x_stim_start = 0.00
-x_stim_end = 0.06
-y_stim_start = 0.00
-y_stim_end = 0.06
+x_stim_start = -0.1
+x_stim_end = 0.2
+y_stim_start = 0.0
+y_stim_end = 0.01
 
 # Time paramters in millisec
 sim_duration = 10000.0
