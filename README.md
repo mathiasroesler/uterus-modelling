@@ -164,7 +164,7 @@ To add a new cell to the project follow these steps:
 	- **UterineRegularCellFactory3d.cpp**
 	- **UterineSimpleCellFactory.cpp**
 	- **UterineSimpleCellFactory3d.cpp**
-4. Add the include statement for the new cell before the `namespace` declaration (see [include statement](#include) for details) in the following files in the **include** folder located in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)):
+4. Add the `#include` statement for the new cell before the `namespace` declaration (see [include statement](#include) for details) in the following files in the **include** folder located in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)):
 	- **AbstractUterineCellFactory.hpp**
 	- **AbstractUterineCellFactory3d.hpp**
 5. Rebuild the project (see [Ready to build](#build) section for more details). 
@@ -185,7 +185,7 @@ where cell_id is replaced with the new cell number and NAME is replaced with the
 
 
 <a id="include"></a>
-Example of the include statement to add before the `namespace` declaration from step 4:
+Example of the `#include` statement to add from step 4:
 ```
 #include "NAMECvode.hpp"
 ```
@@ -196,3 +196,15 @@ where NAME is replaced with the new cell name.
 
 <a id="add-test"></a>
 ### Adding a test
+
+All of the tests for the project reside in the **test** folder located in the _uterus-modelling_ folder in the source code directory. 
+
+**Note:** if adding a new cell model it is recommended to write a new test for that particular cell, based on the previous cell tests. 
+
+The tests are always classes that inherit from the CxxTest::TestSuite class, with a single public function named NAMEClass(), where NAME is replaced with the name of the test class. When writing a new cell test, ensure that:
+* the `#ifndef`, `#define`, and `#endif` statements are updated with the new test name;
+* the `#include` statement for the new cell is added (see [include statement](#include) for details) before the `class` declaration;
+* the `class` name and public function are updated with the new test name;
+* the new cell model is called inside the test function. 
+
+For the test to be include, the **ContinuousTestPack.txt** file must be updated with the name of the new test file. Once the test has been added to the list, rebuild the project (see [Ready to build](#build) section for more details). 
