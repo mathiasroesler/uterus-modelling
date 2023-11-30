@@ -4,6 +4,11 @@
    1. [Edits](#edits)
    2. [Ready to build](#build)
    3. [Testing](#testing)
+2. [Configuration files](#config)
+	1. [Cells](#cells)
+	2. [0D simulations](#0d)
+	3. [2D simulations](#2d)
+	4. [3D simulations](#3d)
 2. [Running simulations](#simulations)
 
 <a id="general-setup"></a>
@@ -51,7 +56,8 @@ source ${HOME}/path_to_Chaste/Chaste/scripts/chaste-env
 
 <a id="build"></a>
 ### Ready to build
-Run the **setup_project.py** script in the _uterus-modelling_ folder in the **src** directory and answer the prompted questions.  
+Run the **setup_project.py** script in the _uterus-modelling_ folder in the **src** directory and answer the prompted questions. 
+ 
 **Note:** this project only uses cardiac Chaste.
 
 In the Chaste build folder run the following command to update the CMakeLists
@@ -76,6 +82,35 @@ In the _uterus-modelling_ folder in the **build** directory run the tests and ma
 $ ctest 
 ```
 
+<a id="config"></a>
+## Configuration files
+
+The project uses [TOML](https://toml.io/en/) configuration files to edit simulation and cell parameters. An example of configuration files for the different simulations and each available cell type are found in the **config** folder of the _uterus-modelling_ folder in the **src** directory. 
+
+**Note:** the configuration files used during the simulations are located in the **config** folder of the Chaste top-level directory. 
+
+<a id="cells"></a>
+### Cells
+
+The cell configuration files are all structured in the same way:
+1. _Cell properties_ which consists of the capacitance and conductivities for 2D and 3D simulations;
+2. _Stimulus_ contains the settings of the stimulus, the magnitude, period (only used if a regular stimulus is applied), the duration, and the start time;
+3. _cell_id_ is the unique identifier of the cell. There are currently 4 different cells;
+4.  _Cell parameters_ which lists the modifiable parameters in the CellML model. 
+
+The three first categories are required for the cell model to work. The _Cell parameters_ category should only contain the name and value of parameters that have been identified as modifiable in the CellML model. However, if the parameter is modifiable it does not need to be listed for the cell model to work, the default value will be used instead. 
+	
+**Note:** The units are specified as comments after _Cell properties_ and _Stimulus_ parameters. The initial value and range are specified after _Cell parameters_ parameters. 
+
+<a id="0d"></a>
+### 0D simulations
+
+<a id="2d"></a>
+### 2D simulations
+
+<a id="3d"></a>
+### 3D simulations
+
 <a id="simulations"></a>
 ## Running simulations
 
@@ -88,3 +123,4 @@ The results of each simulation are stored in the **testoutput** folder with the 
 **Note:** for 0D simulations the results are stored directly in the 0d_simulation folder. 
 
 **Note:** the **results** folder is not automatically created and needs to be done manually otherwise the results will not be saved.
+
