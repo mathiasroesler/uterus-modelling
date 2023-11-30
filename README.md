@@ -7,8 +7,7 @@
 2. [Configuration files](#config)
 	1. [Cells](#cells)
 	2. [0D simulations](#0d)
-	3. [2D simulations](#2d)
-	4. [3D simulations](#3d)
+	3. [2D and 3D simulations](#2d)
 2. [Running simulations](#simulations)
 
 <a id="general-setup"></a>
@@ -105,13 +104,25 @@ The three first categories are required for the cell model to work. The _Cell pa
 <a id="0d"></a>
 ### 0D simulations
 
-The **0d_params.toml** configuration file is used for single cell simulations only. The only cell type implemented is the FitzHugh-Nagumo cell. The file defines the initial conditions for the equations, the simulation duration, and the ODE solver time and sampling steps. There are two different modes, the slow-wave mode and the original mode. The latter is select by setting the _slow_
+The **0d_params.toml** configuration file is used for single cell simulations only. The only cell type implemented is the FitzHugh-Nagumo cell. The file defines the initial conditions for the equations, the simulation duration, and the ODE solver time and sampling steps. There are two different modes, the slow-wave mode and the original mode. The latter is select by setting the _slow_wave_  parameter to **false**, rather than **true**. 
 
 <a id="2d"></a>
-### 2D simulations
+### 2D and 3D simulations
 
-<a id="3d"></a>
-### 3D simulations
+The **2d_params.toml** and **3d_params.toml** configuration files pilot the 2D and 3D simulations, respectively. They are structures similarly:
+1. _General parameters_ consists of top-level parameters, the name of the directory in which to save the results, the name of the mesh to use, the directory containing the mesh from Chaste/src/, and the stimulus type; 
+2. _Stimulus parameters_ defines the area which will be stimulated in the x, y, and z (if in 3D) directions; 
+3. _Time parameters_ defines the time properties of the simulation, the duration, the ODE time step, the PDE time step, and the printing time step, _i.e._ the number of time points in the results. The ODE and PDE time steps should be equal and the printing time step equal or greater than the ODE and PDE time steps;
+4. _cell_type_ is the name of the cell model to use. 
+
+There are three different stimuli that are implemented:
+* _zero_ which does not provide any stimulus;
+* _simple_ which is a single pulse;
+* _regular_ which is a impulse train; 
+
+The parameters for the stimuli are set for each individual cell type in their respective configuration files. 
+
+**Note:** the default meshes provided by Chaste are located in the /mesh/test/data/ folder and the uterine meshes are located in the /mesh/uterus folder
 
 <a id="simulations"></a>
 ## Running simulations
