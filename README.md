@@ -9,16 +9,22 @@
 	2. [0D simulations](#0d)
 	3. [2D and 3D simulations](#2d)
 2. [Running simulations](#simulations)
+3. [Editing code](#editing-code)
+	1. [Adding a cell](#add-cell)
+	2. [Adding a test](#add-test)
 
 <a id="general-setup"></a>
 ## General setup
 This setup guide assumes that the uterine version of [Chaste](https://github.com/mathiasroesler/chaste/tree/uterine-chaste) has been built successfully. Here is an example of the directory tree:
+<a id="tree"></a>
 ```
 Chaste/ (top-level directory)
 |
 |-- src/ (source code directory)
 |	|-- projects/
 |		|--uterus-modelling/ (this project)
+|		   |-- src/
+|		   |-- include/
 |		   |-- config/
 |		   |-- scripts/
 |			|-- chaste-env
@@ -29,14 +35,14 @@ Chaste/ (top-level directory)
 |-- scripts/ (cp from uterus-modelling)
 ```
 
-Clone the project in the projects folder of the Chaste source code.
+Clone the project in the projects folder of the Chaste source code directory.
 
 <a id="edits"></a>
 ### Edits
 
-Copy the **config** and **scripts** folder from the _uterus-modelling_ project to the Chaste top-level directory and create the **testoutput** folder.
+Copy the **config** and **scripts** folder from the _uterus-modelling_ project to the Chaste top-level directory and create the **testoutput** folder (refer to the [directory tree](#tree)).
 
-The project uses environment variables that need to be updated in order to run the project. Open the **chaste-env** script in a text editor and change the **CHASTE_DIR** variable to be the path from **/** to the Chaste top-level directory. Make sure that the **CHASTE_SOURCE_DIR** and **CHASTE_BUILD_DIR** variables are using the correct names of the source and build directory, respectively.
+The project uses environment variables that need to be updated in order to run the project. Open the **chaste-env** script in a text editor and change the **CHASTE_DIR** variable to be the path from **/** to the Chaste top-level directory. Make sure that the **CHASTE_SOURCE_DIR** and **CHASTE_BUILD_DIR** variables are using the correct names of the source code and build directory, respectively.
 
 **Note:** the **APPTAINERENV_** variables are only used on the HPCs and don't have to be updated.
 
@@ -55,28 +61,32 @@ source ${HOME}/path_to_Chaste/Chaste/scripts/chaste-env
 
 <a id="build"></a>
 ### Ready to build
-Run the **setup_project.py** script in the _uterus-modelling_ folder in the **src** directory and answer the prompted questions. 
+Run the **setup_project.py** script in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)) and answer the prompted questions. This step only needs to be performed for the first build and can be skipped if rebuilding the project.
  
 **Note:** this project only uses cardiac Chaste.
 
-In the Chaste build folder run the following command to update the CMakeLists
+In the Chaste build folder run the following command to update the CMakeLists for the first build or if a new file has been added to the project:
+
 ```
 $ cmake .
 ```
 
-Navigate to the _uterus-modelling_ folder in the **build** directory and run the following command to build the project
+Navigate to the _uterus-modelling_ folder in the build directory (refer to the [directory tree](#tree)) and run the following command to build the project:
+
 ```
 $ cmake --build .
 ```
 
 <a id="testing"></a>
 ### Testing
-Source the **chaste-env** script in the scripts folder in the Chaste top-level directory to update the environment variables
+Source the **chaste-env** script in the scripts folder in the Chaste top-level directory to update the environment variables:
+
 ```
 $ source chaste-env
 ```
 
-In the _uterus-modelling_ folder in the **build** directory run the tests and make sure that they all pass
+In the _uterus-modelling_ folder in the build directory (refer to the [directory tree](#tree)) run the tests and make sure that they all pass:
+
 ```
 $ ctest 
 ```
@@ -84,7 +94,7 @@ $ ctest
 <a id="config"></a>
 ## Configuration files
 
-The project uses [TOML](https://toml.io/en/) configuration files to edit simulation and cell parameters. An example of configuration files for the different simulations and each available cell type are found in the **config** folder of the _uterus-modelling_ folder in the **src** directory. 
+The project uses [TOML](https://toml.io/en/) configuration files to edit simulation and cell parameters. An example of configuration files for the different simulations and each available cell type are found in the **config** folder of the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)). 
 
 **Note:** the configuration files used during the simulations are located in the **config** folder of the Chaste top-level directory. 
 
@@ -95,7 +105,7 @@ The cell configuration files are all structured in the same way:
 1. _Cell properties_ which consists of the capacitance and conductivities for 2D and 3D simulations;
 2. _Stimulus_ which consists of the settings of the stimulus, the magnitude, period (only used if a regular stimulus is applied), the duration, and the start time;
 3. _cell_id_ is the unique identifier of the cell. There are currently 4 different cells;
-4.  _Cell parameters_ which lists the modifiable parameters in the CellML model. 
+4.  _Cell parameters_ which lists the [modifiable parameters](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML) in the CellML model. 
 
 The three first categories are required for the cell model to work. The _Cell parameters_ category should only contain the name and value of parameters that have been identified as modifiable in the CellML model. However, if the parameter is modifiable it does not need to be listed for the cell model to work, the default value will be used instead. 
 	
@@ -122,7 +132,7 @@ There are three different stimuli that are implemented:
 
 The parameters for the stimuli are set for each individual cell type in their respective configuration files. 
 
-**Note:** the default meshes provided by Chaste are located in the /mesh/test/data/ folder and the uterine meshes are located in the /mesh/uterus folder
+**Note:** the default meshes provided by Chaste are located in the **/mesh/test/data/** folder and the uterine meshes are located in the **/mesh/uterus** folder.
 
 <a id="simulations"></a>
 ## Running simulations
@@ -137,3 +147,52 @@ The results of each simulation are stored in the **testoutput** folder with the 
 
 **Note:** the **results** folder is not automatically created and needs to be done manually otherwise the results will not be saved.
 
+<a id="editing-code"></a>
+## Editing code
+
+This section details the steps for editing the code. 
+<a id="add-cell"></a>
+### Adding a cell
+
+To add a new cell to the project follow these steps:
+1. Ensure that the new cell model has the correct annotation by following the code generation from CellML [guide](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML). 
+2. Place the annotated CellML file for the desired cell in the **src** folder located in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)). 
+3. Add a case for the new _cell_id_ in the switch statement of the *CreateCardiacCellForTissueNode* functions (see [code snippet](#code) for details) in the following files in the **src** folder located in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)):
+	- **AbstractUterineCellFactory.cpp**
+	- **AbstractUterineCellFactory3d.cpp**
+	- **UterineRegularCellFactory.cpp**
+	- **UterineRegularCellFactory3d.cpp**
+	- **UterineSimpleCellFactory.cpp**
+	- **UterineSimpleCellFactory3d.cpp**
+4. Add the include statement for the new cell before the `namespace` declaration (see [include statement](#include) for details) in the following files in the **include** folder located in the _uterus-modelling_ folder in the source code directory (refer to the [directory tree](#tree)):
+	- **AbstractUterineCellFactory.hpp**
+	- **AbstractUterineCellFactory3d.hpp**
+5. Rebuild the project (see [Ready to build](#build) section for more details). 
+
+<a id="code"></a>
+Example of the code snippet to add from step 3:
+```
+case cell_id:
+	cell = new CellNAMEFromCellMLCvode(mpSolver, mpStimulus);
+		
+	for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
+	{
+		cell->SetParameter(it->first, it->second);
+	}
+	break;
+```
+where cell_id is replaced with the new cell number and NAME is replaced with the new cell name. The `for` loop is only needed if the cell model has [modifiable parameters](https://chaste.cs.ox.ac.uk/trac/wiki/ChasteGuides/CodeGenerationFromCellML).
+
+
+<a id="include"></a>
+Example of the include statement to add before the `namespace` declaration from step 4:
+```
+#include "NAMECvode.hpp"
+```
+where NAME is replaced with the new cell name. 
+
+**Note:** the convention used for naming the cells is AuthorYear.cellml, _i.e_ **Tong2014.cellml**.
+
+
+<a id="add-test"></a>
+### Adding a test
