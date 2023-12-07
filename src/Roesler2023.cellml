@@ -137,12 +137,12 @@
         <!-- Estradiol levels during estrus ME 43; DE 74; PRO 90; E 50;-->
         <variable initial_value="53" name="P4_max" public_interface="out" units="nM_per_L"/>
         <variable initial_value="140" name="E2_max" public_interface="out" units="nM_per_L"/>
-        <variable name="E2_ratio" public_interface="out" units="dimensionless"/>
-        <variable name="P4_ratio" public_interface="out" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="out" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="out" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
-                <ci>E2_ratio</ci>
+                <ci>mod_E2</ci>
                 <apply>
                     <divide/>
                     <ci>E2</ci>
@@ -151,7 +151,7 @@
             </apply>
             <apply>
                 <eq/>
-                <ci>P4_ratio</ci>
+                <ci>mod_P4</ci>
                 <apply>
                     <divide/>
                     <ci>P4</ci>
@@ -916,8 +916,8 @@
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ena" public_interface="in" units="mV"/>
         <variable name="gna" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1008,10 +1008,10 @@
                         <divide/>
                         <apply>
                             <times/>
-                            <ci>E2_ratio</ci>
+                            <ci>mod_E2</ci>
                             <ci>gna</ci>
                         </apply>
-                        <ci>P4_ratio</ci>
+                        <ci>mod_P4</ci>
                     </apply>
                     <ci>mss</ci>
                     <ci>mss</ci>
@@ -1053,8 +1053,8 @@
         <map_components component_1="I_Na" component_2="membrane"/>
         <map_variables variable_1="v" variable_2="v"/>
         <map_variables variable_1="ina" variable_2="ina"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <connection>
         <map_components component_1="I_Na" component_2="parameters"/>
@@ -1074,8 +1074,8 @@
         <variable name="kmca" private_interface="out" public_interface="in" units="mM"/>
         <variable name="ecat" private_interface="out" public_interface="in" units="mV"/>
         <variable name="gcat" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1092,8 +1092,8 @@
         <map_components component_1="Ca_currents" component_2="membrane"/>
         <map_variables variable_1="I_Ca_tot" variable_2="I_Ca_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <connection>
         <map_components component_1="Ca_currents" component_2="environment"/>
@@ -1125,8 +1125,8 @@
         <variable name="ecal" public_interface="in" units="mV"/>
         <variable name="gcal" public_interface="in" units="nS_per_pF"/>
         <variable name="kmca" public_interface="in" units="mM"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1263,10 +1263,10 @@
                         <divide/>
                         <apply>
                             <times/>
-                            <ci>P4_ratio</ci>
+                            <ci>mod_P4</ci>
                             <ci>gcal</ci>
                         </apply>
-                        <ci>E2_ratio</ci>
+                        <ci>mod_E2</ci>
                     </apply>
                     <ci>fca</ci>
                     <ci>dss</ci>
@@ -1321,8 +1321,8 @@
         <map_variables variable_1="gcal" variable_2="gcal"/>
         <map_variables variable_1="kmca" variable_2="kmca"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_CaT">
@@ -1464,8 +1464,8 @@
         <variable name="temp" private_interface="out" public_interface="in" units="kelvin"/>
         <variable name="gbkab" private_interface="out" public_interface="in" units="dimensionless"/>
         <variable name="gkv43" private_interface="out" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" private_interface="out" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" private_interface="out" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1487,8 +1487,8 @@
         <map_components component_1="K_currents" component_2="membrane"/>
         <map_variables variable_1="I_K_tot" variable_2="I_K_tot"/>
         <map_variables variable_1="v" variable_2="v"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <connection>
         <map_components component_1="K_currents" component_2="Ca_Concentrations"/>
@@ -1520,8 +1520,8 @@
         <variable name="v" public_interface="in" units="mV"/>
         <variable name="ek" public_interface="in" units="mV"/>
         <variable name="gkv43" public_interface="in" units="nS_per_pF"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1657,7 +1657,7 @@
                 <ci>ikv43</ci>
                 <apply>
                     <times/>
-                    <ci>E2_ratio</ci>
+                    <ci>mod_E2</ci>
                     <ci>gkv43</ci>
                     <ci>q</ci>
                     <ci>q</ci>
@@ -1747,8 +1747,8 @@
         <map_variables variable_1="time" variable_2="time"/>
         <map_variables variable_1="ek" variable_2="ek"/>
         <map_variables variable_1="gkv43" variable_2="gkv43"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_BKa">
@@ -1766,8 +1766,8 @@
         <variable name="R" public_interface="in" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="in" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="in" units="kelvin"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -1903,7 +1903,7 @@
                 <ci>iBKa</ci>
                 <apply>
                     <times/>
-                    <ci>E2_ratio</ci>
+                    <ci>mod_E2</ci>
                     <ci>gkca</ci>
                     <ci>gbka</ci>
                     <ci>xass</ci>
@@ -1928,8 +1928,8 @@
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_BKab">
@@ -1946,8 +1946,8 @@
         <variable name="R" public_interface="in" units="joule_per_kelvin_per_kilomole"/>
         <variable name="frdy" public_interface="in" units="coulomb_per_mole"/>
         <variable name="temp" public_interface="in" units="kelvin"/>
-        <variable name="P4_ratio" public_interface="in" units="dimensionless"/>
-        <variable name="E2_ratio" public_interface="in" units="dimensionless"/>
+        <variable name="mod_P4" public_interface="in" units="dimensionless"/>
+        <variable name="mod_E2" public_interface="in" units="dimensionless"/>
         <math xmlns="http://www.w3.org/1998/Math/MathML">
             <apply>
                 <eq/>
@@ -2083,7 +2083,7 @@
                 <ci>iBKab</ci>
                 <apply>
                     <times/>
-                    <ci>E2_ratio</ci>
+                    <ci>mod_E2</ci>
                     <ci>gkca</ci>
                     <ci>gbkab</ci>
                     <ci>xabss</ci>
@@ -2107,8 +2107,8 @@
         <map_variables variable_1="frdy" variable_2="frdy"/>
         <map_variables variable_1="temp" variable_2="temp"/>
         <map_variables variable_1="cai" variable_2="cai"/>
-        <map_variables variable_1="E2_ratio" variable_2="E2_ratio"/>
-        <map_variables variable_1="P4_ratio" variable_2="P4_ratio"/>
+        <map_variables variable_1="mod_E2" variable_2="mod_E2"/>
+        <map_variables variable_1="mod_P4" variable_2="mod_P4"/>
     </connection>
     <!-- Model - currents-->
     <component name="I_Cl">
