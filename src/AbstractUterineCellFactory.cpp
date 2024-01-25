@@ -25,7 +25,7 @@ AbstractCvodeCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 			break;
 
 		case 2:
-			cell = new CellMeans2022FromCellMLCvode(mpSolver, mpZeroStimulus);
+			cell = new CellMeans2023FromCellMLCvode(mpSolver, mpZeroStimulus);
 
 			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
 			{
@@ -43,7 +43,7 @@ AbstractCvodeCell* AbstractUterineCellFactory::CreateCardiacCellForTissueNode(
 			break;
 
 		case 4:
-			cell = new CellRoesler2023FromCellMLCvode(mpSolver, mpZeroStimulus);
+			cell = new CellRoesler2024FromCellMLCvode(mpSolver, mpZeroStimulus);
 
 			for (auto it=mpCell_parameters.begin(); it != mpCell_parameters.end(); ++it)
 			{

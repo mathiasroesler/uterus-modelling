@@ -6,7 +6,7 @@
 #include "CellProperties.hpp"
 #include "EulerIvpOdeSolver.hpp"
 #include "SimpleStimulus.hpp"
-#include "Roesler2023Cvode.hpp"
+#include "Roesler2024Cvode.hpp"
 #include "SteadyStateRunner.hpp"
 #include "FakePetscSetup.hpp"
 
@@ -18,7 +18,7 @@ public:
 #ifdef CHASTE_CVODE
         boost::shared_ptr<SimpleStimulus> p_stimulus(new SimpleStimulus(-0.5, 2000.0, 1000.0));
         boost::shared_ptr<AbstractIvpOdeSolver> p_solver;
-        boost::shared_ptr<AbstractCvodeCell> p_model(new CellRoesler2023FromCellMLCvode(p_solver, p_stimulus));
+        boost::shared_ptr<AbstractCvodeCell> p_model(new CellRoesler2024FromCellMLCvode(p_solver, p_stimulus));
 
         p_model->SetTolerances(1e-7, 1e-7);
 
@@ -37,7 +37,7 @@ public:
         bool clean_dir = false;
         unsigned precision = 6u;
         bool include_derived_quantities = true;
-        solution.WriteToFile("SingleCellSimulationTest", "Roesler2023Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
+        solution.WriteToFile("SingleCellSimulationTest", "Roesler2024Cvode", "ms", steps_per_row, clean_dir, precision, include_derived_quantities);
 
 #else
         std::cout << "Cvode is not enabled.\n";

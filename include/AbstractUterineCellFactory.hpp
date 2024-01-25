@@ -6,9 +6,9 @@
 #include "ZeroStimulus.hpp"
 #include "HodgkinHuxley1952Cvode.hpp"
 #include "ChayKeizer1983Cvode.hpp"
-#include "Means2022Cvode.hpp"
+#include "Means2023Cvode.hpp"
 #include "Tong2014Cvode.hpp"
-#include "Roesler2023Cvode.hpp"
+#include "Roesler2024Cvode.hpp"
 
 namespace USMC_2D_SYSTEM_CONSTANTS
 {
